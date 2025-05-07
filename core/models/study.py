@@ -17,7 +17,7 @@ class Study(models.Model):
     trial_id = models.CharField(max_length=255, blank=True, null=True)
     category = models.CharField(max_length=255, blank=True, null=True)
     summary = models.TextField(blank=True, null=True)
-    project = models.ForeignKey(Project, on_delete=models.SET_NULL, unique=False, editable=True,
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, unique=False, editable=True,
                                     blank=True, null=True, db_index=True,
                                     db_column='project_id', related_name='studies', default=None)
 

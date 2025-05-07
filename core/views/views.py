@@ -4,11 +4,13 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from core.serializers.ctu_dto import *
 from core.serializers.project_dto import *
 from core.serializers.study_dto import *
 from core.serializers.study_country_dto import *
 from core.models.project import Project
 from core.models.study import Study
+from core.models.ctu import CTU
 from core.models.study_country import StudyCountry
 
 
@@ -59,3 +61,16 @@ class StudyCountryView(viewsets.ModelViewSet):
             .get_queryset(*args, **kwargs)
             .filter(study=self.kwargs['studyId'])
         )
+
+
+class CTUView(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
+    queryset = CTU.objects.all()
+    object_class = CTU
+    serializer_class = CTUOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return CTUInputSerializer
+        return super().get_serializer_class()

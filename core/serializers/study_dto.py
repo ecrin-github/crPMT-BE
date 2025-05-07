@@ -16,7 +16,7 @@ class StudyOutputSerializer(serializers.ModelSerializer):
     # date_type = DateTypesOutputSerializer(many=False, read_only=True)
     # last_edited_by = UsersSerializer(many=False, read_only=True)
     project = ProjectMainDetailsSerializer(many=False, read_only=True)
-    study_countries = StudyCountryOutputSerializer(many=True, read_only=False)
+    study_countries = StudyCountryOutputSerializer(many=True, read_only=True)
 
     class Meta:
         model = Study
