@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from core.models.ctu import CTU
-from core.serializers.country_dto import CountryOutputSerializer
+from context.models.ctu import CTU
+from context.serializers.country_dto import CountryOutputSerializer
 from core.serializers.person_dto import PersonOutputSerializer
 
 

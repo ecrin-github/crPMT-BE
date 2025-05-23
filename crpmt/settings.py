@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # 'rest_auth.registration',
     'drf_yasg',
     'core',
+    'context',
     'users',
     # 'general.apps.GeneralConfig',
 ]

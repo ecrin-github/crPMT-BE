@@ -2,8 +2,8 @@ import datetime
 
 from django.db import models
 
+from context.models.ctu import CTU
 from core.models.study import Study
-from core.models.ctu import CTU
 
 
 class StudyCTU(models.Model):

@@ -1,0 +1,43 @@
+from django.urls import path
+
+from context.views.views import *
+
+
+country_list = CountryView.as_view({
+    'get': 'list',
+})
+country_detail = CountryView.as_view({
+    'get': 'retrieve',
+})
+
+ctu_list = CTUView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+ctu_detail = CTUView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
+study_status_list = StudyStatusView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+study_status_detail = StudyStatusView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
+
+urlpatterns = [
+    path('countries', country_list),
+    path('countries/<int:pk>', country_detail),
+    path('ctus', ctu_list),
+    path('ctus/<int:pk>', ctu_detail),
+    path('study-statuses', study_status_list),
+    path('study-statuses/<int:pk>', study_status_detail),
+]

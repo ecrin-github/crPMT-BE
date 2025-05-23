@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from core.models.country import Country
+from context.models.country import Country
 
 
 class CountryInputSerializer(serializers.ModelSerializer):

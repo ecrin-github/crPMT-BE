@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from core.models.study_country import StudyCountry
+from context.serializers.country_dto import CountryOutputSerializer
 from core.serializers.study_main_details_dto import StudyMainDetailsSerializer
 
 
@@ -13,6 +14,7 @@ class StudyCountryInputSerializer(serializers.ModelSerializer):
 class StudyCountryOutputSerializer(serializers.ModelSerializer):
     # date_type = DateTypesOutputSerializer(many=False, read_only=True)
     # last_edited_by = UsersSerializer(many=False, read_only=True)
+    country = CountryOutputSerializer(many=False)
     study = StudyMainDetailsSerializer(many=False, read_only=True)
 
     class Meta:

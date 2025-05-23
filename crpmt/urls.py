@@ -43,6 +43,7 @@ urlpatterns = [
     
     # path('app/', include('app.urls')),
 
+    path('api/context/', include('context.urls')),
     path('api/core/', include('core.urls')),
     path('api/users/', include('users.urls')),
 

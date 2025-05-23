@@ -1,6 +1,6 @@
 from django.db import models
 
-from core.models.country import Country
+from context.models.country import Country
 from core.models.person import Person
 
 
