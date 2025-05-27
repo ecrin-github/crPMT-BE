@@ -11,7 +11,7 @@ class StudyCountry(models.Model):
     study = models.ForeignKey(Study, on_delete=models.CASCADE,
                                 db_column='study_id', blank=True, null=True,
                                 related_name='study_countries', default=None)
-    country = models.ForeignKey(Country, on_delete=models.SET_NULL,
+    country = models.ForeignKey(Country, on_delete=models.CASCADE,
                                     db_column='country_id', blank=True, null=True,
                                     related_name='study_countries', default=None)
     lead_country = models.BooleanField(default=False, blank=True, null=True)

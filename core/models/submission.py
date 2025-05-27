@@ -15,10 +15,10 @@ class Submission(models.Model):
     eotrial_notification = models.BooleanField(default=False)
     annual_progress_report = models.BooleanField(default=False)
     dsur = models.BooleanField(default=False)
-    country = models.ForeignKey(Country, on_delete=models.SET_NULL,
+    country = models.ForeignKey(Country, on_delete=models.CASCADE,
                                           db_column='country_id', blank=True, null=True,
                                           related_name='submission_country_id', default=None)
-    study = models.ForeignKey(Study, on_delete=models.SET_NULL,
+    study = models.ForeignKey(Study, on_delete=models.CASCADE,
                                 db_column='study_id', blank=True, null=True,
                                 related_name='submission_study_id', default=None)
 
