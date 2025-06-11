@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from core.models.study import Study
 from core.serializers.project_main_details_dto import ProjectMainDetailsSerializer
+from core.serializers.person_dto import PersonOutputSerializer
 from core.serializers.study_country_dto import StudyCountryOutputSerializer
 
 

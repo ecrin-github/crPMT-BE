@@ -1,8 +1,7 @@
 from rest_framework import serializers
 
 from core.models.study import Study
-from core.serializers.project_main_details_dto import ProjectMainDetailsSerializer
-from core.serializers.study_country_dto import StudyCountryOutputSerializer
+from context.serializers.country_dto import CountryOutputSerializer
 
 
 class SubmissionInputSerializer(serializers.ModelSerializer):
