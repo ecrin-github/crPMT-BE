@@ -7,7 +7,7 @@ from core.models.project import Project
 class Study(models.Model):
     id = models.BigAutoField(primary_key=True)
     short_title = models.CharField(max_length=255, blank=True, null=True)
-    title = models.CharField(max_length=255, blank=True, null=True)
+    title = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=255, blank=True, null=True)
     pi = models.ForeignKey(Person, on_delete=models.SET_NULL,
                                 db_column='pi_id', blank=True, null=True,
