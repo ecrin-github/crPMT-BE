@@ -20,7 +20,8 @@ class Study(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, unique=False, editable=True,
                                     blank=True, null=True, db_index=True,
                                     db_column='project_id', related_name='studies', default=None)
+    order = models.IntegerField(blank=True, null=True, db_column='s_order')
 
     class Meta:
         db_table = 'studies'
-        ordering = ['id']
+        ordering = ['id', 'order']
