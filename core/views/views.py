@@ -129,3 +129,23 @@ class VisitView(viewsets.ModelViewSet):
                 .filter(study_ctu=self.kwargs['sctuId'])
             )
         return super().get_queryset(*args, **kwargs)
+
+
+class ProjectsByFundingSource(APIView):
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, fs_id):
+        if not fs_id:
+            return Response({'error': "fs_id (funding source id) param is missing"})
+
+        fs_check = FundingSource.objects.filter(id=fs_id)
+
+        if not fs_check.exists():
+            return Response({'error': f"Funding source with the id {fs_id} does not exist."})
+
+        projects = Project.objects.filter(funding_sources__pk=fs_id)
+
+        serializer = ProjectOutputSerializer(projects, many=True)
+
+        return Response(serializer.data)

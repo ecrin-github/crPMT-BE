@@ -62,6 +62,7 @@ visit_detail = VisitView.as_view({
 urlpatterns = [
     path('projects', project_list),
     path('projects/<int:pk>', project_detail),
+    path('projects-by-funding-source/<fs_id>', ProjectsByFundingSource.as_view()),
     path('studies', study_list),
     path('studies/<int:pk>', study_detail),
     path('studies/<int:pk>/study-countries', study_country_list),
