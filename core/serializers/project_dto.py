@@ -4,6 +4,7 @@ from context.models.funding_source import FundingSource
 from context.models.service import Service
 from core.models.project import Project
 from context.serializers.funding_source_dto import FundingSourceOutputSerializer
+from context.serializers.person_dto import PersonOutputSerializer
 from context.serializers.service_dto import ServiceOutputSerializer
 from core.serializers.study_dto import StudyOutputSerializer
 
@@ -25,6 +26,7 @@ class ProjectOutputSerializer(serializers.ModelSerializer):
     funding_sources = FundingSourceOutputSerializer(many=True)
     services = ServiceOutputSerializer(many=True)
     studies = StudyOutputSerializer(many=True, read_only=True)
+    c_euco = PersonOutputSerializer(many=False)
 
     class Meta:
         model = Project

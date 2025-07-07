@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from context.models.ctu import CTU
 from context.serializers.country_dto import CountryOutputSerializer
-from core.serializers.person_dto import PersonOutputSerializer
+from context.serializers.person_dto import PersonOutputSerializer
 
 
 class CTUInputSerializer(serializers.ModelSerializer):

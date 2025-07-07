@@ -3,9 +3,9 @@ import datetime
 from django.db import models
 
 from context.models.ctu import CTU
+from context.models.person import Person
 from core.models.study import Study
 from core.models.study_country import StudyCountry
-from core.models.person import Person
 
 
 class StudyCTU(models.Model):

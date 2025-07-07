@@ -8,11 +8,13 @@ from app.permissions import ReadOnly
 from context.serializers.country_dto import *
 from context.serializers.ctu_dto import *
 from context.serializers.funding_source_dto import *
+from context.serializers.person_dto import *
 from context.serializers.service_dto import *
 from context.serializers.study_status_dto import *
 from context.models.country import Country
 from context.models.ctu import CTU
 from context.models.funding_source import FundingSource
+from context.models.person import Person
 from context.models.service import Service
 from context.models.study_status import StudyStatus
 
@@ -65,6 +67,19 @@ class FundingSourceView(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action in ["create", "update", "partial_update"]:
             return FundingSourceInputSerializer
+        return super().get_serializer_class()
+
+
+class PersonView(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
+    queryset = Person.objects.all()
+    object_class = Person
+    serializer_class = PersonOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return PersonInputSerializer
         return super().get_serializer_class()
 
 

@@ -32,6 +32,17 @@ funding_source_detail = FundingSourceView.as_view({
     'delete': 'destroy'
 })
 
+person_list = PersonView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+person_detail = PersonView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 service_list = ServiceView.as_view({
     'get': 'list',
     'post': 'create'
@@ -62,6 +73,8 @@ urlpatterns = [
     path('ctus/<int:pk>', ctu_detail),
     path('funding-sources', funding_source_list),
     path('funding-sources/<int:pk>', funding_source_detail),
+    path('persons', person_list),
+    path('persons/<int:pk>', person_detail),
     path('services', service_list),
     path('services/<int:pk>', service_detail),
     path('study-statuses', study_status_list),

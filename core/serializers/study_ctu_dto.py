@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from core.models.study_ctu import StudyCTU
 from context.serializers.ctu_dto import CTUOutputSerializer
-from core.serializers.person_dto import PersonOutputSerializer
+from context.serializers.person_dto import PersonOutputSerializer
 from core.serializers.study_country_dto import StudyCountryOutputSerializer
 from core.serializers.study_main_details_dto import StudyMainDetailsSerializer
 

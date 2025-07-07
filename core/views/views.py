@@ -11,6 +11,7 @@ from core.serializers.study_country_dto import *
 from core.serializers.study_ctu_dto import *
 from core.serializers.visit_dto import *
 from context.models.ctu import CTU
+from context.models.person import Person
 from core.models.project import Project
 from core.models.study import Study
 from core.models.study_country import StudyCountry
@@ -145,6 +146,46 @@ class ProjectsByFundingSource(APIView):
             return Response({'error': f"Funding source with the id {fs_id} does not exist."})
 
         projects = Project.objects.filter(funding_sources__pk=fs_id)
+
+        serializer = ProjectOutputSerializer(projects, many=True)
+
+        return Response(serializer.data)
+
+
+class ProjectsByService(APIView):
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, s_id):
+        if not s_id:
+            return Response({'error': "s_id (service id) param is missing"})
+
+        s_check = Service.objects.filter(id=s_id)
+
+        if not s_check.exists():
+            return Response({'error': f"Service with the id {s_id} does not exist."})
+
+        projects = Project.objects.filter(services__pk=s_id)
+
+        serializer = ProjectOutputSerializer(projects, many=True)
+
+        return Response(serializer.data)
+
+
+class ProjectsByPerson(APIView):
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, p_id):
+        if not p_id:
+            return Response({'error': "p_id (person id) param is missing"})
+
+        p_check = Person.objects.filter(id=p_id)
+
+        if not p_check.exists():
+            return Response({'error': f"Person with the id {p_id} does not exist."})
+
+        projects = Project.objects.filter(c_euco_id=p_id)
 
         serializer = ProjectOutputSerializer(projects, many=True)
 

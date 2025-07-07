@@ -4,11 +4,12 @@ from django.db import models
 
 from context.models.funding_source import FundingSource
 from context.models.service import Service
-from core.models.person import Person
+from context.models.person import Person
 
 
 class Project(models.Model):
     id = models.BigAutoField(primary_key=True)
+    coordinator = models.CharField(blank=True, null=True)
     ga_number = models.CharField(blank=True, null=True)
     name = models.CharField(max_length=255, blank=True, null=True)
     short_name = models.CharField(max_length=255, blank=True, null=True)

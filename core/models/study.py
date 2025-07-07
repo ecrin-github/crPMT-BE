@@ -1,6 +1,6 @@
 from django.db import models
 
-from core.models.person import Person
+from context.models.person import Person
 from core.models.project import Project
 
 
@@ -19,14 +19,15 @@ class Study(models.Model):
     recruitment_start = models.DateTimeField(blank=True, null=True)
     recruitment_end = models.DateTimeField(blank=True, null=True)
     first_patient_in = models.DateTimeField(blank=True, null=True)
-    first_patient_out = models.DateTimeField(blank=True, null=True)
-    # Trial registration?
+    last_patient_out = models.DateTimeField(blank=True, null=True)
+    trial_registration = models.CharField(max_length=255, blank=True, null=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, unique=False, editable=True,
                                     blank=True, null=True, db_index=True,
                                     db_column='project_id', related_name='studies', default=None)
     pi = models.ForeignKey(Person, on_delete=models.SET_NULL,
                                 db_column='pi_id', blank=True, null=True,
                                 related_name='study_pi_id', default=None)
+    # TODO: submission
     order = models.IntegerField(blank=True, null=True, db_column='s_order')
 
     class Meta:

@@ -1,7 +1,7 @@
 from django.db import models
 
 from context.models.country import Country
-from core.models.person import Person
+from context.models.person import Person
 
 
 class CTU(models.Model):
