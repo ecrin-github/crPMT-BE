@@ -6,20 +6,21 @@ from core.models.project import Project
 
 class Study(models.Model):
     id = models.BigAutoField(primary_key=True)
-    short_title = models.CharField(max_length=255, blank=True, null=True)
-    title = models.TextField(blank=True, null=True)
-    status = models.CharField(max_length=255, blank=True, null=True)
-    
-    sponsor = models.CharField(max_length=255, blank=True, null=True)
-    regulatory_framework = models.CharField(max_length=255, blank=True, null=True)
-    trial_id = models.CharField(max_length=255, blank=True, null=True)  # Missing from the model?
-    summary = models.TextField(blank=True, null=True)
     category = models.CharField(max_length=255, blank=True, null=True)
-    population = models.CharField(max_length=255, blank=True, null=True)
-    recruitment_start = models.DateTimeField(blank=True, null=True)
-    recruitment_end = models.DateTimeField(blank=True, null=True)
     first_patient_in = models.DateTimeField(blank=True, null=True)
     last_patient_out = models.DateTimeField(blank=True, null=True)
+    population = models.CharField(max_length=255, blank=True, null=True)
+    recruitment_end = models.DateTimeField(blank=True, null=True)
+    recruitment_start = models.DateTimeField(blank=True, null=True)
+    regulatory_framework = models.CharField(max_length=255, blank=True, null=True)
+    short_title = models.CharField(max_length=255, blank=True, null=True)
+    sponsor = models.CharField(max_length=255, blank=True, null=True)
+    status = models.CharField(max_length=255, blank=True, null=True)
+    summary = models.TextField(blank=True, null=True)
+    title = models.TextField(blank=True, null=True)
+    treatment_and_follow_up_duration_per_patient = models.CharField(blank=True, null=True)
+    treatment_period_per_patient = models.CharField(blank=True, null=True)
+    trial_id = models.CharField(max_length=255, blank=True, null=True)  # Missing from the model?
     trial_registration = models.CharField(max_length=255, blank=True, null=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, unique=False, editable=True,
                                     blank=True, null=True, db_index=True,
