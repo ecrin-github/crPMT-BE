@@ -29,8 +29,8 @@ class Study(models.Model):
                                 db_column='pi_id', blank=True, null=True,
                                 related_name='study_pi_id', default=None)
     # TODO: submission
-    order = models.IntegerField(blank=True, null=True, db_column='s_order')
+    order = models.IntegerField(blank=True, null=True, db_column='order')
 
     class Meta:
         db_table = 'studies'
-        ordering = ['id', 'order']
+        ordering = ['order']

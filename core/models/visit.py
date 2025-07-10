@@ -2,7 +2,7 @@ import datetime
 
 from django.db import models
 
-from core.models.study_ctu import StudyCTU
+from core.models.centre import Centre
 
 
 class Visit(models.Model):
@@ -15,8 +15,8 @@ class Visit(models.Model):
     comment = models.TextField(blank=True, null=True)
     report_sent = models.DateTimeField(blank=True, null=True)
     report_approved = models.DateTimeField(blank=True, null=True)
-    study_ctu = models.ForeignKey(StudyCTU, on_delete=models.CASCADE,
-                                          db_column='study_ctu_id', blank=True, null=True,
+    centre = models.ForeignKey(Centre, on_delete=models.CASCADE,
+                                          db_column='centre_id', blank=True, null=True,
                                           related_name='visits', default=None)
 
     class Meta:

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from core.models.visit import Visit
-from core.serializers.study_ctu_dto import StudyCTUOutputSerializer
+from core.serializers.centre_dto import CentreOutputSerializer
 
 
 class VisitInputSerializer(serializers.ModelSerializer):
@@ -19,7 +19,7 @@ class VisitInputSerializer(serializers.ModelSerializer):
 
 
 class VisitOutputSerializer(serializers.ModelSerializer):
-    study_ctu = StudyCTUOutputSerializer(many=False, read_only=True)
+    centre = CentreOutputSerializer(many=False, read_only=True)
 
     class Meta:
         model = Visit

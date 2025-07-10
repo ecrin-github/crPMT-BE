@@ -15,9 +15,8 @@ class StudyCountry(models.Model):
                                     db_column='country_id', blank=True, null=True,
                                     related_name='study_countries', default=None)
     lead_country = models.BooleanField(default=False, blank=True, null=True)
-    submission_date = models.DateTimeField(blank=True, null=True)
-    approval_date = models.DateTimeField(blank=True, null=True)
+    order = models.IntegerField(blank=True, null=True, db_column='order')
 
     class Meta:
         db_table = 'study_countries'
-        ordering = ['id']
+        ordering = ['order']

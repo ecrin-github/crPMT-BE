@@ -47,6 +47,17 @@ study_ctu_detail = StudyCTUView.as_view({
     'delete': 'destroy'
 })
 
+centre_list = CentreView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+centre_detail = CentreView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 visit_list = VisitView.as_view({
     'get': 'list',
     'post': 'create'
@@ -71,6 +82,8 @@ urlpatterns = [
     path('studies/<int:sId>/study-countries/<int:pk>', study_country_detail),
     path('studies/<int:pk>/study-ctus', study_ctu_list),
     path('studies/<int:sId>/study-ctus/<int:pk>', study_ctu_detail),
+    path('studies/<int:pk>/centres', centre_list),
+    path('studies/<int:sId>/centres/<int:pk>', centre_detail),
     path('studies/<int:pk>/visits', visit_list),
     path('studies/<int:sId>/visits-ctus/<int:pk>', visit_detail),
     path('study-countries', study_country_list),
@@ -81,6 +94,12 @@ urlpatterns = [
     path('study-ctus/<int:pk>', study_ctu_detail),
     path('study-ctus/<int:pk>/visits', visit_list),
     path('study-ctus/<int:sctuId>/visits/<int:pk>', visit_detail),
+    path('study-ctus/<int:pk>/centres', centre_list),
+    path('study-ctus/<int:sctuId>/centres/<int:pk>', centre_detail),
+    path('centres', centre_list),
+    path('centres/<int:pk>', centre_detail),
+    path('centres/<int:pk>/visits', visit_list),
+    path('centres/<int:cId>/visits/<int:pk>', visit_detail),
     path('visits', visit_list),
     path('visits/<int:pk>', visit_detail),
 ]

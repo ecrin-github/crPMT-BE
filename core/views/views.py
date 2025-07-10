@@ -4,6 +4,7 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from core.serializers.centre_dto import *
 from context.serializers.ctu_dto import *
 from core.serializers.project_dto import *
 from core.serializers.study_dto import *
@@ -16,6 +17,7 @@ from core.models.project import Project
 from core.models.study import Study
 from core.models.study_country import StudyCountry
 from core.models.study_ctu import StudyCTU
+from core.models.centre import Centre
 from core.models.visit import Visit
 
 
@@ -85,7 +87,7 @@ class StudyCTUView(viewsets.ModelViewSet):
     def get_queryset(self, *args, **kwargs):
         if getattr(self, 'swagger_fake_view', False):
             # queryset just for schema generation metadata
-            return StudyCountry.objects.none()
+            return StudyCTU.objects.none()
         if 'sId' in self.kwargs:
             return (
                 super()
@@ -97,6 +99,31 @@ class StudyCTUView(viewsets.ModelViewSet):
                 super()
                 .get_queryset(*args, **kwargs)
                 .filter(study_country=self.kwargs['scId'])
+            )
+        return super().get_queryset(*args, **kwargs)
+
+
+class CentreView(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
+    queryset = Centre.objects.all()
+    object_class = Centre
+    serializer_class = CentreOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return CentreInputSerializer
+        return super().get_serializer_class()
+    
+    def get_queryset(self, *args, **kwargs):
+        if getattr(self, 'swagger_fake_view', False):
+            # queryset just for schema generation metadata
+            return Centre.objects.none()
+        if 'sctuId' in self.kwargs:
+            return (
+                super()
+                .get_queryset(*args, **kwargs)
+                .filter(study_ctu=self.kwargs['sctuId'])
             )
         return super().get_queryset(*args, **kwargs)
 
@@ -121,13 +148,13 @@ class VisitView(viewsets.ModelViewSet):
             return (
                 super()
                 .get_queryset(*args, **kwargs)
-                .filter(study_ctu=self.kwargs['sId'])
+                .filter(centre=self.kwargs['sId'])
             )
         if 'sctuId' in self.kwargs:
             return (
                 super()
                 .get_queryset(*args, **kwargs)
-                .filter(study_ctu=self.kwargs['sctuId'])
+                .filter(centre=self.kwargs['sctuId'])
             )
         return super().get_queryset(*args, **kwargs)
 
