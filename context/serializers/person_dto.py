@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from context.models.person import Person
+from context.serializers.country_dto import CountryOutputSerializer
 
 
 class PersonInputSerializer(serializers.ModelSerializer):
@@ -11,6 +12,7 @@ class PersonInputSerializer(serializers.ModelSerializer):
 
 
 class PersonOutputSerializer(serializers.ModelSerializer):
+    country = CountryOutputSerializer(many=False, read_only=True)
 
     class Meta:
         model = Person
