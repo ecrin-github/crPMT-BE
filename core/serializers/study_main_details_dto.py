@@ -9,4 +9,4 @@ class StudyMainDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Study
-        fields = ['id', 'short_title', 'title', 'trial_id', 'project']
+        fields = ['id', 'short_title', 'title', 'project']

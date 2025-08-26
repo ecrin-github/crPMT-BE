@@ -1,23 +1,27 @@
+from django.shortcuts import get_object_or_404
 from mozilla_django_oidc.contrib.drf import OIDCAuthentication
 from rest_framework import viewsets, permissions, status
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from context.models.complex_trial_type import ComplexTrialType
+from context.models.ctu import CTU
+from context.models.funding_source import FundingSource
+from context.models.organisation import Organisation
+from context.models.person import Person
+from context.models.service import Service
 from core.serializers.centre_dto import *
-from context.serializers.ctu_dto import *
 from core.serializers.project_dto import *
 from core.serializers.study_dto import *
 from core.serializers.study_country_dto import *
 from core.serializers.study_ctu_dto import *
 from core.serializers.visit_dto import *
-from context.models.ctu import CTU
-from context.models.person import Person
+from core.models.centre import Centre
 from core.models.project import Project
 from core.models.study import Study
 from core.models.study_country import StudyCountry
 from core.models.study_ctu import StudyCTU
-from core.models.centre import Centre
 from core.models.visit import Visit
 
 
@@ -179,6 +183,26 @@ class ProjectsByFundingSource(APIView):
         return Response(serializer.data)
 
 
+class ProjectsByOrganisation(APIView):
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, org_id):
+        if not org_id:
+            return Response({'error': "org_id (organisation id) param is missing"})
+
+        p_check = Organisation.objects.filter(id=org_id)
+
+        if not p_check.exists():
+            return Response({'error': f"Organisation with the id {org_id} does not exist."})
+
+        projects = Project.objects.filter(coordinator=org_id)
+
+        serializer = ProjectOutputSerializer(projects, many=True)
+
+        return Response(serializer.data)
+
+
 class ProjectsByService(APIView):
     authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     permission_classes = [permissions.IsAuthenticated]
@@ -199,21 +223,42 @@ class ProjectsByService(APIView):
         return Response(serializer.data)
 
 
-class ProjectsByPerson(APIView):
+class ReferenceCountByClass(APIView):
     authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
-    def get(self, request, p_id):
-        if not p_id:
-            return Response({'error': "p_id (person id) param is missing"})
+    def get(self, request, class_name, obj_id):
+        if not obj_id:
+            return Response({'error': "id param is missing"})
+        if not class_name:
+            return Response({'error': "class param is missing"})
 
-        p_check = Person.objects.filter(id=p_id)
+        obj = None
+        class_name = class_name.lower()
 
-        if not p_check.exists():
-            return Response({'error': f"Person with the id {p_id} does not exist."})
+        if class_name == "complextrialtype":
+            obj = get_object_or_404(ComplexTrialType, pk=obj_id)
+        elif class_name == "fundingsource":
+            obj = get_object_or_404(FundingSource, pk=obj_id)
+        elif class_name == "organisation":
+            obj = get_object_or_404(Organisation, pk=obj_id)
+        elif class_name == "person":
+            obj = get_object_or_404(Person, pk=obj_id)
+        elif class_name == "service":
+            obj = get_object_or_404(Service, pk=obj_id)
 
-        projects = Project.objects.filter(c_euco_id=p_id)
+        if obj is None:
+            return Response({'error': f"unknown class {class_name}"}) 
 
-        serializer = ProjectOutputSerializer(projects, many=True)
+        total_count = 0
+        response = {}
+        # https://stackoverflow.com/a/54711672
+        # reverse relation "fields" on the Reporter model are auto-created and not concrete
+        for reverse in [f for f in obj._meta.get_fields() if f.auto_created and not f.concrete]:
+            name = reverse.get_accessor_name()
+            count = getattr(obj, name).count()
+            response[name] = count
+            total_count += count
 
-        return Response(serializer.data)
+        response["total_count"] = total_count
+        return Response(response)
