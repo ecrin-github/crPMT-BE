@@ -3,6 +3,17 @@ from django.urls import path
 from context.views.views import *
 
 
+complex_trial_type_list = ComplexTrialTypeView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+complex_trial_type_detail = ComplexTrialTypeView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 country_list = CountryView.as_view({
     'get': 'list',
 })
@@ -32,11 +43,44 @@ funding_source_detail = FundingSourceView.as_view({
     'delete': 'destroy'
 })
 
+medical_field_list = MedicalFieldView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+medical_field_detail = MedicalFieldView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
+organisation_list = OrganisationView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+organisation_detail = OrganisationView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 person_list = PersonView.as_view({
     'get': 'list',
     'post': 'create'
 })
 person_detail = PersonView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
+population_list = PopulationView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+population_detail = PopulationView.as_view({
     'get': 'retrieve',
     'put': 'update',
     'patch': 'partial_update',
@@ -67,16 +111,22 @@ study_status_detail = StudyStatusView.as_view({
 
 
 urlpatterns = [
+    path('complex-trial-types', complex_trial_type_list),
+    path('complex-trial-types/<int:pk>', complex_trial_type_detail),
     path('countries', country_list),
     path('countries/<int:pk>', country_detail),
     path('ctus', ctu_list),
     path('ctus/<int:pk>', ctu_detail),
     path('funding-sources', funding_source_list),
     path('funding-sources/<int:pk>', funding_source_detail),
+    path('medical-fields', medical_field_list),
+    path('medical-fields/<int:pk>', medical_field_detail),
+    path('organisations', organisation_list),
+    path('organisations/<int:pk>', organisation_detail),
     path('persons', person_list),
     path('persons/<int:pk>', person_detail),
+    path('populations', population_list),
+    path('populations/<int:pk>', population_detail),
     path('services', service_list),
     path('services/<int:pk>', service_detail),
-    path('study-statuses', study_status_list),
-    path('study-statuses/<int:pk>', study_status_detail),
 ]

@@ -1,10 +1,10 @@
 from django.db import models
 
 
-class Service(models.Model):
+class ComplexTrialType(models.Model):
     id = models.BigAutoField(primary_key=True)
     value = models.CharField(max_length=500, blank=True, null=True)
 
     class Meta:
-        db_table = 'services'
+        db_table = 'complex_trial_types'
         ordering = ['id']
