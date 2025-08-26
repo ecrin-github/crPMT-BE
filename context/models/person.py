@@ -8,7 +8,7 @@ class Person(models.Model):
     full_name = models.CharField(max_length=255, blank=True, null=True)
     position = models.CharField(max_length=255, blank=True, null=True)
     is_euco = models.BooleanField(default=False)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE,
+    country = models.ForeignKey(Country, on_delete=models.SET_NULL,
                                     db_column='country_id', blank=True, null=True,
                                     related_name='persons', default=None)
 

@@ -13,7 +13,7 @@ class Project(models.Model):
     # General information
     name = models.CharField(max_length=255, blank=True, null=True)
     short_name = models.CharField(max_length=255, blank=True, null=True)
-    coordinator = models.ForeignKey(Organisation, on_delete=models.CASCADE,
+    coordinator = models.ForeignKey(Organisation, on_delete=models.SET_NULL,
                                     db_column='organisation_id', blank=True, null=True,
                                     related_name='projects', default=None)
     start_date = models.DateTimeField(blank=True, null=True)

@@ -15,13 +15,13 @@ class Study(models.Model):
     # General study information
     title = models.TextField(blank=True, null=True)
     short_title = models.CharField(max_length=255, blank=True, null=True)
-    sponsor_organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE,
+    sponsor_organisation = models.ForeignKey(Organisation, on_delete=models.SET_NULL,
                                     db_column='organisation_id', blank=True, null=True,
                                     related_name='studies', default=None)
     pi = models.ForeignKey(Person, on_delete=models.SET_NULL,
                                 db_column='pi_id', blank=True, null=True,
                                 related_name='studies', default=None)
-    sponsor_country = models.ForeignKey(Country, on_delete=models.CASCADE,
+    sponsor_country = models.ForeignKey(Country, on_delete=models.SET_NULL,
                                     db_column='sponsor_country_id', blank=True, null=True,
                                     related_name='persons', default=None)
     medical_fields = models.ManyToManyField(MedicalField, blank=True)
@@ -29,7 +29,7 @@ class Study(models.Model):
     rare_diseases = models.BooleanField(default=False)
     regulatory_framework = models.CharField(max_length=255, blank=True, null=True)
     complex_trial_design = models.BooleanField(default=False)
-    complex_trial_type = models.ForeignKey(ComplexTrialType, on_delete=models.CASCADE,
+    complex_trial_type = models.ForeignKey(ComplexTrialType, on_delete=models.SET_NULL,
                                     db_column='complex_trial_type_id', blank=True, null=True,
                                     related_name='studies', default=None)
     trial_registration_number = models.CharField(max_length=255, blank=True, null=True)
@@ -39,7 +39,7 @@ class Study(models.Model):
     c_euco = models.ForeignKey(Person, on_delete=models.SET_NULL, unique=False, editable=True,
                                 blank=True, null=True, db_index=True,
                                 db_column='c_euco_id', related_name='studies', default=None)
-    coordinating_country = models.ForeignKey(Country, on_delete=models.CASCADE,
+    coordinating_country = models.ForeignKey(Country, on_delete=models.SET_NULL,
                                     db_column='coordinating_country_id', blank=True, null=True,
                                     related_name='studies', default=None)
     services = models.ManyToManyField(Service, blank=True)
