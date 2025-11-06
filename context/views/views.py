@@ -8,22 +8,26 @@ from app.permissions import ReadOnly
 from context.serializers.complex_trial_type_dto import *
 from context.serializers.country_dto import *
 from context.serializers.ctu_dto import *
+from context.serializers.hospital_dto import *
 from context.serializers.funding_source_dto import *
 from context.serializers.medical_field_dto import *
 from context.serializers.organisation_dto import *
 from context.serializers.person_dto import *
 from context.serializers.population_dto import *
+from context.serializers.regulatory_framework_detail_dto import *
 from context.serializers.service_dto import *
 from context.serializers.study_status_dto import *
 
 from context.models.complex_trial_type import *
 from context.models.country import *
 from context.models.ctu import *
+from context.models.hospital import *
 from context.models.funding_source import *
 from context.models.medical_field import *
 from context.models.organisation import *
 from context.models.person import *
 from context.models.population import *
+from context.models.regulatory_framework_detail import *
 from context.models.service import *
 from context.models.study_status import *
 
@@ -63,6 +67,19 @@ class CTUView(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action in ["create", "update", "partial_update"]:
             return CTUInputSerializer
+        return super().get_serializer_class()
+
+
+class HospitalView(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
+    queryset = Hospital.objects.all()
+    object_class = Hospital
+    serializer_class = HospitalOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return HospitalInputSerializer
         return super().get_serializer_class()
 
 
@@ -128,6 +145,19 @@ class PopulationView(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action in ["create", "update", "partial_update"]:
             return PopulationInputSerializer
+        return super().get_serializer_class()
+
+
+class RegulatoryFrameworkDetailView(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
+    queryset = RegulatoryFrameworkDetail.objects.all()
+    object_class = RegulatoryFrameworkDetail
+    serializer_class = RegulatoryFrameworkDetailOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return RegulatoryFrameworkDetailInputSerializer
         return super().get_serializer_class()
 
 

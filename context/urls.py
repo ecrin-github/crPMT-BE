@@ -32,6 +32,17 @@ ctu_detail = CTUView.as_view({
     'delete': 'destroy'
 })
 
+hospital_list = HospitalView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+hospital_detail = HospitalView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 funding_source_list = FundingSourceView.as_view({
     'get': 'list',
     'post': 'create'
@@ -87,6 +98,17 @@ population_detail = PopulationView.as_view({
     'delete': 'destroy'
 })
 
+regulatory_framework_detail_list = RegulatoryFrameworkDetailView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+regulatory_framework_detail_detail = RegulatoryFrameworkDetailView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 service_list = ServiceView.as_view({
     'get': 'list',
     'post': 'create'
@@ -117,6 +139,8 @@ urlpatterns = [
     path('countries/<int:pk>', country_detail),
     path('ctus', ctu_list),
     path('ctus/<int:pk>', ctu_detail),
+    path('hospitals', hospital_list),
+    path('hospitals/<int:pk>', hospital_detail),
     path('funding-sources', funding_source_list),
     path('funding-sources/<int:pk>', funding_source_detail),
     path('medical-fields', medical_field_list),
@@ -127,6 +151,8 @@ urlpatterns = [
     path('persons/<int:pk>', person_detail),
     path('populations', population_list),
     path('populations/<int:pk>', population_detail),
+    path('regulatory-framework-details', regulatory_framework_detail_list),
+    path('regulatory-framework-details/<int:pk>', regulatory_framework_detail_detail),
     path('services', service_list),
     path('services/<int:pk>', service_detail),
 ]
