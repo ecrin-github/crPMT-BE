@@ -13,4 +13,4 @@ class Notifications(models.Model):
     message = models.TextField(blank=False)
 
     class Meta:
-        db_table = 'notifications'
+        db_table = 'user_notifications'
