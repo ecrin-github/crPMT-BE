@@ -2,12 +2,15 @@ import datetime
 
 from django.db import models
 from context.models.ctu import CTU
+from context.models.service import Service
 from core.models.study_country import StudyCountry
 from core.models.study import Study
 
 
 class StudyCTU(models.Model):
     id = models.BigAutoField(primary_key=True)
+    lead_ctu = models.BooleanField(default=False)
+    services = models.ManyToManyField(Service, blank=True)
     study = models.ForeignKey(Study, on_delete=models.CASCADE,
                                 db_column='study_id', blank=True, null=True,
                                 related_name='study_ctus', default=None)

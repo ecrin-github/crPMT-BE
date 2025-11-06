@@ -36,6 +36,28 @@ study_country_detail = StudyCountryView.as_view({
     'delete': 'destroy'
 })
 
+notification_list = NotificationView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+notification_detail = NotificationView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
+submission_list = SubmissionView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+submission_detail = SubmissionView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 study_ctu_list = StudyCTUView.as_view({
     'get': 'list',
     'post': 'create'
@@ -88,14 +110,22 @@ urlpatterns = [
     path('studies/<int:sId>/visits-ctus/<int:pk>', visit_detail),
     path('study-countries', study_country_list),
     path('study-countries/<int:pk>', study_country_detail),
+    path('study-countries/<int:pk>/notifications', notification_list),
+    path('study-countries/<int:scId>/notifications/<int:pk>', notification_detail),
     path('study-countries/<int:pk>/study-ctus', study_ctu_list),
     path('study-countries/<int:scId>/study-ctus/<int:pk>', study_ctu_detail),
+    path('study-countries/<int:pk>/submissions', submission_list),
+    path('study-countries/<int:scId>/submissions/<int:pk>', submission_detail),
+    path('notifications', notification_list),
+    path('notifications/<int:pk>', notification_detail),
     path('study-ctus', study_ctu_list),
     path('study-ctus/<int:pk>', study_ctu_detail),
     path('study-ctus/<int:pk>/visits', visit_list),
     path('study-ctus/<int:sctuId>/visits/<int:pk>', visit_detail),
     path('study-ctus/<int:pk>/centres', centre_list),
     path('study-ctus/<int:sctuId>/centres/<int:pk>', centre_detail),
+    path('submissions', submission_list),
+    path('submissions/<int:pk>', submission_detail),
     path('centres', centre_list),
     path('centres/<int:pk>', centre_detail),
     path('centres/<int:pk>/visits', visit_list),

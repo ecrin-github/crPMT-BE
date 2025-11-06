@@ -6,6 +6,7 @@ from context.models.medical_field import MedicalField
 from context.models.organisation import Organisation
 from context.models.person import Person
 from context.models.population import Population
+from context.models.regulatory_framework_detail import RegulatoryFrameworkDetail
 from context.models.service import Service
 from core.models.project import Project
 
@@ -18,16 +19,17 @@ class Study(models.Model):
     sponsor_organisation = models.ForeignKey(Organisation, on_delete=models.SET_NULL,
                                     db_column='organisation_id', blank=True, null=True,
                                     related_name='studies', default=None)
-    pi = models.ForeignKey(Person, on_delete=models.SET_NULL,
-                                db_column='pi_id', blank=True, null=True,
-                                related_name='studies', default=None)
     sponsor_country = models.ForeignKey(Country, on_delete=models.SET_NULL,
                                     db_column='sponsor_country_id', blank=True, null=True,
-                                    related_name='persons', default=None)
+                                    related_name='studies', default=None)
+    coordinating_investigator = models.ForeignKey(Person, on_delete=models.SET_NULL,
+                                db_column='coordinating_investigator_id', blank=True, null=True,
+                                related_name='studies', default=None)
     medical_fields = models.ManyToManyField(MedicalField, blank=True)
     populations = models.ManyToManyField(Population, blank=True)
     rare_diseases = models.BooleanField(default=False)
     regulatory_framework = models.CharField(max_length=255, blank=True, null=True)
+    regulatory_framework_details = models.ManyToManyField(RegulatoryFrameworkDetail, blank=True)
     complex_trial_design = models.BooleanField(default=False)
     complex_trial_type = models.ForeignKey(ComplexTrialType, on_delete=models.SET_NULL,
                                     db_column='complex_trial_type_id', blank=True, null=True,
@@ -44,14 +46,16 @@ class Study(models.Model):
                                     related_name='studies', default=None)
     services = models.ManyToManyField(Service, blank=True)
 
+    # Study countries
+    total_patients_expected = models.CharField(max_length=255, blank=True, null=True)
+
     # Clinical study timelines
-    # TODO: check specs for recruitment period
-    recruitment_start = models.DateTimeField(blank=True, null=True)
-    recruitment_end = models.DateTimeField(blank=True, null=True)
-    treatment_duration_per_patient = models.CharField(blank=True, null=True)
-    treatment_duration_per_patient_unit = models.CharField(blank=True, null=True)
-    treatment_and_follow_up_duration_per_patient = models.CharField(blank=True, null=True)
-    treatment_and_follow_up_duration_per_patient_unit = models.CharField(blank=True, null=True)
+    recruitment_period = models.CharField(max_length=255, blank=True, null=True)
+    recruitment_period_unit = models.CharField(max_length=255, blank=True, null=True)
+    treatment_duration_per_patient = models.CharField(max_length=255, blank=True, null=True)
+    treatment_duration_per_patient_unit = models.CharField(max_length=255, blank=True, null=True)
+    treatment_and_follow_up_duration_per_patient = models.CharField(max_length=255, blank=True, null=True)
+    treatment_and_follow_up_duration_per_patient_unit = models.CharField(max_length=255, blank=True, null=True)
     first_patient_in = models.DateTimeField(blank=True, null=True)
     last_patient_out = models.DateTimeField(blank=True, null=True)
 

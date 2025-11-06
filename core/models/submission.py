@@ -2,26 +2,25 @@ import datetime
 
 from django.db import models
 
-from context.models.country import Country
-from core.models.study import Study
+from core.models.study_country import StudyCountry
 
 
-class Submission(models.Model):
+class Submission(models.Model): # Initial submission, amendment, or other notification
     id = models.BigAutoField(primary_key=True)
-    date = models.DateTimeField(blank=True, null=True)
-    approval = models.DateTimeField(blank=True, null=True)
-    body = models.CharField(max_length=255, blank=True, null=True)
-    amendment = models.BooleanField(default=False)
-    eotrial_notification = models.BooleanField(default=False)
-    annual_progress_report = models.BooleanField(default=False)
-    dsur = models.BooleanField(default=False)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE,
-                                          db_column='country_id', blank=True, null=True,
-                                          related_name='submission_country_id', default=None)
-    study = models.ForeignKey(Study, on_delete=models.CASCADE,
-                                db_column='study_id', blank=True, null=True,
-                                related_name='submission_study_id', default=None)
+    authority = models.CharField(blank=True, null=True)
+    submission_date = models.DateTimeField(blank=True, null=True)
+    approval_date = models.DateTimeField(blank=True, null=True)
+    protocol_approval_date = models.DateTimeField(blank=True, null=True)
+    protocol_approved_version = models.CharField(blank=True, null=True)
+    comment = models.TextField(blank=True, null=True)
+    is_other_notification = models.BooleanField(default=False)
+    is_amendment = models.BooleanField(default=False)
+    amendment_reason = models.CharField(blank=True, null=True)
+    study_country = models.ForeignKey(StudyCountry, on_delete=models.CASCADE,
+                                db_column='study_country_id', blank=True, null=True,
+                                related_name='submissions', default=None)
+    order = models.IntegerField(blank=True, null=True, db_column='order')
 
     class Meta:
         db_table = 'submissions'
-        ordering = ['id']
+        ordering = ['order']

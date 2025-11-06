@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from core.models.centre import Centre
+from context.serializers.hospital_dto import HospitalOutputSerializer
 from context.serializers.person_dto import PersonOutputSerializer
 from core.serializers.study_ctu_main_details_dto import StudyCTUMainDetailsSerializer
 from core.serializers.study_main_details_dto import StudyMainDetailsSerializer
@@ -14,6 +15,7 @@ class CentreInputSerializer(serializers.ModelSerializer):
 
 
 class CentreOutputSerializer(serializers.ModelSerializer):
+    hospital = HospitalOutputSerializer(many=False, read_only=True)
     study = StudyMainDetailsSerializer(many=False, read_only=True)
     study_ctu = StudyCTUMainDetailsSerializer(many=False, read_only=True)
     pi = PersonOutputSerializer(many=False, read_only=False)

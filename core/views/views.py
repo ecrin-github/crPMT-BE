@@ -12,17 +12,21 @@ from context.models.organisation import Organisation
 from context.models.person import Person
 from context.models.service import Service
 from core.serializers.centre_dto import *
+from core.serializers.notification_dto import *
 from core.serializers.project_dto import *
 from core.serializers.study_dto import *
 from core.serializers.study_country_dto import *
 from core.serializers.study_ctu_dto import *
+from core.serializers.submission_dto import *
 from core.serializers.visit_dto import *
-from core.models.centre import Centre
-from core.models.project import Project
-from core.models.study import Study
-from core.models.study_country import StudyCountry
-from core.models.study_ctu import StudyCTU
-from core.models.visit import Visit
+from core.models.centre import *
+from core.models.notification import *
+from core.models.project import *
+from core.models.study import *
+from core.models.study_country import *
+from core.models.study_ctu import *
+from core.models.submission import *
+from core.models.visit import *
 
 
 class ProjectView(viewsets.ModelViewSet):
@@ -131,6 +135,55 @@ class CentreView(viewsets.ModelViewSet):
             )
         return super().get_queryset(*args, **kwargs)
 
+
+class NotificationView(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
+    queryset = Notification.objects.all()
+    object_class = Notification
+    serializer_class = NotificationOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return NotificationInputSerializer
+        return super().get_serializer_class()
+    
+    def get_queryset(self, *args, **kwargs):
+        if getattr(self, 'swagger_fake_view', False):
+            # queryset just for schema generation metadata
+            return Notification.objects.none()
+        if 'scId' in self.kwargs:
+            return (
+                super()
+                .get_queryset(*args, **kwargs)
+                .filter(study_country=self.kwargs['scId'])
+            )
+        return super().get_queryset(*args, **kwargs)
+
+
+class SubmissionView(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
+    queryset = Submission.objects.all()
+    object_class = Submission
+    serializer_class = SubmissionOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return SubmissionInputSerializer
+        return super().get_serializer_class()
+    
+    def get_queryset(self, *args, **kwargs):
+        if getattr(self, 'swagger_fake_view', False):
+            # queryset just for schema generation metadata
+            return Submission.objects.none()
+        if 'scId' in self.kwargs:
+            return (
+                super()
+                .get_queryset(*args, **kwargs)
+                .filter(study_country=self.kwargs['scId'])
+            )
+        return super().get_queryset(*args, **kwargs)
 
 class VisitView(viewsets.ModelViewSet):
     authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
