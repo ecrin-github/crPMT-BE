@@ -22,7 +22,6 @@ from users.serializers.users_dto import UsersSerializer, CreateUserSerializer, U
 
 
 class UsersList(GenericAPIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = Users.objects.filter(~Q(username='tsd'))
     permission_classes = [permissions.AllowAny]
 
@@ -65,7 +64,6 @@ class UsersList(GenericAPIView):
 
 
 class UserView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = Users.objects.all()
     serializer_class = UsersSerializer
     permission_classes = [permissions.IsAuthenticated & (WriteOnlyForSelf | IsSuperUser)]
@@ -89,7 +87,6 @@ class UserView(viewsets.ModelViewSet):
 
 
 # class UserProfilesList(viewsets.ModelViewSet):
-#     authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
 #     queryset = UserProfiles.objects.all()
 #     serializer_class = UserProfilesOutputSerializer
 #     permission_classes = [permissions.IsAuthenticated & (WriteOnlyForSelf | IsSuperUser)]
@@ -108,7 +105,6 @@ class UserView(viewsets.ModelViewSet):
 
 
 class UsersByName(APIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     permission_classes = [IsSuperUser]
 
     def get(self, request):
@@ -126,7 +122,6 @@ class UsersByName(APIView):
 
 
 # class UserByEmail(APIView):
-#     authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
 #     permission_classes = [permissions.IsAuthenticated]
 
 #     def get(self, request):
@@ -147,7 +142,6 @@ class UsersByName(APIView):
 
 
 # class UserByLsAaiId(APIView):
-#     authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
 #     permission_classes = [permissions.IsAuthenticated]
 
 #     def get(self, request):
@@ -169,7 +163,6 @@ class UsersByName(APIView):
 
 
 # class UsersToNotify(APIView):
-#     authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
 #     permission_classes = [IsSuperUser]
 
 #     def get(self, request, sd_oid):

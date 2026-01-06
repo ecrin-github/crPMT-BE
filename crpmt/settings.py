@@ -41,9 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mozilla_django_oidc',
     'rest_framework',
     'rest_framework.authtoken',
+    'mozilla_django_oidc',
     'corsheaders',
     # 'rest_auth',
     # 'rest_auth.registration',
@@ -116,8 +116,9 @@ DATABASES = {
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'app.custom_oidc.CustomAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        # "mozilla_django_oidc.contrib.drf.OIDCAuthentication",
+        # 'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
@@ -182,22 +183,28 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # OIDC settings
-# https://proxy.aai.lifescience-ri.eu/.well-known/openid-configuration
 
 OIDC_DRF_AUTH_BACKEND = 'app.custom_oidc.CustomAuthenticationBackend'
 
 OIDC_RP_CLIENT_ID = CLIENT_ID
 OIDC_RP_CLIENT_SECRET = CLIENT_SECRET
+OIDC_RP_SIGN_ALGO = 'RS256'
 
 OIDC_OP_AUTHORIZATION_ENDPOINT = AUTHORIZATION_ENDPOINT
 OIDC_OP_TOKEN_ENDPOINT = TOKEN_ENDPOINT
 OIDC_OP_USER_ENDPOINT = USER_ENDPOINT
+OIDC_OP_JWKS_ENDPOINT = JWKS_ENDPOINT
+OIDC_DEBUG = True
 
-OIDC_AUTH_REQUEST_EXTRA_PARAMS = {"code_challenge": "S256"}
+# OIDC_AUTH_REQUEST_EXTRA_PARAMS = {"code_challenge": "S256"}
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 AUTHENTICATION_BACKENDS = (
+    # 'mozilla_django_oidc.auth.OIDCAuthenticationBackend',
     'app.custom_oidc.CustomAuthenticationBackend',
-    'django.contrib.auth.backends.ModelBackend'
+    # 'django.contrib.auth.backends.ModelBackend'
 )
 
 
@@ -244,4 +251,11 @@ LOGGING = {
             "propagate": True,
         },
     },
+    'loggers': {
+        'mozilla_django_oidc': {
+            'handlers': ["file"],
+            'level': 'DEBUG',
+            "propagate": True,
+        },
+    }
 }

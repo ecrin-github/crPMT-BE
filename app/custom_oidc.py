@@ -1,57 +1,118 @@
+import logging
+
+from django.core.exceptions import ImproperlyConfigured, SuspiciousOperation
+from jose import jwt
+from jwt import PyJWKClient
 from mozilla_django_oidc.auth import OIDCAuthenticationBackend
 from mozilla_django_oidc.contrib.drf import OIDCAuthentication
-from django.core.exceptions import ImproperlyConfigured, SuspiciousOperation
-from rest_framework import authentication, exceptions
-from requests.exceptions import HTTPError
 from mozilla_django_oidc.utils import import_from_settings, parse_www_authenticate_header
+import requests
+from rest_framework import authentication, exceptions
 
-from users.models import UserProfiles
+from configs.identity_config import *
+from users.models.users import Users
+
+
+logger = logging.getLogger('django')
+logger = logging.getLogger('mozilla_django_oidc')
 
 
 class CustomAuthenticationBackend(OIDCAuthenticationBackend):
+    def __init__(self):
+        super().__init__()
+        # Entra-specific discovery
+        self.discovery = requests.get(DISCOVERY_URL).json()
+        self.jwks_client = PyJWKClient(self.discovery['jwks_uri'])
+        self.issuer = self.discovery['issuer']
+        self.audience = f"{CLIENT_ID}"
+        
+    def validate_access_token(self, access_token):
+        # Get signing key from Entra JWKS
+        signing_key = self.jwks_client.get_signing_key_from_jwt(access_token)
+        
+        # Full Entra JWT validation
+        claims = jwt.decode(
+            access_token,
+            signing_key.key,
+            algorithms=['RS256'],
+            audience=self.audience,
+            issuer=self.issuer,
+            options={
+                "verify_signature": True,
+                "verify_exp": True,
+                "verify_nbf": True,
+                "verify_iat": True,
+            }
+        )
+
+        # Validate required scope
+        if 'access_as_user' not in claims.get('scp', '').split():
+            raise exceptions.AuthenticationFailed('Missing required scope')
+        
+        return claims
+
+    def get_or_create_user(self, access_token, id_token, payload):
+        # Override, passing claims through "payload"
+        """Returns a User instance if 1 user is found. Creates a user if not found
+        and configured to do so. Returns nothing if multiple users are matched."""
+
+        """ Skip call to Graph API and get claims from access_token """
+        # user_info = self.get_userinfo(access_token, id_token, payload)
+        # claims_verified = self.verify_claims(user_info)
+        # if not claims_verified:
+        #     msg = "Claims verification failed"
+        #     raise SuspiciousOperation(msg)
+
+        users = self.filter_users_by_claims(payload)
+
+        if len(users) == 1:
+            return self.update_user(users[0], payload)
+        elif len(users) > 1:
+            # In the rare case that two user accounts have the same email address,
+            # bail. Randomly selecting one seems really wrong.
+            msg = "Multiple users returned"
+            raise SuspiciousOperation(msg)
+        elif self.get_settings("OIDC_CREATE_USER", True):
+            user = self.create_user(payload)
+            return user
+        else:
+            logger.debug(
+                "Login failed: No user with %s found, and OIDC_CREATE_USER is False",
+                self.describe_user_by_claims(payload),
+            )
+            return None
+    
     def create_user(self, claims):
-        """ Overrides Authentication Backend so that Django users are
-            created with the keycloak preferred_username.
-            If nothing found matching the email, then try the username.
-        """
-        user = super(CustomAuthenticationBackend, self).create_user(claims)
-        user.first_name = claims.get('name', '').split(' ')[0]
-        user.last_name = claims.get('family_name', '')
+        # Override
+        user = super(CustomAuthenticationBackend, self).create_user(claims) # TODO: ?
+        user.username = claims.get('oid')   # OID is the immutable identifier for an object in the Microsoft identity system (same across applications)
         user.email = claims.get('email')
-        user.username = claims.get('email')
+        user.last_name = claims.get('name', '')
         user.save()
         return user
 
     def filter_users_by_claims(self, claims):
-        """ Attempting to match users by LS AAI ID first, then by email
+        """ Attempting to match users by Microsoft OID first, then by email
         """
-        ls_aai_id = claims.get('sub')
+        oid = claims.get('oid')
         email = claims.get('email')
 
         users = None
 
-        if ls_aai_id:
-            # Attempting to find user with ls_aai_id first (with user profiles)
-            user_profiles_check = UserProfiles.objects.filter(ls_aai_id=ls_aai_id)
-            if user_profiles_check.exists():
-                user_profile = UserProfiles.objects.get(ls_aai_id=ls_aai_id)
-                if user_profile.user and user_profile.user.id:
-                    # Finding the user associated to the found user profile
-                    users = self.UserModel.objects.filter(id=user_profile.user.id)
-            # Attempting to find user with email if no matching ls_aai_id in user profiles
-            if not (users and users.exists()):
-                if email:
-                    users = self.UserModel.objects.filter(email=email)
+        # This function should return a list of Users (list of len 0 or 1)
+        if oid:
+            users = Users.objects.filter(username=oid)
+            if not users.exists():
+                users = Users.objects.filter(email=email)
 
         return users
 
-    # def update_user(self, user, claims):
-    #     user.first_name = claims.get('given_name', '')
-    #     user.last_name = claims.get('family_name', '')
-    #     user.email = claims.get('email')
-    #     user.username = claims.get('email')
-    #     user.save()
-    #     return user
+    def update_user(self, user, claims):
+        user.username = claims.get('oid')
+        user.email = claims.get('email')
+        user.last_name = claims.get('name', '')
+        user.save()
+        return user
 
 
 class CustomAuthentication(OIDCAuthentication):
@@ -63,26 +124,16 @@ class CustomAuthentication(OIDCAuthentication):
         access_token = self.get_access_token(request)
 
         if not access_token:
-            return None
+            raise AuthenticationFailed('Invalid token')
 
+        claims = self.backend.validate_access_token(access_token)
+
+        if not claims:
+            raise AuthenticationFailed('Invalid token')
+        
         try:
-            user = self.backend.get_or_create_user(access_token, None, None)
-        except HTTPError as exc:
-            resp = exc.response
-
-            # if the oidc provider returns 401, it means the token is invalid.
-            # in that case, we want to return the upstream error message (which
-            # we can get from the www-authentication header) in the response.
-            if resp.status_code == 401 and 'www-authenticate' in resp.headers:
-                data = parse_www_authenticate_header(resp.headers['www-authenticate'])
-                if 'error_description' in data:
-                    raise exceptions.AuthenticationFailed(data['error_description'])
-                #AADB2C customization
-                elif 'Bearer error' in data:
-                    raise exceptions.AuthenticationFailed(data['Bearer error'])
-
-            # for all other http errors, just re-raise the exception.
-            raise
+            user = self.backend.get_or_create_user(access_token, None, claims)
+            # self.get_or_create_user(None, id_token, None)
         except SuspiciousOperation as exc:
             #LOGGER.info('Login failed: %s', exc)
             raise exceptions.AuthenticationFailed('Login failed')
@@ -92,3 +143,4 @@ class CustomAuthentication(OIDCAuthentication):
             raise exceptions.AuthenticationFailed(msg)
 
         return user, access_token
+            

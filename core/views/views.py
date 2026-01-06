@@ -30,7 +30,6 @@ from core.models.visit import *
 
 
 class ProjectView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = Project.objects.all()
     object_class = Project
     serializer_class = ProjectOutputSerializer
@@ -43,7 +42,6 @@ class ProjectView(viewsets.ModelViewSet):
 
 
 class StudyView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = Study.objects.all()
     object_class = Study
     serializer_class = StudyOutputSerializer
@@ -56,7 +54,6 @@ class StudyView(viewsets.ModelViewSet):
 
 
 class StudyCountryView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = StudyCountry.objects.all()
     object_class = StudyCountry
     serializer_class = StudyCountryOutputSerializer
@@ -81,7 +78,6 @@ class StudyCountryView(viewsets.ModelViewSet):
 
 
 class StudyCTUView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = StudyCTU.objects.all()
     object_class = StudyCTU
     serializer_class = StudyCTUOutputSerializer
@@ -112,7 +108,6 @@ class StudyCTUView(viewsets.ModelViewSet):
 
 
 class CentreView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = Centre.objects.all()
     object_class = Centre
     serializer_class = CentreOutputSerializer
@@ -137,7 +132,6 @@ class CentreView(viewsets.ModelViewSet):
 
 
 class NotificationView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = Notification.objects.all()
     object_class = Notification
     serializer_class = NotificationOutputSerializer
@@ -162,7 +156,6 @@ class NotificationView(viewsets.ModelViewSet):
 
 
 class SubmissionView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = Submission.objects.all()
     object_class = Submission
     serializer_class = SubmissionOutputSerializer
@@ -186,7 +179,6 @@ class SubmissionView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 class VisitView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = Visit.objects.all()
     object_class = Visit
     serializer_class = VisitOutputSerializer
@@ -217,7 +209,6 @@ class VisitView(viewsets.ModelViewSet):
 
 
 class ProjectsByFundingSource(APIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, fs_id):
@@ -237,7 +228,6 @@ class ProjectsByFundingSource(APIView):
 
 
 class ProjectsByOrganisation(APIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, org_id):
@@ -257,7 +247,6 @@ class ProjectsByOrganisation(APIView):
 
 
 class ProjectsByService(APIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, s_id):
@@ -277,7 +266,6 @@ class ProjectsByService(APIView):
 
 
 class ReferenceCountByClass(APIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, class_name, obj_id):

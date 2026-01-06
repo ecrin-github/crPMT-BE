@@ -34,7 +34,6 @@ from context.models.study_status import *
 
 
 class ComplexTrialTypeView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = ComplexTrialType.objects.all()
     object_class = ComplexTrialType
     serializer_class = ComplexTrialTypeOutputSerializer
@@ -47,7 +46,6 @@ class ComplexTrialTypeView(viewsets.ModelViewSet):
 
 
 class CountryView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = Country.objects.all()
     object_class = Country
     serializer_class = CountryOutputSerializer
@@ -58,7 +56,6 @@ class CountryView(viewsets.ModelViewSet):
 
 
 class CTUView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = CTU.objects.all()
     object_class = CTU
     serializer_class = CTUOutputSerializer
@@ -71,7 +68,6 @@ class CTUView(viewsets.ModelViewSet):
 
 
 class HospitalView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = Hospital.objects.all()
     object_class = Hospital
     serializer_class = HospitalOutputSerializer
@@ -84,7 +80,6 @@ class HospitalView(viewsets.ModelViewSet):
 
 
 class FundingSourceView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = FundingSource.objects.all()
     object_class = FundingSource
     serializer_class = FundingSourceOutputSerializer
@@ -97,7 +92,6 @@ class FundingSourceView(viewsets.ModelViewSet):
 
 
 class MedicalFieldView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = MedicalField.objects.all()
     object_class = MedicalField
     serializer_class = MedicalFieldOutputSerializer
@@ -110,7 +104,6 @@ class MedicalFieldView(viewsets.ModelViewSet):
 
 
 class OrganisationView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = Organisation.objects.all()
     object_class = Organisation
     serializer_class = OrganisationOutputSerializer
@@ -123,7 +116,6 @@ class OrganisationView(viewsets.ModelViewSet):
 
 
 class PersonView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = Person.objects.all()
     object_class = Person
     serializer_class = PersonOutputSerializer
@@ -136,7 +128,6 @@ class PersonView(viewsets.ModelViewSet):
 
 
 class PopulationView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = Population.objects.all()
     object_class = Population
     serializer_class = PopulationOutputSerializer
@@ -149,7 +140,6 @@ class PopulationView(viewsets.ModelViewSet):
 
 
 class RegulatoryFrameworkDetailView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = RegulatoryFrameworkDetail.objects.all()
     object_class = RegulatoryFrameworkDetail
     serializer_class = RegulatoryFrameworkDetailOutputSerializer
@@ -162,7 +152,6 @@ class RegulatoryFrameworkDetailView(viewsets.ModelViewSet):
 
 
 class ServiceView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = Service.objects.all()
     object_class = Service
     serializer_class = ServiceOutputSerializer
@@ -175,7 +164,6 @@ class ServiceView(viewsets.ModelViewSet):
 
 
 class StudyStatusView(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication, OIDCAuthentication]
     queryset = StudyStatus.objects.all()
     object_class = StudyStatus
     serializer_class = StudyStatusOutputSerializer
