@@ -15,7 +15,6 @@ gunicorn==23.0.0
 idna==3.10
 inflection==0.5.1
 josepy==2.0.0
-jwt==1.4.0
 Markdown==3.7
 mozilla-django-oidc==4.0.1
 numpy==2.2.5
