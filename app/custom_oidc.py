@@ -124,12 +124,12 @@ class CustomAuthentication(OIDCAuthentication):
         access_token = self.get_access_token(request)
 
         if not access_token:
-            raise AuthenticationFailed('Invalid token')
+            raise exceptions.AuthenticationFailed('Invalid token')
 
         claims = self.backend.validate_access_token(access_token)
 
         if not claims:
-            raise AuthenticationFailed('Invalid token')
+            raise exceptions.AuthenticationFailed('Invalid token')
         
         try:
             user = self.backend.get_or_create_user(access_token, None, claims)
