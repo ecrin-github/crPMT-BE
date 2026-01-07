@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('surname', models.CharField(blank=True, max_length=255, null=True)),
             ],
             options={
-                'db_table': 'persons',
+                'db_table': 'persons_deleted',
                 'ordering': ['id'],
             },
         ),

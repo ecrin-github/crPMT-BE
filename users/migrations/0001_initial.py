@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
                 ('user', models.ForeignKey(db_column='user_id', on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
-                'db_table': 'notifications',
+                'db_table': 'notifications_to_modify',
             },
         ),
         migrations.CreateModel(
