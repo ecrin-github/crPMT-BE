@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from context.models.complex_trial_type import ComplexTrialType
 from context.models.ctu import CTU
 from context.models.funding_source import FundingSource
+from context.models.hospital import Hospital
 from context.models.organisation import Organisation
 from context.models.person import Person
 from context.models.service import Service
@@ -279,8 +280,12 @@ class ReferenceCountByClass(APIView):
 
         if class_name == "complextrialtype":
             obj = get_object_or_404(ComplexTrialType, pk=obj_id)
+        elif class_name == "ctu":
+            obj = get_object_or_404(CTU, pk=obj_id)
         elif class_name == "fundingsource":
             obj = get_object_or_404(FundingSource, pk=obj_id)
+        elif class_name == "hospital":
+            obj = get_object_or_404(Hospital, pk=obj_id)
         elif class_name == "organisation":
             obj = get_object_or_404(Organisation, pk=obj_id)
         elif class_name == "person":
@@ -294,7 +299,6 @@ class ReferenceCountByClass(APIView):
         total_count = 0
         response = {}
         # https://stackoverflow.com/a/54711672
-        # reverse relation "fields" on the Reporter model are auto-created and not concrete
         for reverse in [f for f in obj._meta.get_fields() if f.auto_created and not f.concrete]:
             name = reverse.get_accessor_name()
             count = getattr(obj, name).count()

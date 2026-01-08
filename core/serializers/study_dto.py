@@ -7,6 +7,7 @@ from context.models.regulatory_framework_detail import RegulatoryFrameworkDetail
 from context.models.service import Service
 from context.serializers.complex_trial_type_dto import ComplexTrialTypeOutputSerializer
 from context.serializers.country_dto import CountryOutputSerializer
+from context.serializers.ctu_dto import CTUOutputSerializer
 from context.serializers.medical_field_dto import MedicalFieldOutputSerializer
 from context.serializers.organisation_dto import OrganisationOutputSerializer
 from context.serializers.person_dto import PersonOutputSerializer
@@ -37,8 +38,9 @@ class StudyOutputSerializer(serializers.ModelSerializer):
     c_euco = PersonOutputSerializer(many=False, read_only=True)
     complex_trial_type = ComplexTrialTypeOutputSerializer(many=False, read_only=True)
     coordinating_country = CountryOutputSerializer(many=False, read_only=True)
-    medical_fields = MedicalFieldOutputSerializer(many=True)
+    lead_ctu = CTUOutputSerializer(many=False, read_only=True)
     coordinating_investigator = PersonOutputSerializer(many=False, read_only=True)
+    medical_fields = MedicalFieldOutputSerializer(many=True)
     populations = PopulationOutputSerializer(many=True)
     regulatory_framework_details = RegulatoryFrameworkDetailOutputSerializer(many=True)
     project = ProjectMainDetailsSerializer(many=False, read_only=True)

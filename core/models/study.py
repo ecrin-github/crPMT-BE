@@ -2,6 +2,7 @@ from django.db import models
 
 from context.models.complex_trial_type import ComplexTrialType
 from context.models.country import Country
+from context.models.ctu import CTU
 from context.models.medical_field import MedicalField
 from context.models.organisation import Organisation
 from context.models.person import Person
@@ -22,6 +23,11 @@ class Study(models.Model):
     sponsor_country = models.ForeignKey(Country, on_delete=models.SET_NULL,
                                     db_column='sponsor_country_id', blank=True, null=True,
                                     related_name='studies', default=None)
+    lead_ctu = models.ForeignKey(CTU, on_delete=models.SET_NULL,
+                                db_column='lead_ctu_id', blank=True, null=True,
+                                related_name='studies', default=None)
+    agreement_signed = models.BooleanField(default=False)
+    agreement_signed_date = models.DateTimeField(blank=True, null=True)
     coordinating_investigator = models.ForeignKey(Person, on_delete=models.SET_NULL,
                                 db_column='coordinating_investigator_id', blank=True, null=True,
                                 related_name='studies', default=None)
