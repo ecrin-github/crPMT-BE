@@ -84,12 +84,10 @@ class CustomAuthenticationBackend(OIDCAuthenticationBackend):
     
     def create_user(self, claims):
         # Override
-        user = super(CustomAuthenticationBackend, self).create_user(claims) # TODO: ?
-        user.username = claims.get('oid')   # OID is the immutable identifier for an object in the Microsoft identity system (same across applications)
-        user.email = claims.get('email')
-        user.last_name = claims.get('name', '')
-        user.save()
-        return user
+        username = claims.get('oid')   # OID is the immutable identifier for an object in the Microsoft identity system (same across applications)
+        email = claims.get('email')
+        last_name = claims.get('name', '')
+        return self.UserModel.objects.create_user(username, email=email, last_name=last_name)
 
     def filter_users_by_claims(self, claims):
         """ Attempting to match users by Microsoft OID first, then by email
