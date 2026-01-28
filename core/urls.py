@@ -47,6 +47,17 @@ notification_detail = NotificationView.as_view({
     'delete': 'destroy'
 })
 
+safety_notification_list = SafetyNotificationView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+safety_notification_detail = SafetyNotificationView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 submission_list = SubmissionView.as_view({
     'get': 'list',
     'post': 'create'
@@ -118,6 +129,8 @@ urlpatterns = [
     path('study-countries/<int:scId>/submissions/<int:pk>', submission_detail),
     path('notifications', notification_list),
     path('notifications/<int:pk>', notification_detail),
+    path('safety-notifications', safety_notification_list),
+    path('safety-notifications/<int:pk>', safety_notification_detail),
     path('study-ctus', study_ctu_list),
     path('study-ctus/<int:pk>', study_ctu_detail),
     path('study-ctus/<int:pk>/visits', visit_list),

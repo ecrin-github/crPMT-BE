@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from app.permissions import ReadOnly
+from context.serializers.authority_dto import *
 from context.serializers.complex_trial_type_dto import *
 from context.serializers.country_dto import *
 from context.serializers.ctu_dto import *
@@ -15,9 +16,11 @@ from context.serializers.organisation_dto import *
 from context.serializers.person_dto import *
 from context.serializers.population_dto import *
 from context.serializers.regulatory_framework_detail_dto import *
+from context.serializers.safety_notification_type_dto import *
 from context.serializers.service_dto import *
 from context.serializers.study_status_dto import *
 
+from context.models.authority import *
 from context.models.complex_trial_type import *
 from context.models.country import *
 from context.models.ctu import *
@@ -28,9 +31,22 @@ from context.models.organisation import *
 from context.models.person import *
 from context.models.population import *
 from context.models.regulatory_framework_detail import *
+from context.models.safety_notification_type import *
 from context.models.service import *
 from context.models.study_status import *
 
+
+
+class AuthorityView(viewsets.ModelViewSet):
+    queryset = Authority.objects.all()
+    object_class = Authority
+    serializer_class = AuthorityOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return AuthorityInputSerializer
+        return super().get_serializer_class()
 
 
 class ComplexTrialTypeView(viewsets.ModelViewSet):
@@ -148,6 +164,18 @@ class RegulatoryFrameworkDetailView(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action in ["create", "update", "partial_update"]:
             return RegulatoryFrameworkDetailInputSerializer
+        return super().get_serializer_class()
+
+
+class SafetyNotificationTypeView(viewsets.ModelViewSet):
+    queryset = SafetyNotificationType.objects.all()
+    object_class = SafetyNotificationType
+    serializer_class = SafetyNotificationTypeOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return SafetyNotificationTypeInputSerializer
         return super().get_serializer_class()
 
 

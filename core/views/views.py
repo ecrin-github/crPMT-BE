@@ -15,6 +15,7 @@ from context.models.service import Service
 from core.serializers.centre_dto import *
 from core.serializers.notification_dto import *
 from core.serializers.project_dto import *
+from core.serializers.safety_notification_dto import *
 from core.serializers.study_dto import *
 from core.serializers.study_country_dto import *
 from core.serializers.study_ctu_dto import *
@@ -23,6 +24,7 @@ from core.serializers.visit_dto import *
 from core.models.centre import *
 from core.models.notification import *
 from core.models.project import *
+from core.models.safety_notification import *
 from core.models.study import *
 from core.models.study_country import *
 from core.models.study_ctu import *
@@ -153,6 +155,24 @@ class NotificationView(viewsets.ModelViewSet):
                 .get_queryset(*args, **kwargs)
                 .filter(study_country=self.kwargs['scId'])
             )
+        return super().get_queryset(*args, **kwargs)
+
+
+class SafetyNotificationView(viewsets.ModelViewSet):
+    queryset = SafetyNotification.objects.all()
+    object_class = SafetyNotification
+    serializer_class = SafetyNotificationOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return SafetyNotificationInputSerializer
+        return super().get_serializer_class()
+    
+    def get_queryset(self, *args, **kwargs):
+        if getattr(self, 'swagger_fake_view', False):
+            # queryset just for schema generation metadata
+            return SafetyNotification.objects.none()
         return super().get_queryset(*args, **kwargs)
 
 

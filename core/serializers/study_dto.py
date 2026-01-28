@@ -21,13 +21,13 @@ from core.serializers.study_country_dto import StudyCountryOutputSerializer
 
 class StudyInputSerializer(serializers.ModelSerializer):
     medical_fields = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=MedicalField.objects.all())
+        many=True, queryset=MedicalField.objects.all(), required=False)
     populations = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=Population.objects.all())
+        many=True, queryset=Population.objects.all(), required=False)
     regulatory_framework_details = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=RegulatoryFrameworkDetail.objects.all())
+        many=True, queryset=RegulatoryFrameworkDetail.objects.all(), required=False)
     services = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=Service.objects.all())
+        many=True, queryset=Service.objects.all(), required=False)
 
     class Meta:
         model = Study

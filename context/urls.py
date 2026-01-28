@@ -3,6 +3,18 @@ from django.urls import path
 from context.views.views import *
 
 
+authority_list = AuthorityView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+authority_detail = AuthorityView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
+
 complex_trial_type_list = ComplexTrialTypeView.as_view({
     'get': 'list',
     'post': 'create'
@@ -109,6 +121,17 @@ regulatory_framework_detail_detail = RegulatoryFrameworkDetailView.as_view({
     'delete': 'destroy'
 })
 
+safety_notification_type_list = SafetyNotificationTypeView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+safety_notification_type_detail = SafetyNotificationTypeView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 service_list = ServiceView.as_view({
     'get': 'list',
     'post': 'create'
@@ -153,6 +176,8 @@ urlpatterns = [
     path('populations/<int:pk>', population_detail),
     path('regulatory-framework-details', regulatory_framework_detail_list),
     path('regulatory-framework-details/<int:pk>', regulatory_framework_detail_detail),
+    path('safety-notification-types', safety_notification_type_list),
+    path('safety-notification-types/<int:pk>', safety_notification_type_detail),
     path('services', service_list),
     path('services/<int:pk>', service_detail),
 ]
