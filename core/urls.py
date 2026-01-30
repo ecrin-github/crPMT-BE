@@ -36,6 +36,17 @@ study_country_detail = StudyCountryView.as_view({
     'delete': 'destroy'
 })
 
+reporting_period_list = ReportingPeriodView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+reporting_period_detail = ReportingPeriodView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 notification_list = NotificationView.as_view({
     'get': 'list',
     'post': 'create'
@@ -127,6 +138,8 @@ urlpatterns = [
     path('study-countries/<int:scId>/study-ctus/<int:pk>', study_ctu_detail),
     path('study-countries/<int:pk>/submissions', submission_list),
     path('study-countries/<int:scId>/submissions/<int:pk>', submission_detail),
+    path('reporting-periods', reporting_period_list),
+    path('reporting-periods/<int:pk>', reporting_period_detail),
     path('notifications', notification_list),
     path('notifications/<int:pk>', notification_detail),
     path('safety-notifications', safety_notification_list),

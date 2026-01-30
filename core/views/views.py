@@ -15,6 +15,7 @@ from context.models.service import Service
 from core.serializers.centre_dto import *
 from core.serializers.notification_dto import *
 from core.serializers.project_dto import *
+from core.serializers.reporting_period_dto import *
 from core.serializers.safety_notification_dto import *
 from core.serializers.study_dto import *
 from core.serializers.study_country_dto import *
@@ -24,6 +25,7 @@ from core.serializers.visit_dto import *
 from core.models.centre import *
 from core.models.notification import *
 from core.models.project import *
+from core.models.reporting_period import *
 from core.models.safety_notification import *
 from core.models.study import *
 from core.models.study_country import *
@@ -130,6 +132,30 @@ class CentreView(viewsets.ModelViewSet):
                 super()
                 .get_queryset(*args, **kwargs)
                 .filter(study_ctu=self.kwargs['sctuId'])
+            )
+        return super().get_queryset(*args, **kwargs)
+
+
+class ReportingPeriodView(viewsets.ModelViewSet):
+    queryset = ReportingPeriod.objects.all()
+    object_class = ReportingPeriod
+    serializer_class = ReportingPeriodOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return ReportingPeriodInputSerializer
+        return super().get_serializer_class()
+    
+    def get_queryset(self, *args, **kwargs):
+        if getattr(self, 'swagger_fake_view', False):
+            # queryset just for schema generation metadata
+            return object_class.objects.none()
+        if 'projectId' in self.kwargs:
+            return (
+                super()
+                .get_queryset(*args, **kwargs)
+                .filter(project=self.kwargs['projectId'])
             )
         return super().get_queryset(*args, **kwargs)
 
