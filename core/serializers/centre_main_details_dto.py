@@ -1,14 +1,24 @@
 from rest_framework import serializers
 
 from core.models.centre import Centre
-from context.serializers.ctu_dto import CTUOutputSerializer
+from context.serializers.hospital_dto import HospitalOutputSerializer
 from context.serializers.person_dto import PersonOutputSerializer
 
 
 class CentreMainDetailsSerializer(serializers.ModelSerializer):
-    ctu = CTUOutputSerializer(many=False, read_only=False)
+    hospital = HospitalOutputSerializer(many=False, read_only=True)
     pi = PersonOutputSerializer(many=False, read_only=False)
 
     class Meta:
         model = Centre
-        fields = fields = ['id', 'site_number', 'patients_expected', 'recruitment_greenlight', 'mov_expected_number', 'ctu', 'pi', 'pi_national_coordinator']
+        fields = [
+            "id",
+            "hospital",
+            "site_number_flag",
+            "site_number",
+            "pi",
+            "pi_national_coordinator",
+            "patients_expected",
+            "recruitment_greenlight",
+            "mov_expected_number",
+        ]

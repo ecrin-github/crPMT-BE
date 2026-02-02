@@ -154,6 +154,17 @@ study_status_detail = StudyStatusView.as_view({
     'delete': 'destroy'
 })
 
+visit_type_list = VisitTypeView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+visit_type_detail = VisitTypeView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 
 urlpatterns = [
     path('complex-trial-types', complex_trial_type_list),
@@ -180,4 +191,6 @@ urlpatterns = [
     path('safety-notification-types/<int:pk>', safety_notification_type_detail),
     path('services', service_list),
     path('services/<int:pk>', service_detail),
+    path('visit-types', visit_type_list),
+    path('visit-types/<int:pk>', visit_type_detail),
 ]

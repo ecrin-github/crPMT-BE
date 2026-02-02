@@ -19,6 +19,7 @@ from context.serializers.regulatory_framework_detail_dto import *
 from context.serializers.safety_notification_type_dto import *
 from context.serializers.service_dto import *
 from context.serializers.study_status_dto import *
+from context.serializers.visit_type_dto import *
 
 from context.models.authority import *
 from context.models.complex_trial_type import *
@@ -34,6 +35,7 @@ from context.models.regulatory_framework_detail import *
 from context.models.safety_notification_type import *
 from context.models.service import *
 from context.models.study_status import *
+from context.models.visit_type import *
 
 
 
@@ -200,4 +202,16 @@ class StudyStatusView(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action in ["create", "update", "partial_update"]:
             return StudyStatusInputSerializer
+        return super().get_serializer_class()
+
+
+class VisitTypeView(viewsets.ModelViewSet):
+    queryset = VisitType.objects.all()
+    object_class = VisitType
+    serializer_class = VisitTypeOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return VisitTypeInputSerializer
         return super().get_serializer_class()
