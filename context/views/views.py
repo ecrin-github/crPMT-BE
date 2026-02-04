@@ -1,14 +1,12 @@
-from mozilla_django_oidc.contrib.drf import OIDCAuthentication
-from rest_framework import viewsets, permissions, status
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework import viewsets, permissions
 
 from app.permissions import ReadOnly
+from context.models.ctu_status import CTUStatus
 from context.serializers.authority_dto import *
 from context.serializers.complex_trial_type_dto import *
 from context.serializers.country_dto import *
 from context.serializers.ctu_dto import *
+from context.serializers.ctu_status_dto import CTUStatusInputSerializer, CTUStatusOutputSerializer
 from context.serializers.hospital_dto import *
 from context.serializers.funding_source_dto import *
 from context.serializers.medical_field_dto import *
@@ -82,6 +80,18 @@ class CTUView(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action in ["create", "update", "partial_update"]:
             return CTUInputSerializer
+        return super().get_serializer_class()
+
+
+class CTUStatusView(viewsets.ModelViewSet):
+    queryset = CTUStatus.objects.all()
+    object_class = CTUStatus
+    serializer_class = CTUStatusOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return CTUStatusInputSerializer
         return super().get_serializer_class()
 
 

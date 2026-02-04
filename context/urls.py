@@ -44,6 +44,17 @@ ctu_detail = CTUView.as_view({
     'delete': 'destroy'
 })
 
+ctu_status_list = CTUStatusView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+ctu_status_detail = CTUStatusView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 hospital_list = HospitalView.as_view({
     'get': 'list',
     'post': 'create'
@@ -173,6 +184,8 @@ urlpatterns = [
     path('countries/<int:pk>', country_detail),
     path('ctus', ctu_list),
     path('ctus/<int:pk>', ctu_detail),
+    path('ctu-statuses', ctu_status_list),
+    path('ctu-statuses/<int:pk>', ctu_status_detail),
     path('hospitals', hospital_list),
     path('hospitals/<int:pk>', hospital_detail),
     path('funding-sources', funding_source_list),

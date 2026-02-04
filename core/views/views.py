@@ -12,7 +12,11 @@ from context.models.hospital import Hospital
 from context.models.organisation import Organisation
 from context.models.person import Person
 from context.models.service import Service
+from core.models.ctu_agreement import CTUAgreement
+from core.models.ctu_agreement_amendment import CTUAgreementAmendment
 from core.serializers.centre_dto import *
+from core.serializers.ctu_agreement_amendment_dto import CTUAgreementAmendmentInputSerializer, CTUAgreementAmendmentOutputSerializer
+from core.serializers.ctu_agreement_dto import CTUAgreementInputSerializer, CTUAgreementOutputSerializer
 from core.serializers.notification_dto import *
 from core.serializers.project_dto import *
 from core.serializers.reporting_period_dto import *
@@ -72,7 +76,7 @@ class StudyCountryView(viewsets.ModelViewSet):
     def get_queryset(self, *args, **kwargs):
         if getattr(self, 'swagger_fake_view', False):
             # queryset just for schema generation metadata
-            return StudyCountry.objects.none()
+            return self.object_class.objects.none()
         if 'sId' in self.kwargs:
             return (
                 super()
@@ -96,7 +100,7 @@ class StudyCTUView(viewsets.ModelViewSet):
     def get_queryset(self, *args, **kwargs):
         if getattr(self, 'swagger_fake_view', False):
             # queryset just for schema generation metadata
-            return StudyCTU.objects.none()
+            return self.object_class.objects.none()
         if 'sId' in self.kwargs:
             return (
                 super()
@@ -126,12 +130,60 @@ class CentreView(viewsets.ModelViewSet):
     def get_queryset(self, *args, **kwargs):
         if getattr(self, 'swagger_fake_view', False):
             # queryset just for schema generation metadata
-            return Centre.objects.none()
+            return self.object_class.objects.none()
         if 'sctuId' in self.kwargs:
             return (
                 super()
                 .get_queryset(*args, **kwargs)
                 .filter(study_ctu=self.kwargs['sctuId'])
+            )
+        return super().get_queryset(*args, **kwargs)
+
+
+class CTUAgreementView(viewsets.ModelViewSet):
+    queryset = CTUAgreement.objects.all()
+    object_class = CTUAgreement
+    serializer_class = CTUAgreementOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return CTUAgreementInputSerializer
+        return super().get_serializer_class()
+    
+    def get_queryset(self, *args, **kwargs):
+        if getattr(self, 'swagger_fake_view', False):
+            # queryset just for schema generation metadata
+            return self.object_class.objects.none()
+        if 'sctuId' in self.kwargs:
+            return (
+                super()
+                .get_queryset(*args, **kwargs)
+                .filter(study_ctu=self.kwargs['sctuId'])
+            )
+        return super().get_queryset(*args, **kwargs)
+
+
+class CTUAgreementAmendmentView(viewsets.ModelViewSet):
+    queryset = CTUAgreementAmendment.objects.all()
+    object_class = CTUAgreementAmendment
+    serializer_class = CTUAgreementAmendmentOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return CTUAgreementAmendmentInputSerializer
+        return super().get_serializer_class()
+    
+    def get_queryset(self, *args, **kwargs):
+        if getattr(self, 'swagger_fake_view', False):
+            # queryset just for schema generation metadata
+            return self.object_class.objects.none()
+        if 'ctuAgId' in self.kwargs:
+            return (
+                super()
+                .get_queryset(*args, **kwargs)
+                .filter(ctu_agreement=self.kwargs['ctuAgId'])
             )
         return super().get_queryset(*args, **kwargs)
 
@@ -150,7 +202,7 @@ class ReportingPeriodView(viewsets.ModelViewSet):
     def get_queryset(self, *args, **kwargs):
         if getattr(self, 'swagger_fake_view', False):
             # queryset just for schema generation metadata
-            return object_class.objects.none()
+            return self.object_class.objects.none()
         if 'projectId' in self.kwargs:
             return (
                 super()
@@ -174,7 +226,7 @@ class NotificationView(viewsets.ModelViewSet):
     def get_queryset(self, *args, **kwargs):
         if getattr(self, 'swagger_fake_view', False):
             # queryset just for schema generation metadata
-            return Notification.objects.none()
+            return self.object_class.objects.none()
         if 'scId' in self.kwargs:
             return (
                 super()
@@ -198,7 +250,7 @@ class SafetyNotificationView(viewsets.ModelViewSet):
     def get_queryset(self, *args, **kwargs):
         if getattr(self, 'swagger_fake_view', False):
             # queryset just for schema generation metadata
-            return SafetyNotification.objects.none()
+            return self.object_class.objects.none()
         return super().get_queryset(*args, **kwargs)
 
 
@@ -216,7 +268,7 @@ class SubmissionView(viewsets.ModelViewSet):
     def get_queryset(self, *args, **kwargs):
         if getattr(self, 'swagger_fake_view', False):
             # queryset just for schema generation metadata
-            return Submission.objects.none()
+            return self.object_class.objects.none()
         if 'scId' in self.kwargs:
             return (
                 super()
@@ -239,7 +291,7 @@ class VisitView(viewsets.ModelViewSet):
     def get_queryset(self, *args, **kwargs):
         if getattr(self, 'swagger_fake_view', False):
             # queryset just for schema generation metadata
-            return StudyCountry.objects.none()
+            return self.object_class.objects.none()
         if 'sId' in self.kwargs:
             return (
                 super()
