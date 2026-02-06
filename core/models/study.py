@@ -70,7 +70,7 @@ class Study(models.Model):
 
     # Internal
     uses_ctis_for_safety_notifications = models.BooleanField(default=False)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, unique=False, editable=True,
+    project = models.ForeignKey(Project, on_delete=models.SET_NULL, unique=False, editable=True,
                                     blank=True, null=True, db_index=True,
                                     db_column='project_id', related_name='studies', default=None)
     order = models.IntegerField(blank=True, null=True, db_column='order')
