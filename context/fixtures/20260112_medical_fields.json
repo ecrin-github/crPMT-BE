@@ -1,0 +1,79 @@
+[
+    {
+        "model": "context.medicalfield",
+        "pk": 1,
+        "fields": {
+            "value": "Neuroscience (Neurology, Psychiatry)"
+        }
+    },
+    {
+        "model": "context.medicalfield",
+        "pk": 2,
+        "fields": {
+            "value": "Infectious diseases"
+        }
+    },
+    {
+        "model": "context.medicalfield",
+        "pk": 3,
+        "fields": {
+            "value": "Pneumology"
+        }
+    },
+    {
+        "model": "context.medicalfield",
+        "pk": 4,
+        "fields": {
+            "value": "Hepatology/Gastroenterology"
+        }
+    },
+    {
+        "model": "context.medicalfield",
+        "pk": 5,
+        "fields": {
+            "value": "Cardiovascular"
+        }
+    },
+    {
+        "model": "context.medicalfield",
+        "pk": 6,
+        "fields": {
+            "value": "Rheumatology"
+        }
+    },
+    {
+        "model": "context.medicalfield",
+        "pk": 7,
+        "fields": {
+            "value": "Urology/Nephrology"
+        }
+    },
+    {
+        "model": "context.medicalfield",
+        "pk": 8,
+        "fields": {
+            "value": "Oncology"
+        }
+    },
+    {
+        "model": "context.medicalfield",
+        "pk": 9,
+        "fields": {
+            "value": "Gynecology"
+        }
+    },
+    {
+        "model": "context.medicalfield",
+        "pk": 10,
+        "fields": {
+            "value": "Immune disorders"
+        }
+    },
+    {
+        "model": "context.medicalfield",
+        "pk": 11,
+        "fields": {
+            "value": "Ophthalmology"
+        }
+    }
+]

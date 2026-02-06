@@ -1,20 +1,24 @@
-import datetime
-
 from django.db import models
 
 from core.models.study_country import StudyCountry
 
 
-class Notification(models.Model): # End of trial notification
+class Notification(models.Model):  # End of trial notification
     id = models.BigAutoField(primary_key=True)
     authority = models.CharField(blank=True, null=True)
     notification_date = models.DateTimeField(blank=True, null=True)
     comment = models.TextField(blank=True, null=True)
-    study_country = models.ForeignKey(StudyCountry, on_delete=models.CASCADE,
-                                db_column='study_country_id', blank=True, null=True,
-                                related_name='notifications', default=None)
-    order = models.IntegerField(blank=True, null=True, db_column='order')
+    study_country = models.ForeignKey(
+        StudyCountry,
+        on_delete=models.CASCADE,
+        db_column="study_country_id",
+        blank=True,
+        null=True,
+        related_name="notifications",
+        default=None,
+    )
+    order = models.IntegerField(blank=True, null=True, db_column="order")
 
     class Meta:
-        db_table = 'notifications'
-        ordering = ['order']
+        db_table = "notifications"
+        ordering = ["order"]

@@ -1,0 +1,2774 @@
+[
+    {
+        "model": "context.country",
+        "pk": "AD",
+        "fields": {
+            "iso3": "AND",
+            "name": "Andorra",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "AE",
+        "fields": {
+            "iso3": "ARE",
+            "name": "United Arab Emirates",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "AF",
+        "fields": {
+            "iso3": "AFG",
+            "name": "Afghanistan",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "AG",
+        "fields": {
+            "iso3": "ATG",
+            "name": "Antigua and Barbuda",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "AI",
+        "fields": {
+            "iso3": "AIA",
+            "name": "Anguilla",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "AL",
+        "fields": {
+            "iso3": "ALB",
+            "name": "Albania",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "AM",
+        "fields": {
+            "iso3": "ARM",
+            "name": "Armenia",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "AN",
+        "fields": {
+            "iso3": "ANT",
+            "name": "Netherlands Antilles",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "AO",
+        "fields": {
+            "iso3": "AGO",
+            "name": "Angola",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "AQ",
+        "fields": {
+            "iso3": "ATA",
+            "name": "Antarctica",
+            "continent": "AN",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "AR",
+        "fields": {
+            "iso3": "ARG",
+            "name": "Argentina",
+            "continent": "SA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "AS",
+        "fields": {
+            "iso3": "ASM",
+            "name": "American Samoa",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "AT",
+        "fields": {
+            "iso3": "AUT",
+            "name": "Austria",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "AU",
+        "fields": {
+            "iso3": "AUS",
+            "name": "Australia",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "AW",
+        "fields": {
+            "iso3": "ABW",
+            "name": "Aruba",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "AX",
+        "fields": {
+            "iso3": "ALA",
+            "name": "Aland Islands",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "AZ",
+        "fields": {
+            "iso3": "AZE",
+            "name": "Azerbaijan",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BA",
+        "fields": {
+            "iso3": "BIH",
+            "name": "Bosnia and Herzegovina",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BB",
+        "fields": {
+            "iso3": "BRB",
+            "name": "Barbados",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BD",
+        "fields": {
+            "iso3": "BGD",
+            "name": "Bangladesh",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BE",
+        "fields": {
+            "iso3": "BEL",
+            "name": "Belgium",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BF",
+        "fields": {
+            "iso3": "BFA",
+            "name": "Burkina Faso",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BG",
+        "fields": {
+            "iso3": "BGR",
+            "name": "Bulgaria",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BH",
+        "fields": {
+            "iso3": "BHR",
+            "name": "Bahrain",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BI",
+        "fields": {
+            "iso3": "BDI",
+            "name": "Burundi",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BJ",
+        "fields": {
+            "iso3": "BEN",
+            "name": "Benin",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BL",
+        "fields": {
+            "iso3": "BLM",
+            "name": "Saint Barthelemy",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BM",
+        "fields": {
+            "iso3": "BMU",
+            "name": "Bermuda",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BN",
+        "fields": {
+            "iso3": "BRN",
+            "name": "Brunei",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BO",
+        "fields": {
+            "iso3": "BOL",
+            "name": "Bolivia",
+            "continent": "SA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BQ",
+        "fields": {
+            "iso3": "BES",
+            "name": "Bonaire, Saint Eustatius and Saba ",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BR",
+        "fields": {
+            "iso3": "BRA",
+            "name": "Brazil",
+            "continent": "SA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BS",
+        "fields": {
+            "iso3": "BHS",
+            "name": "Bahamas",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BT",
+        "fields": {
+            "iso3": "BTN",
+            "name": "Bhutan",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BV",
+        "fields": {
+            "iso3": "BVT",
+            "name": "Bouvet Island",
+            "continent": "AN",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BW",
+        "fields": {
+            "iso3": "BWA",
+            "name": "Botswana",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BY",
+        "fields": {
+            "iso3": "BLR",
+            "name": "Belarus",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "BZ",
+        "fields": {
+            "iso3": "BLZ",
+            "name": "Belize",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CA",
+        "fields": {
+            "iso3": "CAN",
+            "name": "Canada",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CC",
+        "fields": {
+            "iso3": "CCK",
+            "name": "Cocos Islands",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CD",
+        "fields": {
+            "iso3": "COD",
+            "name": "Democratic Republic of the Congo",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CF",
+        "fields": {
+            "iso3": "CAF",
+            "name": "Central African Republic",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CG",
+        "fields": {
+            "iso3": "COG",
+            "name": "Republic of the Congo",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CH",
+        "fields": {
+            "iso3": "CHE",
+            "name": "Switzerland",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CI",
+        "fields": {
+            "iso3": "CIV",
+            "name": "Ivory Coast",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CK",
+        "fields": {
+            "iso3": "COK",
+            "name": "Cook Islands",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CL",
+        "fields": {
+            "iso3": "CHL",
+            "name": "Chile",
+            "continent": "SA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CM",
+        "fields": {
+            "iso3": "CMR",
+            "name": "Cameroon",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CN",
+        "fields": {
+            "iso3": "CHN",
+            "name": "China",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CO",
+        "fields": {
+            "iso3": "COL",
+            "name": "Colombia",
+            "continent": "SA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CR",
+        "fields": {
+            "iso3": "CRI",
+            "name": "Costa Rica",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CS",
+        "fields": {
+            "iso3": "SCG",
+            "name": "Serbia and Montenegro",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CU",
+        "fields": {
+            "iso3": "CUB",
+            "name": "Cuba",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CV",
+        "fields": {
+            "iso3": "CPV",
+            "name": "Cabo Verde",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CW",
+        "fields": {
+            "iso3": "CUW",
+            "name": "Curacao",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CX",
+        "fields": {
+            "iso3": "CXR",
+            "name": "Christmas Island",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CY",
+        "fields": {
+            "iso3": "CYP",
+            "name": "Cyprus",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "CZ",
+        "fields": {
+            "iso3": "CZE",
+            "name": "Czechia",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "DE",
+        "fields": {
+            "iso3": "DEU",
+            "name": "Germany",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "DJ",
+        "fields": {
+            "iso3": "DJI",
+            "name": "Djibouti",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "DK",
+        "fields": {
+            "iso3": "DNK",
+            "name": "Denmark",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "DM",
+        "fields": {
+            "iso3": "DMA",
+            "name": "Dominica",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "DO",
+        "fields": {
+            "iso3": "DOM",
+            "name": "Dominican Republic",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "DZ",
+        "fields": {
+            "iso3": "DZA",
+            "name": "Algeria",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "EC",
+        "fields": {
+            "iso3": "ECU",
+            "name": "Ecuador",
+            "continent": "SA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "EE",
+        "fields": {
+            "iso3": "EST",
+            "name": "Estonia",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "EG",
+        "fields": {
+            "iso3": "EGY",
+            "name": "Egypt",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "EH",
+        "fields": {
+            "iso3": "ESH",
+            "name": "Western Sahara",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "ER",
+        "fields": {
+            "iso3": "ERI",
+            "name": "Eritrea",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "ES",
+        "fields": {
+            "iso3": "ESP",
+            "name": "Spain",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "ET",
+        "fields": {
+            "iso3": "ETH",
+            "name": "Ethiopia",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "FI",
+        "fields": {
+            "iso3": "FIN",
+            "name": "Finland",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "FJ",
+        "fields": {
+            "iso3": "FJI",
+            "name": "Fiji",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "FK",
+        "fields": {
+            "iso3": "FLK",
+            "name": "Falkland Islands",
+            "continent": "SA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "FM",
+        "fields": {
+            "iso3": "FSM",
+            "name": "Micronesia",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "FO",
+        "fields": {
+            "iso3": "FRO",
+            "name": "Faroe Islands",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "FR",
+        "fields": {
+            "iso3": "FRA",
+            "name": "France",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GA",
+        "fields": {
+            "iso3": "GAB",
+            "name": "Gabon",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GB",
+        "fields": {
+            "iso3": "GBR",
+            "name": "United Kingdom",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GD",
+        "fields": {
+            "iso3": "GRD",
+            "name": "Grenada",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GE",
+        "fields": {
+            "iso3": "GEO",
+            "name": "Georgia",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GF",
+        "fields": {
+            "iso3": "GUF",
+            "name": "French Guiana",
+            "continent": "SA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GG",
+        "fields": {
+            "iso3": "GGY",
+            "name": "Guernsey",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GH",
+        "fields": {
+            "iso3": "GHA",
+            "name": "Ghana",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GI",
+        "fields": {
+            "iso3": "GIB",
+            "name": "Gibraltar",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GL",
+        "fields": {
+            "iso3": "GRL",
+            "name": "Greenland",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GM",
+        "fields": {
+            "iso3": "GMB",
+            "name": "Gambia",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GN",
+        "fields": {
+            "iso3": "GIN",
+            "name": "Guinea",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GP",
+        "fields": {
+            "iso3": "GLP",
+            "name": "Guadeloupe",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GQ",
+        "fields": {
+            "iso3": "GNQ",
+            "name": "Equatorial Guinea",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GR",
+        "fields": {
+            "iso3": "GRC",
+            "name": "Greece",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GS",
+        "fields": {
+            "iso3": "SGS",
+            "name": "South Georgia and the South Sandwich Islands",
+            "continent": "AN",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GT",
+        "fields": {
+            "iso3": "GTM",
+            "name": "Guatemala",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GU",
+        "fields": {
+            "iso3": "GUM",
+            "name": "Guam",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GW",
+        "fields": {
+            "iso3": "GNB",
+            "name": "Guinea-Bissau",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "GY",
+        "fields": {
+            "iso3": "GUY",
+            "name": "Guyana",
+            "continent": "SA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "HK",
+        "fields": {
+            "iso3": "HKG",
+            "name": "Hong Kong",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "HM",
+        "fields": {
+            "iso3": "HMD",
+            "name": "Heard Island and McDonald Islands",
+            "continent": "AN",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "HN",
+        "fields": {
+            "iso3": "HND",
+            "name": "Honduras",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "HR",
+        "fields": {
+            "iso3": "HRV",
+            "name": "Croatia",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "HT",
+        "fields": {
+            "iso3": "HTI",
+            "name": "Haiti",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "HU",
+        "fields": {
+            "iso3": "HUN",
+            "name": "Hungary",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "ID",
+        "fields": {
+            "iso3": "IDN",
+            "name": "Indonesia",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "IE",
+        "fields": {
+            "iso3": "IRL",
+            "name": "Ireland",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "IL",
+        "fields": {
+            "iso3": "ISR",
+            "name": "Israel",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "IM",
+        "fields": {
+            "iso3": "IMN",
+            "name": "Isle of Man",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "IN",
+        "fields": {
+            "iso3": "IND",
+            "name": "India",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "IO",
+        "fields": {
+            "iso3": "IOT",
+            "name": "British Indian Ocean Territory",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "IQ",
+        "fields": {
+            "iso3": "IRQ",
+            "name": "Iraq",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "IR",
+        "fields": {
+            "iso3": "IRN",
+            "name": "Iran",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "IS",
+        "fields": {
+            "iso3": "ISL",
+            "name": "Iceland",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "IT",
+        "fields": {
+            "iso3": "ITA",
+            "name": "Italy",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "JE",
+        "fields": {
+            "iso3": "JEY",
+            "name": "Jersey",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "JM",
+        "fields": {
+            "iso3": "JAM",
+            "name": "Jamaica",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "JO",
+        "fields": {
+            "iso3": "JOR",
+            "name": "Jordan",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "JP",
+        "fields": {
+            "iso3": "JPN",
+            "name": "Japan",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "KE",
+        "fields": {
+            "iso3": "KEN",
+            "name": "Kenya",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "KG",
+        "fields": {
+            "iso3": "KGZ",
+            "name": "Kyrgyzstan",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "KH",
+        "fields": {
+            "iso3": "KHM",
+            "name": "Cambodia",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "KI",
+        "fields": {
+            "iso3": "KIR",
+            "name": "Kiribati",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "KM",
+        "fields": {
+            "iso3": "COM",
+            "name": "Comoros",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "KN",
+        "fields": {
+            "iso3": "KNA",
+            "name": "Saint Kitts and Nevis",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "KP",
+        "fields": {
+            "iso3": "PRK",
+            "name": "North Korea",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "KR",
+        "fields": {
+            "iso3": "KOR",
+            "name": "South Korea",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "KW",
+        "fields": {
+            "iso3": "KWT",
+            "name": "Kuwait",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "KY",
+        "fields": {
+            "iso3": "CYM",
+            "name": "Cayman Islands",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "KZ",
+        "fields": {
+            "iso3": "KAZ",
+            "name": "Kazakhstan",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "LA",
+        "fields": {
+            "iso3": "LAO",
+            "name": "Laos",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "LB",
+        "fields": {
+            "iso3": "LBN",
+            "name": "Lebanon",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "LC",
+        "fields": {
+            "iso3": "LCA",
+            "name": "Saint Lucia",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "LI",
+        "fields": {
+            "iso3": "LIE",
+            "name": "Liechtenstein",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "LK",
+        "fields": {
+            "iso3": "LKA",
+            "name": "Sri Lanka",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "LR",
+        "fields": {
+            "iso3": "LBR",
+            "name": "Liberia",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "LS",
+        "fields": {
+            "iso3": "LSO",
+            "name": "Lesotho",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "LT",
+        "fields": {
+            "iso3": "LTU",
+            "name": "Lithuania",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "LU",
+        "fields": {
+            "iso3": "LUX",
+            "name": "Luxembourg",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "LV",
+        "fields": {
+            "iso3": "LVA",
+            "name": "Latvia",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "LY",
+        "fields": {
+            "iso3": "LBY",
+            "name": "Libya",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MA",
+        "fields": {
+            "iso3": "MAR",
+            "name": "Morocco",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MC",
+        "fields": {
+            "iso3": "MCO",
+            "name": "Monaco",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MD",
+        "fields": {
+            "iso3": "MDA",
+            "name": "Moldova",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "ME",
+        "fields": {
+            "iso3": "MNE",
+            "name": "Montenegro",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MF",
+        "fields": {
+            "iso3": "MAF",
+            "name": "Saint Martin",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MG",
+        "fields": {
+            "iso3": "MDG",
+            "name": "Madagascar",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MH",
+        "fields": {
+            "iso3": "MHL",
+            "name": "Marshall Islands",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MK",
+        "fields": {
+            "iso3": "MKD",
+            "name": "North Macedonia",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "ML",
+        "fields": {
+            "iso3": "MLI",
+            "name": "Mali",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MM",
+        "fields": {
+            "iso3": "MMR",
+            "name": "Myanmar",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MN",
+        "fields": {
+            "iso3": "MNG",
+            "name": "Mongolia",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MO",
+        "fields": {
+            "iso3": "MAC",
+            "name": "Macao",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MP",
+        "fields": {
+            "iso3": "MNP",
+            "name": "Northern Mariana Islands",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MQ",
+        "fields": {
+            "iso3": "MTQ",
+            "name": "Martinique",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MR",
+        "fields": {
+            "iso3": "MRT",
+            "name": "Mauritania",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MS",
+        "fields": {
+            "iso3": "MSR",
+            "name": "Montserrat",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MT",
+        "fields": {
+            "iso3": "MLT",
+            "name": "Malta",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MU",
+        "fields": {
+            "iso3": "MUS",
+            "name": "Mauritius",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MV",
+        "fields": {
+            "iso3": "MDV",
+            "name": "Maldives",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MW",
+        "fields": {
+            "iso3": "MWI",
+            "name": "Malawi",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MX",
+        "fields": {
+            "iso3": "MEX",
+            "name": "Mexico",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MY",
+        "fields": {
+            "iso3": "MYS",
+            "name": "Malaysia",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "MZ",
+        "fields": {
+            "iso3": "MOZ",
+            "name": "Mozambique",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "NA",
+        "fields": {
+            "iso3": "NAM",
+            "name": "Namibia",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "NC",
+        "fields": {
+            "iso3": "NCL",
+            "name": "New Caledonia",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "NE",
+        "fields": {
+            "iso3": "NER",
+            "name": "Niger",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "NF",
+        "fields": {
+            "iso3": "NFK",
+            "name": "Norfolk Island",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "NG",
+        "fields": {
+            "iso3": "NGA",
+            "name": "Nigeria",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "NI",
+        "fields": {
+            "iso3": "NIC",
+            "name": "Nicaragua",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "NL",
+        "fields": {
+            "iso3": "NLD",
+            "name": "The Netherlands",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "NO",
+        "fields": {
+            "iso3": "NOR",
+            "name": "Norway",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "NP",
+        "fields": {
+            "iso3": "NPL",
+            "name": "Nepal",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "NR",
+        "fields": {
+            "iso3": "NRU",
+            "name": "Nauru",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "NU",
+        "fields": {
+            "iso3": "NIU",
+            "name": "Niue",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "NZ",
+        "fields": {
+            "iso3": "NZL",
+            "name": "New Zealand",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "OM",
+        "fields": {
+            "iso3": "OMN",
+            "name": "Oman",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "PA",
+        "fields": {
+            "iso3": "PAN",
+            "name": "Panama",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "PE",
+        "fields": {
+            "iso3": "PER",
+            "name": "Peru",
+            "continent": "SA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "PF",
+        "fields": {
+            "iso3": "PYF",
+            "name": "French Polynesia",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "PG",
+        "fields": {
+            "iso3": "PNG",
+            "name": "Papua New Guinea",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "PH",
+        "fields": {
+            "iso3": "PHL",
+            "name": "Philippines",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "PK",
+        "fields": {
+            "iso3": "PAK",
+            "name": "Pakistan",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "PL",
+        "fields": {
+            "iso3": "POL",
+            "name": "Poland",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "PM",
+        "fields": {
+            "iso3": "SPM",
+            "name": "Saint Pierre and Miquelon",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "PN",
+        "fields": {
+            "iso3": "PCN",
+            "name": "Pitcairn",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "PR",
+        "fields": {
+            "iso3": "PRI",
+            "name": "Puerto Rico",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "PS",
+        "fields": {
+            "iso3": "PSE",
+            "name": "Palestinian Territory",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "PT",
+        "fields": {
+            "iso3": "PRT",
+            "name": "Portugal",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "PW",
+        "fields": {
+            "iso3": "PLW",
+            "name": "Palau",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "PY",
+        "fields": {
+            "iso3": "PRY",
+            "name": "Paraguay",
+            "continent": "SA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "QA",
+        "fields": {
+            "iso3": "QAT",
+            "name": "Qatar",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "RE",
+        "fields": {
+            "iso3": "REU",
+            "name": "Reunion",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "RO",
+        "fields": {
+            "iso3": "ROU",
+            "name": "Romania",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "RS",
+        "fields": {
+            "iso3": "SRB",
+            "name": "Serbia",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "RU",
+        "fields": {
+            "iso3": "RUS",
+            "name": "Russia",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "RW",
+        "fields": {
+            "iso3": "RWA",
+            "name": "Rwanda",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SA",
+        "fields": {
+            "iso3": "SAU",
+            "name": "Saudi Arabia",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SB",
+        "fields": {
+            "iso3": "SLB",
+            "name": "Solomon Islands",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SC",
+        "fields": {
+            "iso3": "SYC",
+            "name": "Seychelles",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SD",
+        "fields": {
+            "iso3": "SDN",
+            "name": "Sudan",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SE",
+        "fields": {
+            "iso3": "SWE",
+            "name": "Sweden",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SG",
+        "fields": {
+            "iso3": "SGP",
+            "name": "Singapore",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SH",
+        "fields": {
+            "iso3": "SHN",
+            "name": "Saint Helena",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SI",
+        "fields": {
+            "iso3": "SVN",
+            "name": "Slovenia",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SJ",
+        "fields": {
+            "iso3": "SJM",
+            "name": "Svalbard and Jan Mayen",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SK",
+        "fields": {
+            "iso3": "SVK",
+            "name": "Slovakia",
+            "continent": "EU",
+            "is_in_eu": true,
+            "is_in_eea": true
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SL",
+        "fields": {
+            "iso3": "SLE",
+            "name": "Sierra Leone",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SM",
+        "fields": {
+            "iso3": "SMR",
+            "name": "San Marino",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SN",
+        "fields": {
+            "iso3": "SEN",
+            "name": "Senegal",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SO",
+        "fields": {
+            "iso3": "SOM",
+            "name": "Somalia",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SR",
+        "fields": {
+            "iso3": "SUR",
+            "name": "Suriname",
+            "continent": "SA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SS",
+        "fields": {
+            "iso3": "SSD",
+            "name": "South Sudan",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "ST",
+        "fields": {
+            "iso3": "STP",
+            "name": "Sao Tome and Principe",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SV",
+        "fields": {
+            "iso3": "SLV",
+            "name": "El Salvador",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SX",
+        "fields": {
+            "iso3": "SXM",
+            "name": "Sint Maarten",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SY",
+        "fields": {
+            "iso3": "SYR",
+            "name": "Syria",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "SZ",
+        "fields": {
+            "iso3": "SWZ",
+            "name": "Eswatini",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "TC",
+        "fields": {
+            "iso3": "TCA",
+            "name": "Turks and Caicos Islands",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "TD",
+        "fields": {
+            "iso3": "TCD",
+            "name": "Chad",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "TF",
+        "fields": {
+            "iso3": "ATF",
+            "name": "French Southern Territories",
+            "continent": "AN",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "TG",
+        "fields": {
+            "iso3": "TGO",
+            "name": "Togo",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "TH",
+        "fields": {
+            "iso3": "THA",
+            "name": "Thailand",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "TJ",
+        "fields": {
+            "iso3": "TJK",
+            "name": "Tajikistan",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "TK",
+        "fields": {
+            "iso3": "TKL",
+            "name": "Tokelau",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "TL",
+        "fields": {
+            "iso3": "TLS",
+            "name": "Timor Leste",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "TM",
+        "fields": {
+            "iso3": "TKM",
+            "name": "Turkmenistan",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "TN",
+        "fields": {
+            "iso3": "TUN",
+            "name": "Tunisia",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "TO",
+        "fields": {
+            "iso3": "TON",
+            "name": "Tonga",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "TR",
+        "fields": {
+            "iso3": "TUR",
+            "name": "Turkey",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "TT",
+        "fields": {
+            "iso3": "TTO",
+            "name": "Trinidad and Tobago",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "TV",
+        "fields": {
+            "iso3": "TUV",
+            "name": "Tuvalu",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "TW",
+        "fields": {
+            "iso3": "TWN",
+            "name": "Taiwan",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "TZ",
+        "fields": {
+            "iso3": "TZA",
+            "name": "Tanzania",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "UA",
+        "fields": {
+            "iso3": "UKR",
+            "name": "Ukraine",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "UG",
+        "fields": {
+            "iso3": "UGA",
+            "name": "Uganda",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "UM",
+        "fields": {
+            "iso3": "UMI",
+            "name": "United States Minor Outlying Islands",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "US",
+        "fields": {
+            "iso3": "USA",
+            "name": "United States",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "UY",
+        "fields": {
+            "iso3": "URY",
+            "name": "Uruguay",
+            "continent": "SA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "UZ",
+        "fields": {
+            "iso3": "UZB",
+            "name": "Uzbekistan",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "VA",
+        "fields": {
+            "iso3": "VAT",
+            "name": "Vatican",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "VC",
+        "fields": {
+            "iso3": "VCT",
+            "name": "Saint Vincent and the Grenadines",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "VE",
+        "fields": {
+            "iso3": "VEN",
+            "name": "Venezuela",
+            "continent": "SA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "VG",
+        "fields": {
+            "iso3": "VGB",
+            "name": "British Virgin Islands",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "VI",
+        "fields": {
+            "iso3": "VIR",
+            "name": "U.S. Virgin Islands",
+            "continent": "NA",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "VN",
+        "fields": {
+            "iso3": "VNM",
+            "name": "Vietnam",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "VU",
+        "fields": {
+            "iso3": "VUT",
+            "name": "Vanuatu",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "WF",
+        "fields": {
+            "iso3": "WLF",
+            "name": "Wallis and Futuna",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "WS",
+        "fields": {
+            "iso3": "WSM",
+            "name": "Samoa",
+            "continent": "OC",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "XK",
+        "fields": {
+            "iso3": "XKX",
+            "name": "Kosovo",
+            "continent": "EU",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "YE",
+        "fields": {
+            "iso3": "YEM",
+            "name": "Yemen",
+            "continent": "AS",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "YT",
+        "fields": {
+            "iso3": "MYT",
+            "name": "Mayotte",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "ZA",
+        "fields": {
+            "iso3": "ZAF",
+            "name": "South Africa",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "ZM",
+        "fields": {
+            "iso3": "ZMB",
+            "name": "Zambia",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    },
+    {
+        "model": "context.country",
+        "pk": "ZW",
+        "fields": {
+            "iso3": "ZWE",
+            "name": "Zimbabwe",
+            "continent": "AF",
+            "is_in_eu": false,
+            "is_in_eea": false
+        }
+    }
+]

@@ -1,0 +1,16 @@
+[
+    {
+        "model": "context.authority",
+        "pk": "EC",
+        "fields": {
+            "name": "EC"
+        }
+    },
+    {
+        "model": "context.authority",
+        "pk": "CA",
+        "fields": {
+            "name": "CA"
+        }
+    }
+]

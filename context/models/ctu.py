@@ -10,7 +10,8 @@ class CTU(models.Model):
     short_name = models.CharField(max_length=255, blank=True, null=True)
     address_info = models.TextField(blank=True, null=True)
     sas_verification = models.BooleanField(default=False)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE,
+    manual_add = models.BooleanField(default=False)
+    country = models.ForeignKey(Country, on_delete=models.SET_NULL, to_field="iso2",
                                     db_column='country_id', blank=True, null=True,
                                     related_name='ctu_country_id', default=None)
     contact = models.ForeignKey(Person, on_delete=models.SET_NULL,
