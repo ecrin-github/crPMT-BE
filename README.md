@@ -17,7 +17,6 @@ Python:
     - Create a `configs/identity_config.py` file with all OIDC settings (check `crpmt/settings.py`)
 - Run `python manage.py migrate` to set up the crpmt DB
 - Run `python manage.py loaddata [fixture_name]` where `fixture_name` is the name of a file in `context/fixtures`. Run this for all files in the folder to pre-populate the DB for relevant context models
-- Run `python scripts/load_countries.py` to load countries list into the DB
 - TODO: loading CTUs and other links to Microsoft lists
 
 Running crPMT BE as a service (example):
