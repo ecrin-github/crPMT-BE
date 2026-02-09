@@ -17,7 +17,7 @@ Python:
     - Create a `configs/identity_config.py` file with all OIDC settings (check `crpmt/settings.py`)
 - Run `python manage.py migrate` to set up the crpmt DB
 - Run `python manage.py loaddata [fixture_name]` where `fixture_name` is the name of a file in `context/fixtures`. Run this for all files in the folder to pre-populate the DB for relevant context models
-- TODO: loading CTUs and other links to Microsoft lists
+- Load CTUs and people associated with CTUs using `python scripts/load_ctus.py` (temporary)
 
 Running crPMT BE as a service (example):
 - In `/etc/systemd/system`:
@@ -26,4 +26,4 @@ Running crPMT BE as a service (example):
     - Run the service with systemctl
 
 Running locally:
-`python manage.py runserver`
+- `python manage.py runserver`
