@@ -26,3 +26,6 @@ Running crPMT BE as a service (example):
     - Create a `crpmt.socket` file with `ListenStream=/run/crpmt.sock`
     - Create a `crpmt.service` file with `ExecStart=[path/to/gunicorn/in/venv] --workers 7 --bind unix:/run/crpmt.sock crpmt.wsgi`
     - Run the service with systemctl
+
+Running locally:
+`python manage.py runserver`
