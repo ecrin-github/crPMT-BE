@@ -240,7 +240,7 @@ LOGGING = {
         "file": {
             "level": "DEBUG",
             "class": "logging.FileHandler",
-            "filename": "/var/www/crPMT-BE/debug.log",
+            "filename": "debug.log",
             "formatter": "verbose",
         },
     },
