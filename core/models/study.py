@@ -2,6 +2,7 @@ from django.db import models
 
 from context.models.complex_trial_type import ComplexTrialType
 from context.models.country import Country
+from context.models.ctu import CTU
 from context.models.medical_field import MedicalField
 from context.models.organisation import Organisation
 from context.models.person import Person
@@ -19,9 +20,14 @@ class Study(models.Model):
     sponsor_organisation = models.ForeignKey(Organisation, on_delete=models.SET_NULL,
                                     db_column='organisation_id', blank=True, null=True,
                                     related_name='studies', default=None)
-    sponsor_country = models.ForeignKey(Country, on_delete=models.SET_NULL,
+    sponsor_country = models.ForeignKey(Country, on_delete=models.SET_NULL, to_field="iso2",
                                     db_column='sponsor_country_id', blank=True, null=True,
                                     related_name='studies', default=None)
+    lead_ctu = models.ForeignKey(CTU, on_delete=models.SET_NULL,
+                                db_column='lead_ctu_id', blank=True, null=True,
+                                related_name='studies', default=None)
+    agreement_signed = models.BooleanField(default=False)
+    agreement_signed_date = models.DateTimeField(blank=True, null=True)
     coordinating_investigator = models.ForeignKey(Person, on_delete=models.SET_NULL,
                                 db_column='coordinating_investigator_id', blank=True, null=True,
                                 related_name='studies', default=None)
@@ -41,7 +47,7 @@ class Study(models.Model):
     c_euco = models.ForeignKey(Person, on_delete=models.SET_NULL, unique=False, editable=True,
                                 blank=True, null=True, db_index=True,
                                 db_column='c_euco_id', related_name='studies', default=None)
-    coordinating_country = models.ForeignKey(Country, on_delete=models.SET_NULL,
+    coordinating_country = models.ForeignKey(Country, on_delete=models.SET_NULL, to_field="iso2",
                                     db_column='coordinating_country_id', blank=True, null=True,
                                     related_name='studies', default=None)
     services = models.ManyToManyField(Service, blank=True)
@@ -63,7 +69,8 @@ class Study(models.Model):
     status = models.CharField(max_length=255, blank=True, null=True)
 
     # Internal
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, unique=False, editable=True,
+    uses_ctis_for_safety_notifications = models.BooleanField(default=False)
+    project = models.ForeignKey(Project, on_delete=models.SET_NULL, unique=False, editable=True,
                                     blank=True, null=True, db_index=True,
                                     db_column='project_id', related_name='studies', default=None)
     order = models.IntegerField(blank=True, null=True, db_column='order')

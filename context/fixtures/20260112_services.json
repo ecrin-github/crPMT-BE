@@ -1,0 +1,86 @@
+[
+    {
+        "model": "context.service",
+        "pk": 4,
+        "fields": {
+            "value": "Monitoring (Site initiation, Monitoring, close-down)"
+        }
+    },
+    {
+        "model": "context.service",
+        "pk": 6,
+        "fields": {
+            "value": "Lead CTU"
+        }
+    },
+    {
+        "model": "context.service",
+        "pk": 8,
+        "fields": {
+            "value": "Regulatory & ethics application support"
+        }
+    },
+    {
+        "model": "context.service",
+        "pk": 9,
+        "fields": {
+            "value": "Local Project management & coordination"
+        }
+    },
+    {
+        "model": "context.service",
+        "pk": 10,
+        "fields": {
+            "value": "Methodological and statistical support"
+        }
+    },
+    {
+        "model": "context.service",
+        "pk": 21,
+        "fields": {
+            "value": "Data management (ECRIN certified)"
+        }
+    },
+    {
+        "model": "context.service",
+        "pk": 22,
+        "fields": {
+            "value": "Materiovigilance"
+        }
+    },
+    {
+        "model": "context.service",
+        "pk": 23,
+        "fields": {
+            "value": "Central Pharmacovigilance"
+        }
+    },
+    {
+        "model": "context.service",
+        "pk": 25,
+        "fields": {
+            "value": "Pharmacovigilance (local)"
+        }
+    },
+    {
+        "model": "context.service",
+        "pk": 26,
+        "fields": {
+            "value": "Pharmacovigilance (central)"
+        }
+    },
+    {
+        "model": "context.service",
+        "pk": 27,
+        "fields": {
+            "value": "Data management (non-ECRIN certified)"
+        }
+    },
+    {
+        "model": "context.service",
+        "pk": 28,
+        "fields": {
+            "value": "Global project management"
+        }
+    }
+]

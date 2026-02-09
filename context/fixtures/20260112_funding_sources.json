@@ -1,0 +1,37 @@
+[
+    {
+        "model": "context.fundingsource",
+        "pk": 7,
+        "fields": {
+            "value": "Private funding"
+        }
+    },
+    {
+        "model": "context.fundingsource",
+        "pk": 13,
+        "fields": {
+            "value": "IHI"
+        }
+    },
+    {
+        "model": "context.fundingsource",
+        "pk": 14,
+        "fields": {
+            "value": "Horizon Europe"
+        }
+    },
+    {
+        "model": "context.fundingsource",
+        "pk": 15,
+        "fields": {
+            "value": "ERA4Health"
+        }
+    },
+    {
+        "model": "context.fundingsource",
+        "pk": 16,
+        "fields": {
+            "value": "ERANET"
+        }
+    }
+]

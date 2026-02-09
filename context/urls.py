@@ -3,6 +3,18 @@ from django.urls import path
 from context.views.views import *
 
 
+authority_list = AuthorityView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+authority_detail = AuthorityView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
+
 complex_trial_type_list = ComplexTrialTypeView.as_view({
     'get': 'list',
     'post': 'create'
@@ -26,6 +38,17 @@ ctu_list = CTUView.as_view({
     'post': 'create'
 })
 ctu_detail = CTUView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
+ctu_status_list = CTUStatusView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+ctu_status_detail = CTUStatusView.as_view({
     'get': 'retrieve',
     'put': 'update',
     'patch': 'partial_update',
@@ -109,6 +132,17 @@ regulatory_framework_detail_detail = RegulatoryFrameworkDetailView.as_view({
     'delete': 'destroy'
 })
 
+safety_notification_type_list = SafetyNotificationTypeView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+safety_notification_type_detail = SafetyNotificationTypeView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 service_list = ServiceView.as_view({
     'get': 'list',
     'post': 'create'
@@ -131,6 +165,17 @@ study_status_detail = StudyStatusView.as_view({
     'delete': 'destroy'
 })
 
+visit_type_list = VisitTypeView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+visit_type_detail = VisitTypeView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 
 urlpatterns = [
     path('complex-trial-types', complex_trial_type_list),
@@ -139,6 +184,8 @@ urlpatterns = [
     path('countries/<int:pk>', country_detail),
     path('ctus', ctu_list),
     path('ctus/<int:pk>', ctu_detail),
+    path('ctu-statuses', ctu_status_list),
+    path('ctu-statuses/<int:pk>', ctu_status_detail),
     path('hospitals', hospital_list),
     path('hospitals/<int:pk>', hospital_detail),
     path('funding-sources', funding_source_list),
@@ -153,6 +200,10 @@ urlpatterns = [
     path('populations/<int:pk>', population_detail),
     path('regulatory-framework-details', regulatory_framework_detail_list),
     path('regulatory-framework-details/<int:pk>', regulatory_framework_detail_detail),
+    path('safety-notification-types', safety_notification_type_list),
+    path('safety-notification-types/<int:pk>', safety_notification_type_detail),
     path('services', service_list),
     path('services/<int:pk>', service_detail),
+    path('visit-types', visit_type_list),
+    path('visit-types/<int:pk>', visit_type_detail),
 ]

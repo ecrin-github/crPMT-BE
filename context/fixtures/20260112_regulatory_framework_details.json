@@ -1,0 +1,23 @@
+[
+    {
+        "model": "context.regulatoryframeworkdetail",
+        "pk": 1,
+        "fields": {
+            "value": "ATMP"
+        }
+    },
+    {
+        "model": "context.regulatoryframeworkdetail",
+        "pk": 2,
+        "fields": {
+            "value": "Vaccine"
+        }
+    },
+    {
+        "model": "context.regulatoryframeworkdetail",
+        "pk": 3,
+        "fields": {
+            "value": "Low interventional trial"
+        }
+    }
+]

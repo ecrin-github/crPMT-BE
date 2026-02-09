@@ -1,0 +1,30 @@
+[
+    {
+        "model": "context.population",
+        "pk": 1,
+        "fields": {
+            "value": "Healthy volunteers"
+        }
+    },
+    {
+        "model": "context.population",
+        "pk": 2,
+        "fields": {
+            "value": "Adults"
+        }
+    },
+    {
+        "model": "context.population",
+        "pk": 3,
+        "fields": {
+            "value": "Paediatrics"
+        }
+    },
+    {
+        "model": "context.population",
+        "pk": 4,
+        "fields": {
+            "value": "Geriatrics"
+        }
+    }
+]

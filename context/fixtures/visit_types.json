@@ -1,0 +1,23 @@
+[
+    {
+        "model": "context.visittype",
+        "pk": "SIV",
+        "fields": {
+            "name": "Site Initiation Visit"
+        }
+    },
+    {
+        "model": "context.visittype",
+        "pk": "MOV",
+        "fields": {
+            "name": "Monitoring Visit"
+        }
+    },
+    {
+        "model": "context.visittype",
+        "pk": "COV",
+        "fields": {
+            "name": "Close Out Visit"
+        }
+    }
+]

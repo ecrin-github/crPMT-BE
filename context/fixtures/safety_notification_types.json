@@ -1,0 +1,23 @@
+[
+    {
+        "model": "context.safetynotificationtype",
+        "pk": "ANNUAL",
+        "fields": {
+            "name": "Annual Progress Report"
+        }
+    },
+    {
+        "model": "context.safetynotificationtype",
+        "pk": "DSUR",
+        "fields": {
+            "name": "DSUR"
+        }
+    },
+    {
+        "model": "context.safetynotificationtype",
+        "pk": "CTIS",
+        "fields": {
+            "name": "CTIS"
+        }
+    }
+]
