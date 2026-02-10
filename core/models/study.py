@@ -22,7 +22,7 @@ class Study(models.Model):
                                     related_name='studies', default=None)
     sponsor_country = models.ForeignKey(Country, on_delete=models.SET_NULL, to_field="iso2",
                                     db_column='sponsor_country_id', blank=True, null=True,
-                                    related_name='studies', default=None)
+                                    related_name='studies_from_sponsor_country', default=None)
     lead_ctu = models.ForeignKey(CTU, on_delete=models.SET_NULL,
                                 db_column='lead_ctu_id', blank=True, null=True,
                                 related_name='studies', default=None)
@@ -30,7 +30,7 @@ class Study(models.Model):
     agreement_signed_date = models.DateTimeField(blank=True, null=True)
     coordinating_investigator = models.ForeignKey(Person, on_delete=models.SET_NULL,
                                 db_column='coordinating_investigator_id', blank=True, null=True,
-                                related_name='studies', default=None)
+                                related_name='studies_from_coordinating_investigator', default=None)
     medical_fields = models.ManyToManyField(MedicalField, blank=True)
     populations = models.ManyToManyField(Population, blank=True)
     rare_diseases = models.BooleanField(default=False)
@@ -46,10 +46,10 @@ class Study(models.Model):
     # Country, site information
     c_euco = models.ForeignKey(Person, on_delete=models.SET_NULL, unique=False, editable=True,
                                 blank=True, null=True, db_index=True,
-                                db_column='c_euco_id', related_name='studies', default=None)
+                                db_column='c_euco_id', related_name='studies_from_c_euco', default=None)
     coordinating_country = models.ForeignKey(Country, on_delete=models.SET_NULL, to_field="iso2",
                                     db_column='coordinating_country_id', blank=True, null=True,
-                                    related_name='studies', default=None)
+                                    related_name='studies_from_coordinating_country', default=None)
     services = models.ManyToManyField(Service, blank=True)
 
     # Study countries

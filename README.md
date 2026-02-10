@@ -15,14 +15,15 @@ Python:
     - Create a `configs/app_config.py` file with SECRET_APP_KEY, ALLOWED_APP_HOSTS, USERS_APP_NAME, and CORE_APP_NAME values
     - Create a `configs/db_config.py` file with PG_*_CRPMT_DB db connection values, CRPMT_DB_KEY_NAME (default), USERS_DB_KEY_NAME, and CORE_DB_KEY_NAME values
     - Create a `configs/identity_config.py` file with all OIDC settings (check `crpmt/settings.py`)
-- Create a `debug.log` file in the project root folder with the right permissions if you have permissions error on `python manage.py check`
 - Run `python manage.py migrate` to set up the crpmt DB
 - Run `python manage.py loaddata [fixture_name]` where `fixture_name` is the name of a file in `context/fixtures`. Run this for all files in the folder to pre-populate the DB for relevant context models
-- Run `python scripts/load_countries.py` to load countries list into the DB
-- TODO: loading CTUs and other links to Microsoft lists
+- Load CTUs and people associated with CTUs using `python scripts/load_ctus.py` (temporary)
 
 Running crPMT BE as a service (example):
 - In `/etc/systemd/system`:
     - Create a `crpmt.socket` file with `ListenStream=/run/crpmt.sock`
     - Create a `crpmt.service` file with `ExecStart=[path/to/gunicorn/in/venv] --workers 7 --bind unix:/run/crpmt.sock crpmt.wsgi`
     - Run the service with systemctl
+
+Running locally:
+- `python manage.py runserver`
