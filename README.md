@@ -19,7 +19,7 @@ Python:
 - Run `python manage.py loaddata [fixture_name]` where `fixture_name` is the name of a file in `context/fixtures`. Run this for all files in the folder to pre-populate the DB for relevant context models
 - Load CTUs and people associated with CTUs using `python scripts/load_ctus.py` (temporary)
 
-Running crPMT BE as a service (example):
+Running crPMT BE as a service on Linux (example):
 - In `/etc/systemd/system`:
     - Create a `crpmt.socket` file with `ListenStream=/run/crpmt.sock`
     - Create a `crpmt.service` file with `ExecStart=[path/to/gunicorn/in/venv] --workers 7 --bind unix:/run/crpmt.sock crpmt.wsgi`
@@ -27,3 +27,14 @@ Running crPMT BE as a service (example):
 
 Running locally:
 - `python manage.py runserver`
+
+### Swagger usage
+Login is done with basic authentication, so you need to create a dedicated user through the Django shell or modify an existing user's password, example:
+```
+python manage.py shell
+
+>>> from users.models.users import Users
+>>> user = Users.objects.create(username="swagger", is_active=True)
+>>> user.set_password('swagger')
+>>> user.save()
+```
