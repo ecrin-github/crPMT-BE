@@ -26,7 +26,7 @@ class UsersLimitedSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Users
-        fields = ['id', 'user_profile', 'email', 'first_name', 'last_name', 'ls_aai_id']
+        fields = ['id', 'user_profile', 'email', 'first_name', 'last_name']
 
 
 class CreateUserSerializer(serializers.Serializer):
