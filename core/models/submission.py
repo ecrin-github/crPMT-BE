@@ -2,12 +2,15 @@ import datetime
 
 from django.db import models
 
+from context.models.authority import Authority
 from core.models.study_country import StudyCountry
 
 
 class Submission(models.Model): # Initial submission, amendment, or other notification
     id = models.BigAutoField(primary_key=True)
-    authority = models.CharField(blank=True, null=True)
+    authority = models.ForeignKey(Authority, on_delete=models.SET_NULL,
+                                db_column='authority_id', blank=True, null=True,
+                                related_name='submissions', default=None)
     submission_date = models.DateTimeField(blank=True, null=True)
     approval_date = models.DateTimeField(blank=True, null=True)
     protocol_approval_date = models.DateTimeField(blank=True, null=True)
