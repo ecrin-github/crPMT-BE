@@ -11,6 +11,7 @@ class Submission(models.Model): # Initial submission, amendment, or other notifi
     authority = models.ForeignKey(Authority, on_delete=models.SET_NULL,
                                 db_column='authority_id', blank=True, null=True,
                                 related_name='submissions', default=None)
+    not_applicable = models.BooleanField(default=False) # Only for initial submissions that are not EC authority
     submission_date = models.DateTimeField(blank=True, null=True)
     approval_date = models.DateTimeField(blank=True, null=True)
     protocol_approval_date = models.DateTimeField(blank=True, null=True)

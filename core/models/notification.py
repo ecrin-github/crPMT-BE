@@ -9,6 +9,7 @@ class Notification(models.Model):  # End of trial notification
     authority = models.ForeignKey(Authority, on_delete=models.SET_NULL,
                                 db_column='authority_id', blank=True, null=True,
                                 related_name='notifications', default=None)
+    not_applicable = models.BooleanField(default=False) # Only for end of trial notifications that are not EC authority
     notification_date = models.DateTimeField(blank=True, null=True)
     comment = models.TextField(blank=True, null=True)
     study_country = models.ForeignKey(
