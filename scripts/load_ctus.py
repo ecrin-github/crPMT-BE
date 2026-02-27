@@ -4,17 +4,23 @@ import sqlalchemy as db
 
 
 def main():
-    ctuFp = "/home/ubuntu/data/crpmt/sas_tracker_public.csv"
+    # Change these values accordingly
+    ctuFp = "C:\\Users\\lcudilla\\Downloads\\sas_tracker_public.csv"
+    db_hostname = "localhost"
+    db_port = "5432"
+    db_name = "crpmt"
+    
     df = pd.read_csv(ctuFp, sep=',', dtype=str, na_filter=False)
-
     # print(df)
 
     # Selecting and renaming columns to match DB column names
     df_person = df[["Contact", "Contact Title", "Contact email"]]
     df_person = df.rename(columns={"Contact": 'full_name', "Contact Title": 'position', "Contact email": 'email'})
+    df_person["is_euco"] = False
 
     df_ctu = df[["Title", "CTU Short Name", "Address Info", "Status", "Country", "Contact"]]
     df_ctu = df_ctu.rename(columns={'Title': 'name', 'CTU Short Name': 'short_name', 'Address Info': 'address_info', 'Status': 'sas_verification', 'Country': 'country_id', 'Contact': 'contact_id'})
+    df_ctu["manual_add"] = False
 
     # SAS verification true if approved, otherwise false
     df_ctu['sas_verification'] = np.where(df_ctu['sas_verification'] == "Approved", True, False)
@@ -22,7 +28,7 @@ def main():
     # Engine for connection
     user = input("Enter DB user: ")
     password = input("Enter DB password: ")
-    engine = db.create_engine(f'postgresql+psycopg2://{user}:{password}@localhost:5441/crpmt')
+    engine = db.create_engine(f'postgresql+psycopg2://{user}:{password}@{db_hostname}:{db_port}/{db_name}')
 
     # Tables to use
     metadata = db.MetaData()
@@ -33,11 +39,10 @@ def main():
     with engine.connect() as conn:
         # Inserting CTU contacts
         conn.execute(persons.insert(), df_person.to_dict(orient='records'))
-        conn.commit()
 
         for index, row in df_ctu.iterrows():
             # Getting country and contact FKs
-            stmt_countries = db.select(countries.c.id).where(countries.c.iso3 == row["country_id"])
+            stmt_countries = db.select(countries.c.iso2).where(countries.c.iso3 == row["country_id"])
             stmt_persons = db.select(persons.c.id).where(persons.c.full_name == row["contact_id"])
 
             # All converts a CursorResult object into a Python Sequence (tuples)
