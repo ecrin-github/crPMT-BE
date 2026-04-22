@@ -65,8 +65,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'middleware.auth_middleware.CustomAuthMiddleware',
 ]
-SHAREPOINT_HOSTNAME = "ecrineu.sharepoint.com"
-GRAPH_ACCESS_TOKEN = "..."
 
 CORS_ORIGIN_ALLOW_ALL = True
 
