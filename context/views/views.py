@@ -1,3 +1,8 @@
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+from context.services.ctu_service import resolve_ctu_from_sharepoint
 from rest_framework import viewsets, permissions
 
 from app.permissions import ReadOnly
@@ -225,3 +230,89 @@ class VisitTypeView(viewsets.ModelViewSet):
         if self.action in ["create", "update", "partial_update"]:
             return VisitTypeInputSerializer
         return super().get_serializer_class()
+
+class ResolveSharePointCTUView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        sharepoint_item_id = request.data.get("sharepoint_item_id")
+        name = request.data.get("name")
+        short_name = request.data.get("short_name")
+        country_iso2 = request.data.get("country_iso2")
+        sas_verification = request.data.get("sas_verification", False)
+        address_info = request.data.get("address_info")
+
+        if not country_iso2:
+            return Response(
+                {"detail": "country_iso2 is required"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        country = Country.objects.filter(iso2=country_iso2).first()
+        if not country:
+            return Response(
+                {"detail": f"Country not found for iso2={country_iso2}"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        payload = {
+            "sharepoint_item_id": sharepoint_item_id,
+            "name": name,
+            "short_name": short_name,
+            "country": country,
+            "sas_verification": sas_verification,
+            "address_info": address_info,
+            "contact": None,  # it can be set later manually if needed
+        }
+
+        ctu = resolve_ctu_from_sharepoint(payload)
+
+        return Response({
+            "id": ctu.id,
+            "sharepoint_item_id": ctu.sharepoint_item_id,
+            "name": ctu.name,
+            "short_name": ctu.short_name,
+            "country_iso2": ctu.country.iso2 if ctu.country else None,
+            "sas_verification": ctu.sas_verification,
+            "address_info": ctu.address_info,
+        })
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        sharepoint_item_id = request.data.get("sharepoint_item_id")
+        name = request.data.get("name")
+        short_name = request.data.get("short_name")
+        country_iso2 = request.data.get("country_iso2")
+        sas_verification = request.data.get("sas_verification", False)
+
+        if not country_iso2:
+            return Response(
+                {"detail": "country_iso2 is required"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        country = Country.objects.filter(iso2=country_iso2).first()
+        if not country:
+            return Response(
+                {"detail": f"Country not found for iso2={country_iso2}"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        payload = {
+            "sharepoint_item_id": sharepoint_item_id,
+            "name": name,
+            "short_name": short_name,
+            "country": country,
+            "sas_verification": sas_verification,
+        }
+
+        ctu = resolve_ctu_from_sharepoint(payload)
+
+        return Response({
+            "id": ctu.id,
+            "sharepoint_item_id": ctu.sharepoint_item_id,
+            "name": ctu.name,
+            "short_name": ctu.short_name,
+            "country_iso2": ctu.country.iso2 if ctu.country else None,
+            "sas_verification": ctu.sas_verification,
+        })

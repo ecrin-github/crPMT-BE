@@ -65,6 +65,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'middleware.auth_middleware.CustomAuthMiddleware',
 ]
+SHAREPOINT_HOSTNAME = "ecrineu.sharepoint.com"
+GRAPH_ACCESS_TOKEN = "..."
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -89,8 +91,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'crpmt.wsgi.application'
-
-
+ 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
