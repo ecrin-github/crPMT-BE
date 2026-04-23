@@ -17,8 +17,10 @@ from core.models.ctu_agreement_amendment import CTUAgreementAmendment
 from core.serializers.centre_dto import *
 from core.serializers.ctu_agreement_amendment_dto import CTUAgreementAmendmentInputSerializer, CTUAgreementAmendmentOutputSerializer
 from core.serializers.ctu_agreement_dto import CTUAgreementInputSerializer, CTUAgreementOutputSerializer
+from core.serializers.publication_dto import PublicationInputSerializer, PublicationOutputSerializer
 from core.serializers.notification_dto import *
 from core.serializers.project_dto import *
+from core.models.publication import Publication
 from core.serializers.reporting_period_dto import *
 from core.serializers.safety_notification_dto import *
 from core.serializers.study_dto import *
@@ -210,6 +212,35 @@ class ReportingPeriodView(viewsets.ModelViewSet):
                 .filter(project=self.kwargs['projectId'])
             )
         return super().get_queryset(*args, **kwargs)
+
+
+class PublicationView(viewsets.ModelViewSet):
+    queryset = Publication.objects.all()
+    object_class = Publication
+    serializer_class = PublicationOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return PublicationInputSerializer
+        return super().get_serializer_class()
+
+    def get_queryset(self, *args, **kwargs):
+        if getattr(self, 'swagger_fake_view', False):
+            return self.object_class.objects.none()
+
+        queryset = super().get_queryset(*args, **kwargs)
+
+        project_id = self.request.query_params.get('project')
+        if project_id:
+            queryset = queryset.filter(project=project_id)
+
+        study_id = self.request.query_params.get('study')
+        if study_id:
+            queryset = queryset.filter(study=study_id)
+
+        return queryset
+
 
 
 class NotificationView(viewsets.ModelViewSet):

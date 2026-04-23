@@ -1,3 +1,8 @@
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+from context.services.ctu_service import resolve_ctu_from_sharepoint
 from rest_framework import viewsets, permissions
 
 from app.permissions import ReadOnly
@@ -6,7 +11,10 @@ from context.serializers.authority_dto import *
 from context.serializers.complex_trial_type_dto import *
 from context.serializers.country_dto import *
 from context.serializers.ctu_dto import *
-from context.serializers.ctu_status_dto import CTUStatusInputSerializer, CTUStatusOutputSerializer
+from context.serializers.ctu_status_dto import (
+    CTUStatusInputSerializer,
+    CTUStatusOutputSerializer,
+)
 from context.serializers.hospital_dto import *
 from context.serializers.funding_source_dto import *
 from context.serializers.medical_field_dto import *
@@ -34,7 +42,6 @@ from context.models.safety_notification_type import *
 from context.models.service import *
 from context.models.study_status import *
 from context.models.visit_type import *
-
 
 
 class AuthorityView(viewsets.ModelViewSet):
@@ -225,3 +232,49 @@ class VisitTypeView(viewsets.ModelViewSet):
         if self.action in ["create", "update", "partial_update"]:
             return VisitTypeInputSerializer
         return super().get_serializer_class()
+
+
+class ResolveSharePointCTUView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        sharepoint_item_id = request.data.get("sharepoint_item_id")
+        name = request.data.get("name")
+        short_name = request.data.get("short_name")
+        country_iso2 = request.data.get("country_iso2")
+        address_info = request.data.get("address_info")
+
+        if not country_iso2:
+            return Response(
+                {"detail": "country_iso2 is required"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        country = Country.objects.filter(iso2=country_iso2).first()
+        if not country:
+            return Response(
+                {"detail": f"Country not found for iso2={country_iso2}"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        payload = {
+            "sharepoint_item_id": sharepoint_item_id,
+            "name": name,
+            "short_name": short_name,
+            "country": country,
+            "address_info": address_info,
+            "contact": None,  # it can be set later manually if needed
+        }
+
+        ctu = resolve_ctu_from_sharepoint(payload)
+
+        return Response(
+            {
+                "id": ctu.id,
+                "sharepoint_item_id": ctu.sharepoint_item_id,
+                "name": ctu.name,
+                "short_name": ctu.short_name,
+                "country_iso2": ctu.country.iso2 if ctu.country else None,
+                "address_info": ctu.address_info,
+            }
+        )

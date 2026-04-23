@@ -25,6 +25,17 @@ reporting_period_detail = ReportingPeriodView.as_view({
     'delete': 'destroy'
 })
 
+publication_list = PublicationView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+publication_detail = PublicationView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 study_list = StudyView.as_view({
     'get': 'list',
     'post': 'create'
@@ -142,6 +153,8 @@ urlpatterns = [
     path('projects-by-funding-source/<fs_id>', ProjectsByFundingSource.as_view()),
     path('projects-by-organisation/<org_id>', ProjectsByOrganisation.as_view()),
     path('projects-by-service/<s_id>', ProjectsByService.as_view()),
+    path('publications', publication_list),
+    path('publications/<int:pk>', publication_detail),
     path('reporting-periods', reporting_period_list),
     path('reporting-periods/<int:pk>', reporting_period_detail),
     path('studies', study_list),

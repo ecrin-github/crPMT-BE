@@ -89,8 +89,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'crpmt.wsgi.application'
-
-
+ 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 

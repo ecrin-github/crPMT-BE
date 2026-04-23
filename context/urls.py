@@ -184,6 +184,7 @@ urlpatterns = [
     path('countries/<int:pk>', country_detail),
     path('ctus', ctu_list),
     path('ctus/<int:pk>', ctu_detail),
+        path('ctus/resolve-sharepoint', ResolveSharePointCTUView.as_view()),
     path('ctu-statuses', ctu_status_list),
     path('ctu-statuses/<int:pk>', ctu_status_detail),
     path('hospitals', hospital_list),
