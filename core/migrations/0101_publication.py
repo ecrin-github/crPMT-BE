@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0097_alter_study_c_euco_alter_study_coordinating_country_and_more'),
+        ('core', '0100_notification_not_applicable_and_more'),
     ]
 
     operations = [

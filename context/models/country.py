@@ -3,7 +3,7 @@ from django.db import models
 
 class Country(models.Model):
     iso2 = models.CharField(max_length=2, primary_key=True)
-    id = models.BigIntegerField(unique=True)
+    id = models.BigIntegerField(blank=True, null=True, unique=True)
     iso3 = models.CharField(max_length=3, unique=True)
     name = models.CharField(max_length=255, blank=True, null=True)
     continent = models.CharField(max_length=255, blank=True, null=True)
@@ -11,6 +11,5 @@ class Country(models.Model):
     is_in_eea = models.BooleanField(default=False)
 
     class Meta:
-        db_table = 'countries'
-        ordering = ['iso2']
-        
+        db_table = "countries"
+        ordering = ["iso2"]

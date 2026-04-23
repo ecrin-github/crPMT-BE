@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('context', '0026_alter_country_id'),
+        ("context", "0025_country_id"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='ctu',
-            name='sharepoint_item_id',
+            model_name="ctu",
+            name="sharepoint_item_id",
             field=models.CharField(blank=True, max_length=64, null=True, unique=True),
         ),
     ]
