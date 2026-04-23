@@ -10,12 +10,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='notification',
-            name='authority',
-        ),
-        migrations.RemoveField(
-            model_name='submission',
-            name='authority',
-        ),
     ]

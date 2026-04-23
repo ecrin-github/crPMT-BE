@@ -4,6 +4,27 @@ import django.db.models.deletion
 from django.db import migrations, models
 
 
+def create_missing_authorities(apps, schema_editor):
+    Authority = apps.get_model('context', 'Authority')
+    from django.db import connection
+    cursor = connection.cursor()
+    
+    # Collect distinct authority values from notifications
+    cursor.execute("SELECT DISTINCT authority FROM notifications WHERE authority IS NOT NULL")
+    notification_authorities = [row[0] for row in cursor.fetchall()]
+    
+    # Collect distinct authority values from submissions
+    cursor.execute("SELECT DISTINCT authority FROM submissions WHERE authority IS NOT NULL")
+    submission_authorities = [row[0] for row in cursor.fetchall()]
+    
+    # Combine and deduplicate
+    all_authorities = set(notification_authorities + submission_authorities)
+    
+    # Create missing Authority records
+    for auth_code in all_authorities:
+        Authority.objects.get_or_create(code=auth_code, defaults={'name': auth_code})
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -12,12 +33,13 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
+        migrations.RunPython(create_missing_authorities, reverse_code=migrations.RunPython.noop),
+        migrations.AlterField(
             model_name='notification',
             name='authority',
             field=models.ForeignKey(blank=True, db_column='authority_id', default=None, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='notifications', to='context.authority'),
         ),
-        migrations.AddField(
+        migrations.AlterField(
             model_name='submission',
             name='authority',
             field=models.ForeignKey(blank=True, db_column='authority_id', default=None, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='submissions', to='context.authority'),
