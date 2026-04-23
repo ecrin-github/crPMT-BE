@@ -201,7 +201,9 @@ def find_matching_ctu_by_business_rules(name, short_name, country):
     return None
 
 
-def update_ctu_from_sharepoint_fields(ctu: CTU, sharepoint_fields: dict, sharepoint_item_id=None) -> CTU:
+def update_ctu_from_sharepoint_fields(
+    ctu: CTU, sharepoint_fields: dict, sharepoint_item_id=None
+) -> CTU:
     """
     Update a CTU instance with the fields received from SharePoint.
 
@@ -265,7 +267,6 @@ def resolve_ctu_from_sharepoint(data):
         "name": name,
         "short_name": short_name,
         "country": country,
-        "sas_verification": data.get("sas_verification"),
         "address_info": data.get("address_info"),
         "contact": data.get("contact"),
     }
@@ -299,7 +300,6 @@ def resolve_ctu_from_sharepoint(data):
         name=name,
         short_name=short_name,
         country=country,
-        sas_verification=data.get("sas_verification") if data.get("sas_verification") is not None else False,
         address_info=data.get("address_info"),
         contact=data.get("contact"),
         manual_add=False,
@@ -343,7 +343,9 @@ def sync_ctus_from_sharepoint():
     for index, row in df.iterrows():
         raw_country = row.get("country_iso2")
         country_iso2 = normalize_country_to_iso2(raw_country)
-        country = Country.objects.filter(iso2=country_iso2).first() if country_iso2 else None
+        country = (
+            Country.objects.filter(iso2=country_iso2).first() if country_iso2 else None
+        )
 
         if not country:
             skipped += 1
@@ -356,7 +358,9 @@ def sync_ctus_from_sharepoint():
 
         before_existing = None
         if sharepoint_item_id:
-            before_existing = CTU.objects.filter(sharepoint_item_id=sharepoint_item_id).first()
+            before_existing = CTU.objects.filter(
+                sharepoint_item_id=sharepoint_item_id
+            ).first()
 
         fallback_existing = None
         if not before_existing:
