@@ -20,6 +20,9 @@ class Publication(models.Model):
 
     order = models.IntegerField(blank=True, null=True)
 
+    publication_acknowledging_ecrin = models.BooleanField(default=False)
+    ecrin_employee_in_authors = models.BooleanField(default=False)
+
     class Meta:
         db_table = 'publications'
         ordering = ['order', 'id']
