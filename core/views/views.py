@@ -229,15 +229,15 @@ class PublicationView(viewsets.ModelViewSet):
         if getattr(self, 'swagger_fake_view', False):
             return self.object_class.objects.none()
 
-        queryset = super().get_queryset(*args, **kwargs)
+        queryset = (
+            super()
+            .get_queryset(*args, **kwargs)
+            .order_by('order', 'id')
+        )
 
         project_id = self.request.query_params.get('project')
         if project_id:
             queryset = queryset.filter(project=project_id)
-
-        study_id = self.request.query_params.get('study')
-        if study_id:
-            queryset = queryset.filter(study=study_id)
 
         return queryset
 
