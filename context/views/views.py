@@ -5,6 +5,7 @@ from context.models.ctu_status import CTUStatus
 from context.serializers.authority_dto import *
 from context.serializers.complex_trial_type_dto import *
 from context.serializers.country_dto import *
+from context.serializers.ecrin_contracting_entity_dto import *
 from context.serializers.ctu_dto import *
 from context.serializers.ctu_status_dto import CTUStatusInputSerializer, CTUStatusOutputSerializer
 from context.serializers.hospital_dto import *
@@ -22,6 +23,7 @@ from context.serializers.visit_type_dto import *
 from context.models.authority import *
 from context.models.complex_trial_type import *
 from context.models.country import *
+from context.models.ecrin_contracting_entity import *
 from context.models.ctu import *
 from context.models.hospital import *
 from context.models.funding_source import *
@@ -224,4 +226,16 @@ class VisitTypeView(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action in ["create", "update", "partial_update"]:
             return VisitTypeInputSerializer
+        return super().get_serializer_class()
+
+
+class EcrinContractingEntityView(viewsets.ModelViewSet):
+    queryset = EcrinContractingEntity.objects.all()
+    object_class = EcrinContractingEntity
+    serializer_class = EcrinContractingEntityOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return EcrinContractingEntityInputSerializer
         return super().get_serializer_class()

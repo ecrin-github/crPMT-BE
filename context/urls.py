@@ -176,6 +176,17 @@ visit_type_detail = VisitTypeView.as_view({
     'delete': 'destroy'
 })
 
+ecrin_contracting_entity_list = EcrinContractingEntityView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+ecrin_contracting_entity_detail = EcrinContractingEntityView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 
 urlpatterns = [
     path('complex-trial-types', complex_trial_type_list),
@@ -206,4 +217,6 @@ urlpatterns = [
     path('services/<int:pk>', service_detail),
     path('visit-types', visit_type_list),
     path('visit-types/<int:pk>', visit_type_detail),
+    path('ecrin-contracting-entities', ecrin_contracting_entity_list),
+    path('ecrin-contracting-entities/<int:pk>', ecrin_contracting_entity_detail),
 ]
