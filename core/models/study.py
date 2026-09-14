@@ -3,6 +3,7 @@ from django.db import models
 from context.models.complex_trial_type import ComplexTrialType
 from context.models.country import Country
 from context.models.ctu import CTU
+from context.models.ecrin_contracting_entity import EcrinContractingEntity
 from context.models.medical_field import MedicalField
 from context.models.organisation import Organisation
 from context.models.person import Person
@@ -42,6 +43,11 @@ class Study(models.Model):
                                     related_name='studies', default=None)
     trial_registration_number = models.CharField(max_length=255, blank=True, null=True)
     summary = models.TextField(blank=True, null=True)   # Note: missing from specs
+
+    # Agreements
+    ecrin_contracting_entity = models.ForeignKey(EcrinContractingEntity, on_delete=models.SET_NULL,
+                                    db_column='ecrin_contracting_entity_id', blank=True, null=True,
+                                    related_name='studies', default=None)
 
     # Country, site information
     c_euco = models.ForeignKey(Person, on_delete=models.SET_NULL, unique=False, editable=True,
