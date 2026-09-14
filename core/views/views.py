@@ -18,19 +18,14 @@ from context.models.person import Person
 from context.models.service import Service
 from core.models.ctu_agreement import CTUAgreement
 from core.models.ctu_agreement_amendment import CTUAgreementAmendment
+from core.models.study_agreement import StudyAgreement
+from core.models.study_agreement_amendment import StudyAgreementAmendment
 from core.serializers.centre_dto import *
-from core.serializers.ctu_agreement_amendment_dto import (
-    CTUAgreementAmendmentInputSerializer,
-    CTUAgreementAmendmentOutputSerializer,
-)
-from core.serializers.ctu_agreement_dto import (
-    CTUAgreementInputSerializer,
-    CTUAgreementOutputSerializer,
-)
-from core.serializers.publication_dto import (
-    PublicationInputSerializer,
-    PublicationOutputSerializer,
-)
+from core.serializers.ctu_agreement_amendment_dto import CTUAgreementAmendmentInputSerializer, CTUAgreementAmendmentOutputSerializer
+from core.serializers.ctu_agreement_dto import CTUAgreementInputSerializer, CTUAgreementOutputSerializer
+from core.serializers.publication_dto import PublicationInputSerializer, PublicationOutputSerializer
+from core.serializers.study_agreement_amendment_dto import StudyAgreementAmendmentInputSerializer, StudyAgreementAmendmentOutputSerializer
+from core.serializers.study_agreement_dto import StudyAgreementInputSerializer, StudyAgreementOutputSerializer
 from core.serializers.notification_dto import *
 from core.serializers.project_dto import *
 from core.models.publication import Publication
@@ -196,6 +191,42 @@ class CTUAgreementAmendmentView(viewsets.ModelViewSet):
                 .get_queryset(*args, **kwargs)
                 .filter(ctu_agreement=self.kwargs["ctuAgId"])
             )
+        return super().get_queryset(*args, **kwargs)
+
+
+class StudyAgreementView(viewsets.ModelViewSet):
+    queryset = StudyAgreement.objects.all()
+    object_class = StudyAgreement
+    serializer_class = StudyAgreementOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return StudyAgreementInputSerializer
+        return super().get_serializer_class()
+
+    def get_queryset(self, *args, **kwargs):
+        if getattr(self, 'swagger_fake_view', False):
+            # queryset just for schema generation metadata
+            return self.object_class.objects.none()
+        return super().get_queryset(*args, **kwargs)
+
+
+class StudyAgreementAmendmentView(viewsets.ModelViewSet):
+    queryset = StudyAgreementAmendment.objects.all()
+    object_class = StudyAgreementAmendment
+    serializer_class = StudyAgreementAmendmentOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return StudyAgreementAmendmentInputSerializer
+        return super().get_serializer_class()
+
+    def get_queryset(self, *args, **kwargs):
+        if getattr(self, 'swagger_fake_view', False):
+            # queryset just for schema generation metadata
+            return self.object_class.objects.none()
         return super().get_queryset(*args, **kwargs)
 
 

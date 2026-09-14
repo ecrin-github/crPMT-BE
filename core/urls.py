@@ -124,6 +124,28 @@ ctu_agreement_amendment_detail = CTUAgreementAmendmentView.as_view({
     'delete': 'destroy'
 })
 
+study_agreement_list = StudyAgreementView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+study_agreement_detail = StudyAgreementView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
+study_agreement_amendment_list = StudyAgreementAmendmentView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+study_agreement_amendment_detail = StudyAgreementAmendmentView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 centre_list = CentreView.as_view({
     'get': 'list',
     'post': 'create'
@@ -183,6 +205,11 @@ urlpatterns = [
     path('ctu-agreements/<int:pk>/ctu-agreement-amendments', ctu_agreement_amendment_list),
     path('ctu-agreement-amendments/<int:pk>', ctu_agreement_amendment_detail),
     path('ctu-agreement-amendments', ctu_agreement_amendment_list),
+    path('study-agreements', study_agreement_list),
+    path('study-agreements/<int:pk>', study_agreement_detail),
+    path('study-agreements/<int:pk>/study-agreement-amendments', study_agreement_amendment_list),
+    path('study-agreement-amendments/<int:pk>', study_agreement_amendment_detail),
+    path('study-agreement-amendments', study_agreement_amendment_list),
     path('submissions', submission_list),
     path('submissions/<int:pk>', submission_detail),
     path('centres', centre_list),

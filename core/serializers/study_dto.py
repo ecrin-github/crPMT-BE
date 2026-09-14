@@ -18,6 +18,7 @@ from context.serializers.regulatory_framework_detail_dto import RegulatoryFramew
 from context.serializers.service_dto import ServiceOutputSerializer
 from core.models.study import Study
 from core.serializers.project_main_details_dto import ProjectMainDetailsSerializer
+from core.serializers.study_agreement_dto import StudyAgreementOutputSerializer
 from core.serializers.study_country_dto import StudyCountryOutputSerializer
 
 
@@ -50,6 +51,7 @@ class StudyOutputSerializer(serializers.ModelSerializer):
     services = ServiceOutputSerializer(many=True)
     sponsor_country = CountryOutputSerializer(many=False)
     sponsor_organisation = OrganisationOutputSerializer(many=False)
+    study_agreements = StudyAgreementOutputSerializer(many=True, read_only=True)
     study_countries = StudyCountryOutputSerializer(many=True, read_only=True)
 
     class Meta:
