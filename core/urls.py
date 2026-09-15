@@ -183,6 +183,7 @@ urlpatterns = [
     path('studies/<int:pk>', study_detail),
     path('studies/<int:pk>/study-countries', study_country_list),
     path('studies/<int:pk>/study-ctus', study_ctu_list),
+    path('studies/<int:pk>/study-agreements', study_agreement_list),
     path('studies/<int:pk>/centres', centre_list),
     path('studies/<int:pk>/visits', visit_list),
     path('study-countries', study_country_list),
