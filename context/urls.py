@@ -55,6 +55,17 @@ ctu_status_detail = CTUStatusView.as_view({
     'delete': 'destroy'
 })
 
+ctu_contracting_entity_list = CtuContractingEntityView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+ctu_contracting_entity_detail = CtuContractingEntityView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 hospital_list = HospitalView.as_view({
     'get': 'list',
     'post': 'create'
@@ -207,4 +218,6 @@ urlpatterns = [
     path('services/<int:pk>', service_detail),
     path('visit-types', visit_type_list),
     path('visit-types/<int:pk>', visit_type_detail),
+    path('ctu-contracting-entities', ctu_contracting_entity_list),
+    path('ctu-contracting-entities/<int:pk>', ctu_contracting_entity_detail),
 ]
