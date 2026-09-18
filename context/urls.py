@@ -178,13 +178,9 @@ visit_type_detail = VisitTypeView.as_view({
 
 ecrin_contracting_entity_list = EcrinContractingEntityView.as_view({
     'get': 'list',
-    'post': 'create'
 })
 ecrin_contracting_entity_detail = EcrinContractingEntityView.as_view({
     'get': 'retrieve',
-    'put': 'update',
-    'patch': 'partial_update',
-    'delete': 'destroy'
 })
 
 

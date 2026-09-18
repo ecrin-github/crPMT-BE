@@ -283,12 +283,12 @@ class ResolveSharePointCTUView(APIView):
 
 
 class EcrinContractingEntityView(viewsets.ModelViewSet):
+    # Read-only: the list is fixed for now (see context/migrations/0029_seed_ecrin_contracting_entities.py),
+    # only editable via the admin/DB, not through the API
     queryset = EcrinContractingEntity.objects.all()
     object_class = EcrinContractingEntity
     serializer_class = EcrinContractingEntityOutputSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [ReadOnly]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
-            return EcrinContractingEntityInputSerializer
         return super().get_serializer_class()
