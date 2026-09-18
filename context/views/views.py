@@ -283,12 +283,12 @@ class ResolveSharePointCTUView(APIView):
 
 
 class CtuContractingEntityView(viewsets.ModelViewSet):
+    # Read-only: the list is fixed for now (see context/migrations/0026_seed_ctu_contracting_entities.py),
+    # only editable via the admin/DB, not through the API
     queryset = CtuContractingEntity.objects.all()
     object_class = CtuContractingEntity
     serializer_class = CtuContractingEntityOutputSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [ReadOnly]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
-            return CtuContractingEntityInputSerializer
         return super().get_serializer_class()

@@ -57,13 +57,9 @@ ctu_status_detail = CTUStatusView.as_view({
 
 ctu_contracting_entity_list = CtuContractingEntityView.as_view({
     'get': 'list',
-    'post': 'create'
 })
 ctu_contracting_entity_detail = CtuContractingEntityView.as_view({
     'get': 'retrieve',
-    'put': 'update',
-    'patch': 'partial_update',
-    'delete': 'destroy'
 })
 
 hospital_list = HospitalView.as_view({
