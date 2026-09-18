@@ -11,6 +11,7 @@ from context.serializers.authority_dto import *
 from context.serializers.complex_trial_type_dto import *
 from context.serializers.country_dto import *
 from context.serializers.ecrin_contracting_entity_dto import *
+from context.serializers.ctu_contracting_entity_dto import *
 from context.serializers.ctu_dto import *
 from context.serializers.ctu_status_dto import (
     CTUStatusInputSerializer,
@@ -33,6 +34,7 @@ from context.models.complex_trial_type import *
 from context.models.country import *
 from context.models.ecrin_contracting_entity import *
 from context.models.ctu import *
+from context.models.ctu_contracting_entity import *
 from context.models.hospital import *
 from context.models.funding_source import *
 from context.models.medical_field import *
@@ -288,6 +290,18 @@ class EcrinContractingEntityView(viewsets.ModelViewSet):
     queryset = EcrinContractingEntity.objects.all()
     object_class = EcrinContractingEntity
     serializer_class = EcrinContractingEntityOutputSerializer
+    permission_classes = [ReadOnly]
+
+    def get_serializer_class(self):
+        return super().get_serializer_class()
+
+
+class CtuContractingEntityView(viewsets.ModelViewSet):
+    # Read-only: the list is fixed for now (see context/migrations/0026_seed_ctu_contracting_entities.py),
+    # only editable via the admin/DB, not through the API
+    queryset = CtuContractingEntity.objects.all()
+    object_class = CtuContractingEntity
+    serializer_class = CtuContractingEntityOutputSerializer
     permission_classes = [ReadOnly]
 
     def get_serializer_class(self):

@@ -5,7 +5,10 @@ from core.models.ctu_agreement import CTUAgreement
 
 class CTUAgreementAmendment(models.Model):
     id = models.BigAutoField(primary_key=True)
-    signed_date = models.DateTimeField(blank=True, null=True)
+    signed_date = models.DateTimeField(blank=True, null=True)  # Deprecated, superseded by signed_by_ctu_date/signed_by_ecrin_date (see #97)
+    signed_by_ctu_date = models.DateTimeField(blank=True, null=True)
+    signed_by_ecrin_date = models.DateTimeField(blank=True, null=True)
+    new_end_date = models.DateTimeField(blank=True, null=True)
     ctu_agreement = models.ForeignKey(
         CTUAgreement,
         on_delete=models.CASCADE,
