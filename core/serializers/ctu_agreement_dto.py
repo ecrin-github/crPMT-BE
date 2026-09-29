@@ -17,6 +17,7 @@ class CTUAgreementOutputSerializer(serializers.ModelSerializer):
     ctu_agreement_amendments = CTUAgreementAmendmentOutputSerializer(many=True, read_only=True)
     ctu_status = CTUStatusOutputSerializer(many=False, read_only=True)
     study_ctu = StudyCTUMainDetailsSerializer(many=False, read_only=True)
+    fully_executed = serializers.ReadOnlyField()
 
     class Meta:
         model = CTUAgreement

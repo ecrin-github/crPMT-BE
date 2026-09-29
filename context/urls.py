@@ -55,6 +55,13 @@ ctu_status_detail = CTUStatusView.as_view({
     'delete': 'destroy'
 })
 
+ctu_contracting_entity_list = CtuContractingEntityView.as_view({
+    'get': 'list',
+})
+ctu_contracting_entity_detail = CtuContractingEntityView.as_view({
+    'get': 'retrieve',
+})
+
 hospital_list = HospitalView.as_view({
     'get': 'list',
     'post': 'create'
@@ -176,6 +183,13 @@ visit_type_detail = VisitTypeView.as_view({
     'delete': 'destroy'
 })
 
+ecrin_contracting_entity_list = EcrinContractingEntityView.as_view({
+    'get': 'list',
+})
+ecrin_contracting_entity_detail = EcrinContractingEntityView.as_view({
+    'get': 'retrieve',
+})
+
 
 urlpatterns = [
     path('complex-trial-types', complex_trial_type_list),
@@ -207,4 +221,8 @@ urlpatterns = [
     path('services/<int:pk>', service_detail),
     path('visit-types', visit_type_list),
     path('visit-types/<int:pk>', visit_type_detail),
+    path('ecrin-contracting-entities', ecrin_contracting_entity_list),
+    path('ecrin-contracting-entities/<int:pk>', ecrin_contracting_entity_detail),
+    path('ctu-contracting-entities', ctu_contracting_entity_list),
+    path('ctu-contracting-entities/<int:pk>', ctu_contracting_entity_detail),
 ]
