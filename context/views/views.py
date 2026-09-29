@@ -290,7 +290,7 @@ class EcrinContractingEntityView(viewsets.ModelViewSet):
     queryset = EcrinContractingEntity.objects.all()
     object_class = EcrinContractingEntity
     serializer_class = EcrinContractingEntityOutputSerializer
-    permission_classes = [ReadOnly]
+    permission_classes = [permissions.IsAuthenticated, ReadOnly]
 
     def get_serializer_class(self):
         return super().get_serializer_class()
@@ -302,7 +302,7 @@ class CtuContractingEntityView(viewsets.ModelViewSet):
     queryset = CtuContractingEntity.objects.all()
     object_class = CtuContractingEntity
     serializer_class = CtuContractingEntityOutputSerializer
-    permission_classes = [ReadOnly]
+    permission_classes = [permissions.IsAuthenticated, ReadOnly]
 
     def get_serializer_class(self):
         return super().get_serializer_class()
