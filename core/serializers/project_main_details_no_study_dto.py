@@ -8,14 +8,13 @@ from core.serializers.reporting_period_dto import ReportingPeriodOutputSerialize
 from core.serializers.study_main_details_no_project_dto import StudyMainDetailsNoProjectSerializer
 
 
-class ProjectMainDetailsSerializer(serializers.ModelSerializer):
+class ProjectMainDetailsNoStudySerializer(serializers.ModelSerializer):
     coordinating_institution = OrganisationOutputSerializer(many=False)
     coordinator = PersonOutputSerializer(many=False)
     funding_sources = FundingSourceOutputSerializer(many=True)
     reporting_periods = ReportingPeriodOutputSerializer(many=True)
-    studies = StudyMainDetailsNoProjectSerializer(many=True, read_only=True)
 
     class Meta:
         model = Project
         fields = ['id', 'short_name', 'name', 'start_date', 'end_date', 'coordinating_institution', 
-                  'coordinator', 'funding_sources', 'reporting_periods', 'ga_number', 'url', 'studies']
+                  'coordinator', 'funding_sources', 'reporting_periods', 'ga_number', 'url']

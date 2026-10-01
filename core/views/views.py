@@ -1,11 +1,5 @@
 from django.shortcuts import get_object_or_404
-from mozilla_django_oidc.contrib.drf import OIDCAuthentication
-from rest_framework import viewsets, permissions, status
-from rest_framework.authentication import (
-    SessionAuthentication,
-    BasicAuthentication,
-    TokenAuthentication,
-)
+from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -34,6 +28,7 @@ from core.serializers.safety_notification_dto import *
 from core.serializers.study_dto import *
 from core.serializers.study_country_dto import *
 from core.serializers.study_ctu_dto import *
+from core.serializers.study_main_details_no_project_dto import StudyMainDetailsNoProjectSerializer
 from core.serializers.submission_dto import *
 from core.serializers.visit_dto import *
 from core.models.centre import *
@@ -55,6 +50,8 @@ class ProjectView(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
+        if self.action == 'list':
+            return ProjectMainDetailsSerializer
         if self.action in ["create", "update", "partial_update"]:
             return ProjectInputSerializer
         return super().get_serializer_class()
@@ -67,6 +64,8 @@ class StudyView(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
+        if self.action == 'list':
+            return StudyMainDetailsSerializer
         if self.action in ["create", "update", "partial_update"]:
             return StudyInputSerializer
         return super().get_serializer_class()
