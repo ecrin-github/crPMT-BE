@@ -29,6 +29,7 @@ from core.serializers.study_dto import *
 from core.serializers.study_country_dto import *
 from core.serializers.study_ctu_dto import *
 from core.serializers.study_main_details_no_project_dto import StudyMainDetailsNoProjectSerializer
+from core.serializers.study_minimal_dto import StudyMinimalSerializer
 from core.serializers.submission_dto import *
 from core.serializers.visit_dto import *
 from core.models.centre import *
@@ -65,7 +66,7 @@ class StudyView(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == 'list':
-            return StudyMainDetailsSerializer
+            return StudyMinimalSerializer
         if self.action in ["create", "update", "partial_update"]:
             return StudyInputSerializer
         return super().get_serializer_class()
