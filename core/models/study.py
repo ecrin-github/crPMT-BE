@@ -41,7 +41,7 @@ class Study(models.Model):
     complex_trial_type = models.ForeignKey(ComplexTrialType, on_delete=models.SET_NULL,
                                     db_column='complex_trial_type_id', blank=True, null=True,
                                     related_name='studies', default=None)
-    trial_registration_number = models.CharField(max_length=255, blank=True, null=True)
+    trial_registration_number = models.CharField(blank=True, null=True)
     summary = models.TextField(blank=True, null=True)   # Note: missing from specs
 
     # Agreements

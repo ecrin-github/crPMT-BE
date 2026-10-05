@@ -12,7 +12,7 @@ class Project(models.Model):
     id = models.BigAutoField(primary_key=True)
     # General information
     short_name = models.CharField(max_length=255, blank=True, null=True)
-    name = models.CharField(max_length=255, blank=True, null=True)
+    name = models.CharField(blank=True, null=True)
     start_date = models.DateTimeField(blank=True, null=True)
     end_date = models.DateTimeField(blank=True, null=True)
     coordinating_institution = models.ForeignKey(Organisation, on_delete=models.SET_NULL,
@@ -28,7 +28,7 @@ class Project(models.Model):
 
     # Publication information
     public_summary = models.CharField(blank=True, null=True)
-    url = models.CharField(max_length=255, blank=True, null=True)
+    url = models.CharField(blank=True, null=True)
 
     class Meta:
         db_table = 'projects'

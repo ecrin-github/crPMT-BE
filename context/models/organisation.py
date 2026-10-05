@@ -5,8 +5,8 @@ from context.models.country import Country
 
 class Organisation(models.Model):
     id = models.BigAutoField(primary_key=True)
-    short_name = models.CharField(max_length=500, blank=True, null=True)
-    name = models.CharField(max_length=500, blank=True, null=True)
+    short_name = models.CharField(max_length=100, blank=True, null=True)
+    name = models.CharField(blank=True, null=True)
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, to_field="iso2",
                                     db_column='country_id', blank=True, null=True,
                                     related_name='organisations', default=None)
