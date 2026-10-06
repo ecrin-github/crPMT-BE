@@ -18,4 +18,4 @@ class ProjectMainDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = ['id', 'short_name', 'name', 'start_date', 'end_date', 'coordinating_institution', 
-                  'coordinator', 'funding_sources', 'reporting_periods', 'ga_number', 'url', 'studies']
+                  'coordinator', 'funding_sources', 'private_funding_details', 'reporting_periods', 'ga_number', 'url', 'studies']

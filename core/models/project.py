@@ -24,6 +24,7 @@ class Project(models.Model):
 
     # Project funding
     funding_sources = models.ManyToManyField(FundingSource, blank=True)
+    private_funding_details = models.CharField(blank=True, null=True)
     ga_number = models.CharField(blank=True, null=True)
 
     # Publication information
