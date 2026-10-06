@@ -28,6 +28,7 @@ class Centre(models.Model):
         default=None,
     )
     pi_national_coordinator = models.BooleanField(default=False)
+    competitive_enrollment = models.BooleanField(default=False)
     patients_expected = models.CharField(max_length=255, blank=True, null=True)
     recruitment_greenlight = models.DateTimeField(blank=True, null=True)
     first_patient_visit = models.DateTimeField(blank=True, null=True)
