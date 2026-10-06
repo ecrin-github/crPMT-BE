@@ -42,6 +42,7 @@ class Study(models.Model):
                                     db_column='complex_trial_type_id', blank=True, null=True,
                                     related_name='studies', default=None)
     trial_registration_number = models.CharField(blank=True, null=True)
+    ecrin_acknowledgement = models.BooleanField(default=False)
     summary = models.TextField(blank=True, null=True)   # Note: missing from specs
 
     # Agreements
