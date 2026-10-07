@@ -1,11 +1,6 @@
 from django.shortcuts import get_object_or_404
-from mozilla_django_oidc.contrib.drf import OIDCAuthentication
-from rest_framework import viewsets, permissions, status
-from rest_framework.authentication import (
-    SessionAuthentication,
-    BasicAuthentication,
-    TokenAuthentication,
-)
+from rest_framework import status, viewsets, permissions
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -34,6 +29,8 @@ from core.serializers.safety_notification_dto import *
 from core.serializers.study_dto import *
 from core.serializers.study_country_dto import *
 from core.serializers.study_ctu_dto import *
+from core.serializers.study_main_details_no_project_dto import StudyMainDetailsNoProjectSerializer
+from core.serializers.study_minimal_dto import StudyMinimalSerializer
 from core.serializers.submission_dto import *
 from core.serializers.visit_dto import *
 from core.models.centre import *
@@ -55,6 +52,8 @@ class ProjectView(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
+        if self.action == 'list':
+            return ProjectMainDetailsSerializer
         if self.action in ["create", "update", "partial_update"]:
             return ProjectInputSerializer
         return super().get_serializer_class()
@@ -67,6 +66,8 @@ class StudyView(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
+        if self.action == 'list':
+            return StudyMinimalSerializer
         if self.action in ["create", "update", "partial_update"]:
             return StudyInputSerializer
         return super().get_serializer_class()
@@ -351,7 +352,7 @@ class VisitView(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return VisitInputSerializer
         return super().get_serializer_class()
 
@@ -370,6 +371,57 @@ class VisitView(viewsets.ModelViewSet):
                 .filter(centre=self.kwargs["sctuId"])
             )
         return super().get_queryset(*args, **kwargs)
+
+    @action(methods=["post"], detail=False)
+    def bulk_create(self, request):
+        if not isinstance(request.data, list):
+            return Response(
+                {"detail": "Expected a list of objects"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        serializer = self.get_serializer(data=request.data, many=True)
+        serializer.is_valid(raise_exception=True)
+        instances = serializer.save()
+        out_serializer = VisitOutputSerializer(instances, many=True)
+        return Response(out_serializer.data, status=status.HTTP_201_CREATED)
+
+    @action(methods=["put", "patch"], detail=False)
+    def bulk_update(self, request):
+        if not isinstance(request.data, list):
+            return Response(
+                {"detail": "Expected a list of objects"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        partial = request.method == "PATCH"
+        instances = []
+        errors = {}
+
+        for idx, item in enumerate(request.data):
+            pk = item.get("id")
+            if pk is None:
+                errors[idx] = {"id": ["This field is required for bulk update."]}
+                continue
+
+            try:
+                obj = self.get_queryset().get(pk=pk)
+            except Visit.DoesNotExist:
+                errors[idx] = {"id": ["Object not found."]}
+                continue
+
+            serializer = self.get_serializer(obj, data=item, partial=partial)
+            if serializer.is_valid():
+                serializer.save()
+                instances.append(serializer.instance)
+            else:
+                errors[idx] = serializer.errors
+
+        if errors:
+            return Response({"errors": errors}, status=status.HTTP_400_BAD_REQUEST)
+
+        out_serializer = VisitOutputSerializer(instances, many=True)
+        return Response(out_serializer.data)
 
 
 class ProjectsByFundingSource(APIView):

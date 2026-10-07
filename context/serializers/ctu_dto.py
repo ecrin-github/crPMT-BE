@@ -14,7 +14,6 @@ class CTUInputSerializer(serializers.ModelSerializer):
 
 class CTUOutputSerializer(serializers.ModelSerializer):
     country = CountryOutputSerializer(many=False, read_only=True)
-    contact = PersonOutputSerializer(many=False, read_only=True)
 
     class Meta:
         model = CTU

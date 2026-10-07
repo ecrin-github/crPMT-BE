@@ -167,6 +167,14 @@ visit_detail = VisitView.as_view({
     'patch': 'partial_update',
     'delete': 'destroy'
 })
+visit_bulk_create = VisitView.as_view({
+    "post": "bulk_create",
+})
+
+visit_bulk_update = VisitView.as_view({
+    "put": "bulk_update",
+    "patch": "bulk_update",
+})
 
 
 urlpatterns = [
@@ -218,5 +226,7 @@ urlpatterns = [
     path('centres/<int:pk>/visits', visit_list),
     path('visits', visit_list),
     path('visits/<int:pk>', visit_detail),
+    path("visits/bulk_create", visit_bulk_create),
+    path("visits/bulk_update", visit_bulk_update),
     path('reference-count-by-class/<class_name>/<obj_id>', ReferenceCountByClass.as_view()),
 ]

@@ -41,7 +41,8 @@ class Study(models.Model):
     complex_trial_type = models.ForeignKey(ComplexTrialType, on_delete=models.SET_NULL,
                                     db_column='complex_trial_type_id', blank=True, null=True,
                                     related_name='studies', default=None)
-    trial_registration_number = models.CharField(max_length=255, blank=True, null=True)
+    trial_registration_number = models.CharField(blank=True, null=True)
+    ecrin_acknowledgement = models.BooleanField(default=False)
     summary = models.TextField(blank=True, null=True)   # Note: missing from specs
 
     # Agreements
@@ -76,7 +77,7 @@ class Study(models.Model):
 
     # Internal
     uses_ctis_for_safety_notifications = models.BooleanField(default=False)
-    project = models.ForeignKey(Project, on_delete=models.SET_NULL, unique=False, editable=True,
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, unique=False, editable=True,
                                     blank=True, null=True, db_index=True,
                                     db_column='project_id', related_name='studies', default=None)
     order = models.IntegerField(blank=True, null=True, db_column='order')

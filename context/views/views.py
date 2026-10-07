@@ -267,7 +267,6 @@ class ResolveSharePointCTUView(APIView):
             "short_name": short_name,
             "country": country,
             "address_info": address_info,
-            "contact": None,  # it can be set later manually if needed
         }
 
         ctu = resolve_ctu_from_sharepoint(payload)
