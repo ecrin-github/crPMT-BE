@@ -21,6 +21,7 @@ class Project(models.Model):
     coordinator = models.ForeignKey(Person, on_delete=models.SET_NULL,
                                     db_column='coordinator_id', blank=True, null=True,
                                     related_name='projects', default=None)
+    project_ko_meeting = models.DateTimeField(blank=True, null=True)
 
     # Project funding
     funding_sources = models.ManyToManyField(FundingSource, blank=True)
