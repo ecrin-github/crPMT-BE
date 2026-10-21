@@ -74,6 +74,10 @@ class Study(models.Model):
 
     # Overall status
     status = models.CharField(max_length=255, blank=True, null=True)
+    internal_ko_meeting = models.DateTimeField(blank=True, null=True)
+    stakeholder_ko_meeting = models.DateTimeField(blank=True, null=True)
+    internal_closing_meeting = models.DateTimeField(blank=True, null=True)
+    archive_date = models.DateTimeField(blank=True, null=True)
 
     # Internal
     uses_ctis_for_safety_notifications = models.BooleanField(default=False)
