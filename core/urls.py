@@ -203,6 +203,7 @@ urlpatterns = [
     path('notifications/<int:pk>', notification_detail),
     path('safety-notifications', safety_notification_list),
     path('safety-notifications/<int:pk>', safety_notification_detail),
+    path('safety-notifications-cleaning', SafetyNotificationCleaningView.as_view()),
     path('study-ctus', study_ctu_list),
     path('study-ctus/<int:pk>', study_ctu_detail),
     path('study-ctus/<int:pk>/visits', visit_list),

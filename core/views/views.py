@@ -321,6 +321,18 @@ class SafetyNotificationView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
+class SafetyNotificationCleaningView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def delete(self, request):
+        delete_sns = SafetyNotification.objects.filter(study_countries=None).delete()
+
+        return Response(
+            {"detail": f"Deleted {delete_sns[0]} safety notifications"},
+            status=status.HTTP_200_OK,
+        )
+
+
 class SubmissionView(viewsets.ModelViewSet):
     queryset = Submission.objects.all()
     object_class = Submission
