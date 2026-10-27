@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0106_merge_20260918_1650'),
+        ('core', '0120_remove_safetynotification_not_applicable'),
     ]
 
     operations = [
@@ -16,7 +16,6 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(primary_key=True, serialize=False)),
                 ('survey_type', models.CharField(blank=True, max_length=255, null=True)),
-                ('year', models.IntegerField(blank=True, null=True)),
                 ('number_of_recipients', models.PositiveIntegerField(blank=True, null=True)),
                 ('sent_date', models.DateTimeField(blank=True, null=True)),
                 ('order', models.IntegerField(blank=True, db_column='order', null=True)),

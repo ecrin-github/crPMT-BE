@@ -6,7 +6,6 @@ from core.models.study import Study
 class SatisfactionSurvey(models.Model):  # User satisfaction survey sent for a study (specs L2, issue #120)
     id = models.BigAutoField(primary_key=True)
     survey_type = models.CharField(max_length=255, blank=True, null=True)  # Initial / Follow-up / End of project
-    year = models.IntegerField(blank=True, null=True)  # Only for follow-up surveys (year 2, 4, ...)
     number_of_recipients = models.PositiveIntegerField(blank=True, null=True)
     sent_date = models.DateTimeField(blank=True, null=True)
     study = models.ForeignKey(
