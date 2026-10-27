@@ -146,6 +146,17 @@ study_agreement_amendment_detail = StudyAgreementAmendmentView.as_view({
     'delete': 'destroy'
 })
 
+satisfaction_survey_list = SatisfactionSurveyView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+satisfaction_survey_detail = SatisfactionSurveyView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 centre_list = CentreView.as_view({
     'get': 'list',
     'post': 'create'
@@ -192,6 +203,7 @@ urlpatterns = [
     path('studies/<int:pk>/study-countries', study_country_list),
     path('studies/<int:pk>/study-ctus', study_ctu_list),
     path('studies/<int:pk>/study-agreements', study_agreement_list),
+    path('studies/<int:pk>/satisfaction-surveys', satisfaction_survey_list),
     path('studies/<int:pk>/centres', centre_list),
     path('studies/<int:pk>/visits', visit_list),
     path('study-countries', study_country_list),
@@ -220,6 +232,8 @@ urlpatterns = [
     path('study-agreements/<int:pk>/study-agreement-amendments', study_agreement_amendment_list),
     path('study-agreement-amendments/<int:pk>', study_agreement_amendment_detail),
     path('study-agreement-amendments', study_agreement_amendment_list),
+    path('satisfaction-surveys', satisfaction_survey_list),
+    path('satisfaction-surveys/<int:pk>', satisfaction_survey_detail),
     path('submissions', submission_list),
     path('submissions/<int:pk>', submission_detail),
     path('centres', centre_list),

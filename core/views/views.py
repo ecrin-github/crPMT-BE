@@ -25,6 +25,7 @@ from core.serializers.notification_dto import *
 from core.serializers.project_dto import *
 from core.models.publication import Publication
 from core.serializers.reporting_period_dto import *
+from core.serializers.satisfaction_survey_dto import *
 from core.serializers.safety_notification_dto import *
 from core.serializers.study_dto import *
 from core.serializers.study_country_dto import *
@@ -37,6 +38,7 @@ from core.models.centre import *
 from core.models.notification import *
 from core.models.project import *
 from core.models.reporting_period import *
+from core.models.satisfaction_survey import *
 from core.models.safety_notification import *
 from core.models.study import *
 from core.models.study_country import *
@@ -204,6 +206,24 @@ class StudyAgreementView(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action in ["create", "update", "partial_update"]:
             return StudyAgreementInputSerializer
+        return super().get_serializer_class()
+
+    def get_queryset(self, *args, **kwargs):
+        if getattr(self, 'swagger_fake_view', False):
+            # queryset just for schema generation metadata
+            return self.object_class.objects.none()
+        return super().get_queryset(*args, **kwargs)
+
+
+class SatisfactionSurveyView(viewsets.ModelViewSet):
+    queryset = SatisfactionSurvey.objects.all()
+    object_class = SatisfactionSurvey
+    serializer_class = SatisfactionSurveyOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return SatisfactionSurveyInputSerializer
         return super().get_serializer_class()
 
     def get_queryset(self, *args, **kwargs):
