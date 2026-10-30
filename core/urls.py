@@ -187,6 +187,19 @@ visit_bulk_update = VisitView.as_view({
     "patch": "bulk_update",
 })
 
+visit_bulk_delete = VisitView.as_view({
+    "post": "bulk_delete",
+})
+
+
+def bulk_paths(prefix, view):
+    """bulk_create, bulk_update and bulk_delete routes of a view using BulkModelMixin (#18)"""
+    return [
+        path(f"{prefix}/bulk_create", view.as_view({"post": "bulk_create"})),
+        path(f"{prefix}/bulk_update", view.as_view({"put": "bulk_update", "patch": "bulk_update"})),
+        path(f"{prefix}/bulk_delete", view.as_view({"post": "bulk_delete"})),
+    ]
+
 
 urlpatterns = [
     path('projects', project_list),
@@ -243,5 +256,13 @@ urlpatterns = [
     path('visits/<int:pk>', visit_detail),
     path("visits/bulk_create", visit_bulk_create),
     path("visits/bulk_update", visit_bulk_update),
+    path("visits/bulk_delete", visit_bulk_delete),
     path('reference-count-by-class/<class_name>/<obj_id>', ReferenceCountByClass.as_view()),
+    *bulk_paths("ctu-agreement-amendments", CTUAgreementAmendmentView),
+    *bulk_paths("study-agreement-amendments", StudyAgreementAmendmentView),
+    *bulk_paths("publications", PublicationView),
+    *bulk_paths("reporting-periods", ReportingPeriodView),
+    *bulk_paths("notifications", NotificationView),
+    *bulk_paths("submissions", SubmissionView),
+    *bulk_paths("safety-notifications", SafetyNotificationView),
 ]

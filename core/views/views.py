@@ -34,6 +34,7 @@ from core.serializers.study_main_details_no_project_dto import StudyMainDetailsN
 from core.serializers.study_minimal_dto import StudyMinimalSerializer
 from core.serializers.submission_dto import *
 from core.serializers.visit_dto import *
+from core.views.bulk_mixin import BulkModelMixin
 from core.models.centre import *
 from core.models.notification import *
 from core.models.project import *
@@ -173,14 +174,14 @@ class CTUAgreementView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class CTUAgreementAmendmentView(viewsets.ModelViewSet):
+class CTUAgreementAmendmentView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = CTUAgreementAmendment.objects.all()
     object_class = CTUAgreementAmendment
     serializer_class = CTUAgreementAmendmentOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return CTUAgreementAmendmentInputSerializer
         return super().get_serializer_class()
 
@@ -233,14 +234,14 @@ class SatisfactionSurveyView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class StudyAgreementAmendmentView(viewsets.ModelViewSet):
+class StudyAgreementAmendmentView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = StudyAgreementAmendment.objects.all()
     object_class = StudyAgreementAmendment
     serializer_class = StudyAgreementAmendmentOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return StudyAgreementAmendmentInputSerializer
         return super().get_serializer_class()
 
@@ -251,14 +252,14 @@ class StudyAgreementAmendmentView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class ReportingPeriodView(viewsets.ModelViewSet):
+class ReportingPeriodView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = ReportingPeriod.objects.all()
     object_class = ReportingPeriod
     serializer_class = ReportingPeriodOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return ReportingPeriodInputSerializer
         return super().get_serializer_class()
 
@@ -275,14 +276,14 @@ class ReportingPeriodView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class PublicationView(viewsets.ModelViewSet):
+class PublicationView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = Publication.objects.all()
     object_class = Publication
     serializer_class = PublicationOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return PublicationInputSerializer
         return super().get_serializer_class()
 
@@ -299,14 +300,14 @@ class PublicationView(viewsets.ModelViewSet):
         return queryset
 
 
-class NotificationView(viewsets.ModelViewSet):
+class NotificationView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = Notification.objects.all()
     object_class = Notification
     serializer_class = NotificationOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return NotificationInputSerializer
         return super().get_serializer_class()
 
@@ -323,14 +324,14 @@ class NotificationView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class SafetyNotificationView(viewsets.ModelViewSet):
+class SafetyNotificationView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = SafetyNotification.objects.all()
     object_class = SafetyNotification
     serializer_class = SafetyNotificationOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return SafetyNotificationInputSerializer
         return super().get_serializer_class()
 
@@ -353,14 +354,14 @@ class SafetyNotificationCleaningView(APIView):
         )
 
 
-class SubmissionView(viewsets.ModelViewSet):
+class SubmissionView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = Submission.objects.all()
     object_class = Submission
     serializer_class = SubmissionOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return SubmissionInputSerializer
         return super().get_serializer_class()
 
@@ -377,7 +378,7 @@ class SubmissionView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class VisitView(viewsets.ModelViewSet):
+class VisitView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = Visit.objects.all()
     object_class = Visit
     serializer_class = VisitOutputSerializer
