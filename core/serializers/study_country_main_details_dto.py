@@ -13,4 +13,4 @@ class StudyCountryMainDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StudyCountry
-        fields = ['id', 'country', 'study_ctus', 'safety_notifications']
+        fields = ['id', 'country', 'study_ctus', 'safety_notifications', 'sn_annual_ec_na', 'sn_annual_ca_na', 'sn_dsur_ec_na', 'sn_dsur_ca_na']

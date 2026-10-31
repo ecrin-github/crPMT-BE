@@ -16,7 +16,7 @@ class Visit(models.Model):
         default=None,
     )
     visit_date = models.DateTimeField(blank=True, null=True)
-    pharmacy = models.CharField(max_length=255, blank=True, null=True)
+    pharmacy = models.BooleanField(default=False)
     duration = models.CharField(max_length=255, blank=True, null=True)
     duration_unit = models.CharField(max_length=255, blank=True, null=True)
     comment = models.TextField(blank=True, null=True)

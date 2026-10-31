@@ -6,7 +6,6 @@ class Person(models.Model):
     id = models.BigAutoField(primary_key=True)
     email = models.CharField(max_length=255, blank=True, null=True)
     full_name = models.CharField(max_length=255, blank=True, null=True)
-    position = models.CharField(max_length=255, blank=True, null=True)
     is_euco = models.BooleanField(default=False)
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, to_field="iso2",
                                     db_column='country_id', blank=True, null=True,

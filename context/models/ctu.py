@@ -14,9 +14,7 @@ class CTU(models.Model):
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, to_field="iso2",
                                     db_column='country_id', blank=True, null=True,
                                     related_name='ctu_country_id', default=None)
-    contact = models.ForeignKey(Person, on_delete=models.SET_NULL,
-                                    db_column='contact_id', blank=True, null=True,
-                                    related_name='ctu_study_id', default=None)
+
     class Meta:
         db_table = 'ctus'
         ordering = ['id']

@@ -268,7 +268,6 @@ def resolve_ctu_from_sharepoint(data):
         "short_name": short_name,
         "country": country,
         "address_info": data.get("address_info"),
-        "contact": data.get("contact"),
     }
 
     # 1. Strongest match: already linked by SharePoint item ID.
@@ -301,7 +300,6 @@ def resolve_ctu_from_sharepoint(data):
         short_name=short_name,
         country=country,
         address_info=data.get("address_info"),
-        contact=data.get("contact"),
         manual_add=False,
     )
 

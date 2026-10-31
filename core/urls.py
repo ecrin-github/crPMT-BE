@@ -146,6 +146,17 @@ study_agreement_amendment_detail = StudyAgreementAmendmentView.as_view({
     'delete': 'destroy'
 })
 
+satisfaction_survey_list = SatisfactionSurveyView.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+satisfaction_survey_detail = SatisfactionSurveyView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 centre_list = CentreView.as_view({
     'get': 'list',
     'post': 'create'
@@ -167,6 +178,27 @@ visit_detail = VisitView.as_view({
     'patch': 'partial_update',
     'delete': 'destroy'
 })
+visit_bulk_create = VisitView.as_view({
+    "post": "bulk_create",
+})
+
+visit_bulk_update = VisitView.as_view({
+    "put": "bulk_update",
+    "patch": "bulk_update",
+})
+
+visit_bulk_delete = VisitView.as_view({
+    "post": "bulk_delete",
+})
+
+
+def bulk_paths(prefix, view):
+    """bulk_create, bulk_update and bulk_delete routes of a view using BulkModelMixin (#18)"""
+    return [
+        path(f"{prefix}/bulk_create", view.as_view({"post": "bulk_create"})),
+        path(f"{prefix}/bulk_update", view.as_view({"put": "bulk_update", "patch": "bulk_update"})),
+        path(f"{prefix}/bulk_delete", view.as_view({"post": "bulk_delete"})),
+    ]
 
 
 urlpatterns = [
@@ -184,6 +216,7 @@ urlpatterns = [
     path('studies/<int:pk>/study-countries', study_country_list),
     path('studies/<int:pk>/study-ctus', study_ctu_list),
     path('studies/<int:pk>/study-agreements', study_agreement_list),
+    path('studies/<int:pk>/satisfaction-surveys', satisfaction_survey_list),
     path('studies/<int:pk>/centres', centre_list),
     path('studies/<int:pk>/visits', visit_list),
     path('study-countries', study_country_list),
@@ -195,6 +228,7 @@ urlpatterns = [
     path('notifications/<int:pk>', notification_detail),
     path('safety-notifications', safety_notification_list),
     path('safety-notifications/<int:pk>', safety_notification_detail),
+    path('safety-notifications-cleaning', SafetyNotificationCleaningView.as_view()),
     path('study-ctus', study_ctu_list),
     path('study-ctus/<int:pk>', study_ctu_detail),
     path('study-ctus/<int:pk>/visits', visit_list),
@@ -211,6 +245,8 @@ urlpatterns = [
     path('study-agreements/<int:pk>/study-agreement-amendments', study_agreement_amendment_list),
     path('study-agreement-amendments/<int:pk>', study_agreement_amendment_detail),
     path('study-agreement-amendments', study_agreement_amendment_list),
+    path('satisfaction-surveys', satisfaction_survey_list),
+    path('satisfaction-surveys/<int:pk>', satisfaction_survey_detail),
     path('submissions', submission_list),
     path('submissions/<int:pk>', submission_detail),
     path('centres', centre_list),
@@ -218,5 +254,15 @@ urlpatterns = [
     path('centres/<int:pk>/visits', visit_list),
     path('visits', visit_list),
     path('visits/<int:pk>', visit_detail),
+    path("visits/bulk_create", visit_bulk_create),
+    path("visits/bulk_update", visit_bulk_update),
+    path("visits/bulk_delete", visit_bulk_delete),
     path('reference-count-by-class/<class_name>/<obj_id>', ReferenceCountByClass.as_view()),
+    *bulk_paths("ctu-agreement-amendments", CTUAgreementAmendmentView),
+    *bulk_paths("study-agreement-amendments", StudyAgreementAmendmentView),
+    *bulk_paths("publications", PublicationView),
+    *bulk_paths("reporting-periods", ReportingPeriodView),
+    *bulk_paths("notifications", NotificationView),
+    *bulk_paths("submissions", SubmissionView),
+    *bulk_paths("safety-notifications", SafetyNotificationView),
 ]

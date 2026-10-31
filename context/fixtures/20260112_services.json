@@ -50,13 +50,6 @@
     },
     {
         "model": "context.service",
-        "pk": 23,
-        "fields": {
-            "value": "Central Pharmacovigilance"
-        }
-    },
-    {
-        "model": "context.service",
         "pk": 25,
         "fields": {
             "value": "Pharmacovigilance (local)"

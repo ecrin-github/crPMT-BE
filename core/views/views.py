@@ -1,11 +1,6 @@
 from django.shortcuts import get_object_or_404
-from mozilla_django_oidc.contrib.drf import OIDCAuthentication
-from rest_framework import viewsets, permissions, status
-from rest_framework.authentication import (
-    SessionAuthentication,
-    BasicAuthentication,
-    TokenAuthentication,
-)
+from rest_framework import status, viewsets, permissions
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -30,16 +25,21 @@ from core.serializers.notification_dto import *
 from core.serializers.project_dto import *
 from core.models.publication import Publication
 from core.serializers.reporting_period_dto import *
+from core.serializers.satisfaction_survey_dto import *
 from core.serializers.safety_notification_dto import *
 from core.serializers.study_dto import *
 from core.serializers.study_country_dto import *
 from core.serializers.study_ctu_dto import *
+from core.serializers.study_main_details_no_project_dto import StudyMainDetailsNoProjectSerializer
+from core.serializers.study_minimal_dto import StudyMinimalSerializer
 from core.serializers.submission_dto import *
 from core.serializers.visit_dto import *
+from core.views.bulk_mixin import BulkModelMixin
 from core.models.centre import *
 from core.models.notification import *
 from core.models.project import *
 from core.models.reporting_period import *
+from core.models.satisfaction_survey import *
 from core.models.safety_notification import *
 from core.models.study import *
 from core.models.study_country import *
@@ -55,6 +55,8 @@ class ProjectView(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
+        if self.action == 'list':
+            return ProjectMainDetailsSerializer
         if self.action in ["create", "update", "partial_update"]:
             return ProjectInputSerializer
         return super().get_serializer_class()
@@ -67,6 +69,8 @@ class StudyView(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
+        if self.action == 'list':
+            return StudyMinimalSerializer
         if self.action in ["create", "update", "partial_update"]:
             return StudyInputSerializer
         return super().get_serializer_class()
@@ -170,14 +174,14 @@ class CTUAgreementView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class CTUAgreementAmendmentView(viewsets.ModelViewSet):
+class CTUAgreementAmendmentView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = CTUAgreementAmendment.objects.all()
     object_class = CTUAgreementAmendment
     serializer_class = CTUAgreementAmendmentOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return CTUAgreementAmendmentInputSerializer
         return super().get_serializer_class()
 
@@ -212,14 +216,32 @@ class StudyAgreementView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class StudyAgreementAmendmentView(viewsets.ModelViewSet):
+class SatisfactionSurveyView(viewsets.ModelViewSet):
+    queryset = SatisfactionSurvey.objects.all()
+    object_class = SatisfactionSurvey
+    serializer_class = SatisfactionSurveyOutputSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update"]:
+            return SatisfactionSurveyInputSerializer
+        return super().get_serializer_class()
+
+    def get_queryset(self, *args, **kwargs):
+        if getattr(self, 'swagger_fake_view', False):
+            # queryset just for schema generation metadata
+            return self.object_class.objects.none()
+        return super().get_queryset(*args, **kwargs)
+
+
+class StudyAgreementAmendmentView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = StudyAgreementAmendment.objects.all()
     object_class = StudyAgreementAmendment
     serializer_class = StudyAgreementAmendmentOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return StudyAgreementAmendmentInputSerializer
         return super().get_serializer_class()
 
@@ -230,14 +252,14 @@ class StudyAgreementAmendmentView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class ReportingPeriodView(viewsets.ModelViewSet):
+class ReportingPeriodView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = ReportingPeriod.objects.all()
     object_class = ReportingPeriod
     serializer_class = ReportingPeriodOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return ReportingPeriodInputSerializer
         return super().get_serializer_class()
 
@@ -254,14 +276,14 @@ class ReportingPeriodView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class PublicationView(viewsets.ModelViewSet):
+class PublicationView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = Publication.objects.all()
     object_class = Publication
     serializer_class = PublicationOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return PublicationInputSerializer
         return super().get_serializer_class()
 
@@ -278,14 +300,14 @@ class PublicationView(viewsets.ModelViewSet):
         return queryset
 
 
-class NotificationView(viewsets.ModelViewSet):
+class NotificationView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = Notification.objects.all()
     object_class = Notification
     serializer_class = NotificationOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return NotificationInputSerializer
         return super().get_serializer_class()
 
@@ -302,14 +324,14 @@ class NotificationView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class SafetyNotificationView(viewsets.ModelViewSet):
+class SafetyNotificationView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = SafetyNotification.objects.all()
     object_class = SafetyNotification
     serializer_class = SafetyNotificationOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return SafetyNotificationInputSerializer
         return super().get_serializer_class()
 
@@ -320,14 +342,26 @@ class SafetyNotificationView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class SubmissionView(viewsets.ModelViewSet):
+class SafetyNotificationCleaningView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def delete(self, request):
+        delete_sns = SafetyNotification.objects.filter(study_countries=None).delete()
+
+        return Response(
+            {"detail": f"Deleted {delete_sns[0]} safety notifications"},
+            status=status.HTTP_200_OK,
+        )
+
+
+class SubmissionView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = Submission.objects.all()
     object_class = Submission
     serializer_class = SubmissionOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return SubmissionInputSerializer
         return super().get_serializer_class()
 
@@ -344,14 +378,14 @@ class SubmissionView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class VisitView(viewsets.ModelViewSet):
+class VisitView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = Visit.objects.all()
     object_class = Visit
     serializer_class = VisitOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return VisitInputSerializer
         return super().get_serializer_class()
 
@@ -370,6 +404,57 @@ class VisitView(viewsets.ModelViewSet):
                 .filter(centre=self.kwargs["sctuId"])
             )
         return super().get_queryset(*args, **kwargs)
+
+    @action(methods=["post"], detail=False)
+    def bulk_create(self, request):
+        if not isinstance(request.data, list):
+            return Response(
+                {"detail": "Expected a list of objects"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        serializer = self.get_serializer(data=request.data, many=True)
+        serializer.is_valid(raise_exception=True)
+        instances = serializer.save()
+        out_serializer = VisitOutputSerializer(instances, many=True)
+        return Response(out_serializer.data, status=status.HTTP_201_CREATED)
+
+    @action(methods=["put", "patch"], detail=False)
+    def bulk_update(self, request):
+        if not isinstance(request.data, list):
+            return Response(
+                {"detail": "Expected a list of objects"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        partial = request.method == "PATCH"
+        instances = []
+        errors = {}
+
+        for idx, item in enumerate(request.data):
+            pk = item.get("id")
+            if pk is None:
+                errors[idx] = {"id": ["This field is required for bulk update."]}
+                continue
+
+            try:
+                obj = self.get_queryset().get(pk=pk)
+            except Visit.DoesNotExist:
+                errors[idx] = {"id": ["Object not found."]}
+                continue
+
+            serializer = self.get_serializer(obj, data=item, partial=partial)
+            if serializer.is_valid():
+                serializer.save()
+                instances.append(serializer.instance)
+            else:
+                errors[idx] = serializer.errors
+
+        if errors:
+            return Response({"errors": errors}, status=status.HTTP_400_BAD_REQUEST)
+
+        out_serializer = VisitOutputSerializer(instances, many=True)
+        return Response(out_serializer.data)
 
 
 class ProjectsByFundingSource(APIView):

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from context.serializers.person_dto import PersonOutputSerializer
 from core.models.study_ctu import StudyCTU
 from context.models.service import Service
 from context.serializers.ctu_contracting_entity_dto import CtuContractingEntityOutputSerializer
@@ -22,6 +23,7 @@ class StudyCTUInputSerializer(serializers.ModelSerializer):
 
 class StudyCTUOutputSerializer(serializers.ModelSerializer):
     centres = CentreOutputSerializer(many=True)
+    contact_person = PersonOutputSerializer(many=False, read_only=True)
     ctu = CTUOutputSerializer(many=False, read_only=False)
     ctu_agreements = CTUAgreementOutputSerializer(many=True, read_only=False)
     ctu_contracting_entity = CtuContractingEntityOutputSerializer(many=False, read_only=True)
