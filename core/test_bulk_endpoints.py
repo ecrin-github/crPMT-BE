@@ -2,12 +2,18 @@ from types import SimpleNamespace
 
 from rest_framework.test import APITestCase
 
+from core.models.centre import Centre
+from core.models.ctu_agreement import CTUAgreement
 from core.models.ctu_agreement_amendment import CTUAgreementAmendment
 from core.models.notification import Notification
 from core.models.publication import Publication
 from core.models.reporting_period import ReportingPeriod
 from core.models.safety_notification import SafetyNotification
+from core.models.satisfaction_survey import SatisfactionSurvey
+from core.models.study_agreement import StudyAgreement
 from core.models.study_agreement_amendment import StudyAgreementAmendment
+from core.models.study_country import StudyCountry
+from core.models.study_ctu import StudyCTU
 from core.models.submission import Submission
 from core.models.visit import Visit
 
@@ -64,9 +70,13 @@ class BulkDeleteTestMixin:
 class BulkEndpointTestMixin(BulkDeleteTestMixin):
     value_field = "order"
     invalid_field = "order"
+    required_payload = {}  # Fields the input serializer requires, e.g. many-to-many lists
 
     def payload(self, value):
-        return {self.value_field: value}
+        return {self.value_field: value, **self.required_payload}
+
+    def create_object(self, value):
+        return self.model.objects.create(**{self.value_field: value})
 
     def test_bulk_create_two_objects(self):
         response = self.client.post(
@@ -102,8 +112,8 @@ class BulkEndpointTestMixin(BulkDeleteTestMixin):
 
     def test_bulk_update_two_objects(self):
         objects = [
-            self.model.objects.create(**self.payload(1)),
-            self.model.objects.create(**self.payload(2)),
+            self.create_object(1),
+            self.create_object(2),
         ]
 
         response = self.client.put(
@@ -126,7 +136,7 @@ class BulkEndpointTestMixin(BulkDeleteTestMixin):
         )
 
     def test_bulk_update_unknown_id_does_not_update_valid_item(self):
-        obj = self.model.objects.create(**self.payload(1))
+        obj = self.create_object(1)
         unknown_id = obj.pk + 1000
 
         response = self.client.put(
@@ -143,7 +153,7 @@ class BulkEndpointTestMixin(BulkDeleteTestMixin):
         self.assertEqual(getattr(obj, self.value_field), 1)
 
     def test_bulk_update_requires_id(self):
-        obj = self.model.objects.create(**self.payload(1))
+        obj = self.create_object(1)
 
         response = self.client.put(
             f"{self.url}/bulk_update", [self.payload(11)], format="json"
@@ -194,3 +204,36 @@ class SubmissionBulkTests(BulkEndpointTestMixin, APITestCase):
 class VisitBulkDeleteTests(BulkDeleteTestMixin, APITestCase):
     model = Visit
     url = "/api/core/visits"
+
+
+# Entities saved in bulk since #125
+class StudyCountryBulkTests(BulkEndpointTestMixin, APITestCase):
+    model = StudyCountry
+    url = "/api/core/study-countries"
+    required_payload = {"safety_notifications": []}
+
+
+class StudyCTUBulkTests(BulkEndpointTestMixin, APITestCase):
+    model = StudyCTU
+    url = "/api/core/study-ctus"
+    required_payload = {"services": []}
+
+
+class CentreBulkTests(BulkEndpointTestMixin, APITestCase):
+    model = Centre
+    url = "/api/core/centres"
+
+
+class CTUAgreementBulkTests(BulkEndpointTestMixin, APITestCase):
+    model = CTUAgreement
+    url = "/api/core/ctu-agreements"
+
+
+class StudyAgreementBulkTests(BulkEndpointTestMixin, APITestCase):
+    model = StudyAgreement
+    url = "/api/core/study-agreements"
+
+
+class SatisfactionSurveyBulkTests(BulkEndpointTestMixin, APITestCase):
+    model = SatisfactionSurvey
+    url = "/api/core/satisfaction-surveys"

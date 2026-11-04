@@ -265,4 +265,10 @@ urlpatterns = [
     *bulk_paths("notifications", NotificationView),
     *bulk_paths("submissions", SubmissionView),
     *bulk_paths("safety-notifications", SafetyNotificationView),
+    *bulk_paths("study-countries", StudyCountryView),
+    *bulk_paths("study-ctus", StudyCTUView),
+    *bulk_paths("centres", CentreView),
+    *bulk_paths("ctu-agreements", CTUAgreementView),
+    *bulk_paths("study-agreements", StudyAgreementView),
+    *bulk_paths("satisfaction-surveys", SatisfactionSurveyView),
 ]
