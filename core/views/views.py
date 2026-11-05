@@ -35,6 +35,8 @@ from core.serializers.study_minimal_dto import StudyMinimalSerializer
 from core.serializers.submission_dto import *
 from core.serializers.visit_dto import *
 from core.views.bulk_mixin import BulkModelMixin
+from core.querysets import (link_study_ctus_to_studies, project_main_details_queryset, project_output_queryset,
+                            study_output_queryset, with_study_country_main_details)
 from core.models.centre import *
 from core.models.notification import *
 from core.models.project import *
@@ -61,6 +63,20 @@ class ProjectView(viewsets.ModelViewSet):
             return ProjectInputSerializer
         return super().get_serializer_class()
 
+    def get_queryset(self):
+        # Loading the nested data rendered by the output serializers in a fixed number of queries (#125)
+        if self.action == 'list':
+            return project_main_details_queryset()
+        if self.action == 'retrieve':
+            return project_output_queryset()
+        return super().get_queryset()
+
+    def get_object(self):
+        obj = super().get_object()
+        if self.action == 'retrieve':
+            link_study_ctus_to_studies(obj.studies.all())
+        return obj
+
 
 class StudyView(viewsets.ModelViewSet):
     queryset = Study.objects.all()
@@ -75,15 +91,29 @@ class StudyView(viewsets.ModelViewSet):
             return StudyInputSerializer
         return super().get_serializer_class()
 
+    def get_queryset(self):
+        # Loading the nested data rendered by the output serializer in a fixed number of queries (#125)
+        if self.action == 'retrieve':
+            return study_output_queryset()
+        return super().get_queryset()
 
-class StudyCountryView(viewsets.ModelViewSet):
+    def get_object(self):
+        obj = super().get_object()
+        if self.action == 'retrieve':
+            link_study_ctus_to_studies([obj])
+        return obj
+
+
+class StudyCountryView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = StudyCountry.objects.all()
     object_class = StudyCountry
     serializer_class = StudyCountryOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
+    # Bulk responses only need the saved fields and ids, like the single item PUT/POST responses (#125)
+    bulk_output_serializer_class = StudyCountryInputSerializer
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return StudyCountryInputSerializer
         return super().get_serializer_class()
 
@@ -98,14 +128,16 @@ class StudyCountryView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class StudyCTUView(viewsets.ModelViewSet):
+class StudyCTUView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = StudyCTU.objects.all()
     object_class = StudyCTU
     serializer_class = StudyCTUOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
+    # Bulk responses only need the saved fields and ids, like the single item PUT/POST responses (#125)
+    bulk_output_serializer_class = StudyCTUInputSerializer
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return StudyCTUInputSerializer
         return super().get_serializer_class()
 
@@ -126,14 +158,16 @@ class StudyCTUView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class CentreView(viewsets.ModelViewSet):
+class CentreView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = Centre.objects.all()
     object_class = Centre
     serializer_class = CentreOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
+    # Bulk responses only need the saved fields and ids, like the single item PUT/POST responses (#125)
+    bulk_output_serializer_class = CentreInputSerializer
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return CentreInputSerializer
         return super().get_serializer_class()
 
@@ -150,14 +184,16 @@ class CentreView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class CTUAgreementView(viewsets.ModelViewSet):
+class CTUAgreementView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = CTUAgreement.objects.all()
     object_class = CTUAgreement
     serializer_class = CTUAgreementOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
+    # Bulk responses only need the saved fields and ids, like the single item PUT/POST responses (#125)
+    bulk_output_serializer_class = CTUAgreementInputSerializer
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return CTUAgreementInputSerializer
         return super().get_serializer_class()
 
@@ -185,6 +221,10 @@ class CTUAgreementAmendmentView(BulkModelMixin, viewsets.ModelViewSet):
             return CTUAgreementAmendmentInputSerializer
         return super().get_serializer_class()
 
+    def get_output_queryset(self):
+        # Loading the nested objects of the bulk responses in a fixed number of queries (#125)
+        return self.object_class.objects.select_related("ctu_agreement__ctu_status")
+
     def get_queryset(self, *args, **kwargs):
         if getattr(self, "swagger_fake_view", False):
             # queryset just for schema generation metadata
@@ -198,14 +238,16 @@ class CTUAgreementAmendmentView(BulkModelMixin, viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class StudyAgreementView(viewsets.ModelViewSet):
+class StudyAgreementView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = StudyAgreement.objects.all()
     object_class = StudyAgreement
     serializer_class = StudyAgreementOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
+    # Bulk responses only need the saved fields and ids, like the single item PUT/POST responses (#125)
+    bulk_output_serializer_class = StudyAgreementInputSerializer
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return StudyAgreementInputSerializer
         return super().get_serializer_class()
 
@@ -216,14 +258,16 @@ class StudyAgreementView(viewsets.ModelViewSet):
         return super().get_queryset(*args, **kwargs)
 
 
-class SatisfactionSurveyView(viewsets.ModelViewSet):
+class SatisfactionSurveyView(BulkModelMixin, viewsets.ModelViewSet):
     queryset = SatisfactionSurvey.objects.all()
     object_class = SatisfactionSurvey
     serializer_class = SatisfactionSurveyOutputSerializer
     permission_classes = [permissions.IsAuthenticated]
+    # Bulk responses only need the saved fields and ids, like the single item PUT/POST responses (#125)
+    bulk_output_serializer_class = SatisfactionSurveyInputSerializer
 
     def get_serializer_class(self):
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return SatisfactionSurveyInputSerializer
         return super().get_serializer_class()
 
@@ -244,6 +288,10 @@ class StudyAgreementAmendmentView(BulkModelMixin, viewsets.ModelViewSet):
         if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return StudyAgreementAmendmentInputSerializer
         return super().get_serializer_class()
+
+    def get_output_queryset(self):
+        # Loading the nested objects of the bulk responses in a fixed number of queries (#125)
+        return self.object_class.objects.select_related("study_agreement")
 
     def get_queryset(self, *args, **kwargs):
         if getattr(self, 'swagger_fake_view', False):
@@ -311,6 +359,10 @@ class NotificationView(BulkModelMixin, viewsets.ModelViewSet):
             return NotificationInputSerializer
         return super().get_serializer_class()
 
+    def get_output_queryset(self):
+        # Loading the nested objects of the bulk responses in a fixed number of queries (#125)
+        return with_study_country_main_details(self.object_class.objects.all())
+
     def get_queryset(self, *args, **kwargs):
         if getattr(self, "swagger_fake_view", False):
             # queryset just for schema generation metadata
@@ -364,6 +416,10 @@ class SubmissionView(BulkModelMixin, viewsets.ModelViewSet):
         if self.action in ["create", "update", "partial_update", "bulk_create", "bulk_update"]:
             return SubmissionInputSerializer
         return super().get_serializer_class()
+
+    def get_output_queryset(self):
+        # Loading the nested objects of the bulk responses in a fixed number of queries (#125)
+        return with_study_country_main_details(self.object_class.objects.all())
 
     def get_queryset(self, *args, **kwargs):
         if getattr(self, "swagger_fake_view", False):
