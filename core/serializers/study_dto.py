@@ -18,6 +18,7 @@ from context.serializers.regulatory_framework_detail_dto import RegulatoryFramew
 from context.serializers.service_dto import ServiceOutputSerializer
 from core.models.study import Study
 from core.serializers.project_main_details_dto import ProjectMainDetailsSerializer
+from core.serializers.satisfaction_survey_dto import SatisfactionSurveyOutputSerializer
 from core.serializers.study_agreement_dto import StudyAgreementOutputSerializer
 from core.serializers.study_country_dto import StudyCountryOutputSerializer
 
@@ -48,6 +49,7 @@ class StudyOutputSerializer(serializers.ModelSerializer):
     populations = PopulationOutputSerializer(many=True)
     regulatory_framework_details = RegulatoryFrameworkDetailOutputSerializer(many=True)
     project = ProjectMainDetailsSerializer(many=False, read_only=True)
+    satisfaction_surveys = SatisfactionSurveyOutputSerializer(many=True, read_only=True)
     services = ServiceOutputSerializer(many=True)
     sponsor_country = CountryOutputSerializer(many=False)
     sponsor_organisation = OrganisationOutputSerializer(many=False)

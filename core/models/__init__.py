@@ -11,3 +11,4 @@ from .safety_notification import SafetyNotification
 from .ctu_agreement import CTUAgreement
 from .ctu_agreement_amendment import CTUAgreementAmendment
 from .publication import Publication
+from .satisfaction_survey import SatisfactionSurvey

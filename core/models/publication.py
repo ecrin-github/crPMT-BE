@@ -5,8 +5,8 @@ from core.models.project import Project
 
 class Publication(models.Model):
     id = models.BigAutoField(primary_key=True)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    pubmed_url = models.CharField(max_length=500, blank=True, null=True)
+    title = models.CharField(blank=True, null=True)
+    pubmed_url = models.CharField(blank=True, null=True)
 
     project = models.ForeignKey(
         Project,

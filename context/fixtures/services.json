@@ -3,7 +3,7 @@
         "model": "context.service",
         "pk": 4,
         "fields": {
-            "value": "Monitoring (Site initiation, Monitoring, close-down)"
+            "value": "Monitoring (Site initiation, Monitoring, Close-out visit)"
         }
     },
     {
@@ -46,13 +46,6 @@
         "pk": 22,
         "fields": {
             "value": "Materiovigilance"
-        }
-    },
-    {
-        "model": "context.service",
-        "pk": 23,
-        "fields": {
-            "value": "Central Pharmacovigilance"
         }
     },
     {

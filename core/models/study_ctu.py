@@ -3,6 +3,7 @@ import datetime
 from django.db import models
 from context.models.ctu import CTU
 from context.models.ctu_contracting_entity import CtuContractingEntity
+from context.models.person import Person
 from context.models.service import Service
 from core.models.study_country import StudyCountry
 from core.models.study import Study
@@ -24,6 +25,9 @@ class StudyCTU(models.Model):
     ctu_contracting_entity = models.ForeignKey(CtuContractingEntity, on_delete=models.SET_NULL,
                                     db_column='ctu_contracting_entity_id', blank=True, null=True,
                                     related_name='study_ctus', default=None)
+    contact_person = models.ForeignKey(Person, on_delete=models.SET_NULL,
+                                db_column='contact_id', blank=True, null=True,
+                                related_name='study_ctus', default=None)
     order = models.IntegerField(blank=True, null=True, db_column='order')
     # Many-to-one with Centre, FK in Centre
     
