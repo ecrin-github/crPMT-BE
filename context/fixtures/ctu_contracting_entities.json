@@ -1,0 +1,37 @@
+[
+    {
+        "model": "context.ctucontractingentity",
+        "pk": 1,
+        "fields": {
+            "value": "Beneficiary"
+        }
+    },
+    {
+        "model": "context.ctucontractingentity",
+        "pk": 2,
+        "fields": {
+            "value": "Subcontractor"
+        }
+    },
+    {
+        "model": "context.ctucontractingentity",
+        "pk": 3,
+        "fields": {
+            "value": "Affiliate entity"
+        }
+    },
+    {
+        "model": "context.ctucontractingentity",
+        "pk": 4,
+        "fields": {
+            "value": "In kind contribution"
+        }
+    },
+    {
+        "model": "context.ctucontractingentity",
+        "pk": 5,
+        "fields": {
+            "value": "Other"
+        }
+    }
+]

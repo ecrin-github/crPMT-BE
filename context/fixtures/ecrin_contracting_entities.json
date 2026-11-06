@@ -1,0 +1,23 @@
+[
+    {
+        "model": "context.ecrincontractingentity",
+        "pk": 1,
+        "fields": {
+            "value": "Beneficiary"
+        }
+    },
+    {
+        "model": "context.ecrincontractingentity",
+        "pk": 2,
+        "fields": {
+            "value": "Subcontractor"
+        }
+    },
+    {
+        "model": "context.ecrincontractingentity",
+        "pk": 3,
+        "fields": {
+            "value": "Other"
+        }
+    }
+]
