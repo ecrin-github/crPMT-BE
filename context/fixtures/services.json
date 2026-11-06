@@ -3,7 +3,7 @@
         "model": "context.service",
         "pk": 4,
         "fields": {
-            "value": "Monitoring (Site initiation, Monitoring, close-out visit)"
+            "value": "Monitoring (Site initiation, Monitoring, Close-out visit)"
         }
     },
     {
