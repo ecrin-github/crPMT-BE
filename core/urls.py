@@ -1,6 +1,7 @@
 from django.urls import path
 
 from core.views.views import *
+from core.views.dashboard import DashboardStudiesView, DashboardSubmissionsView, DashboardView
 
 
 project_list = ProjectView.as_view({
@@ -258,6 +259,9 @@ urlpatterns = [
     path("visits/bulk_update", visit_bulk_update),
     path("visits/bulk_delete", visit_bulk_delete),
     path('reference-count-by-class/<class_name>/<obj_id>', ReferenceCountByClass.as_view()),
+    path('dashboard', DashboardView.as_view()),
+    path('dashboard/studies', DashboardStudiesView.as_view()),
+    path('dashboard/submissions', DashboardSubmissionsView.as_view()),
     *bulk_paths("ctu-agreement-amendments", CTUAgreementAmendmentView),
     *bulk_paths("study-agreement-amendments", StudyAgreementAmendmentView),
     *bulk_paths("publications", PublicationView),
