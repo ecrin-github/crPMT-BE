@@ -30,7 +30,7 @@ def days_from_today(days):
 
 
 class DashboardTests(APITestCase):
-    """Dashboard data of the internal main page (#36)"""
+    """Dashboard data of the internal main page"""
 
     @classmethod
     def setUpTestData(cls):
@@ -130,6 +130,26 @@ class DashboardTests(APITestCase):
         self.assertEqual(dates, sorted(dates))
         self.assertEqual(deadlines[0]["date"], (timezone.localdate() + timedelta(days=1)).isoformat())
 
+    # ---- Project timelines ----
+
+    def test_project_timelines(self):
+        later = Project.objects.create(short_name="Later", start_date=days_from_today(30), end_date=days_from_today(400))
+        earlier = Project.objects.create(name="Earlier long name", start_date=days_from_today(-300),
+                                         end_date=days_from_today(-10))
+        Project.objects.create(short_name="No end", start_date=days_from_today(-5))    # Not drawn, counted
+
+        timelines = self.get_dashboard()["projectTimelines"]
+
+        self.assertEqual(timelines["projects"], [   # Earliest start first, name used when there is no short name
+            {"id": earlier.id, "name": "Earlier long name",
+             "start": (timezone.localdate() - timedelta(days=300)).isoformat(),
+             "end": (timezone.localdate() - timedelta(days=10)).isoformat()},
+            {"id": later.id, "name": "Later",
+             "start": (timezone.localdate() + timedelta(days=30)).isoformat(),
+             "end": (timezone.localdate() + timedelta(days=400)).isoformat()},
+        ])
+        self.assertEqual(timelines["withoutDates"], 2)   # "No end" and self.project, created without dates
+
     # ---- General ----
 
     def test_empty_database(self):
@@ -137,6 +157,7 @@ class DashboardTests(APITestCase):
         self.assertTrue(all(item["value"] == 0 for item in data["studiesByStatus"]))
         self.assertTrue(all(m["submitted"] == 0 and m["approved"] == 0 for m in data["submissionsByMonth"]))
         self.assertEqual(data["upcomingDeadlines"], [])
+        self.assertEqual(data["projectTimelines"]["projects"], [])
 
     def test_requires_authentication(self):
         self.client.force_authenticate(user=None)
@@ -151,6 +172,7 @@ class DashboardTests(APITestCase):
                 Submission.objects.create(study_country=sc, submission_date=days_from_today(-1))
                 Visit.objects.create(centre=centre, visit_type=self.visit_type, visit_date=days_from_today(i + 1))
                 ReportingPeriod.objects.create(project=self.project, end=days_from_today(i + 1))
+                Project.objects.create(short_name=f"P{i}", start_date=days_from_today(-i), end_date=days_from_today(i + 1))
 
         add_data(1)
         with CaptureQueriesContext(connection) as small:
@@ -160,7 +182,7 @@ class DashboardTests(APITestCase):
             self.get_dashboard()
 
         self.assertEqual(len(small), len(large))
-        self.assertLessEqual(len(large), 5)
+        self.assertLessEqual(len(large), 6)
 
 
 class DashboardStudiesTests(APITestCase):

@@ -7,6 +7,7 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from core.models.project import Project
 from core.models.reporting_period import ReportingPeriod
 from core.models.study import Study
 from core.models.submission import Submission
@@ -55,7 +56,7 @@ DEADLINES_DAYS = 60          # Only the deadlines of the next DEADLINES_DAYS day
 
 class DashboardView(APIView):
     """
-    Data of the dashboard of the internal main page (#36), computed by the database (COUNT / GROUP BY)
+    Data of the dashboard of the internal main page, computed by the database (COUNT / GROUP BY)
     instead of sending every study to the front-end. Fixed number of SQL queries whatever the amount of data.
     """
     permission_classes = [permissions.IsAuthenticated]
@@ -65,6 +66,7 @@ class DashboardView(APIView):
             "studies_by_status": self.get_studies_by_status(),
             "submissions_by_month": self.get_submissions_by_month(),
             "upcoming_deadlines": self.get_upcoming_deadlines(),
+            "project_timelines": self.get_project_timelines(),
         })
 
     def get_studies_by_status(self):
@@ -111,6 +113,29 @@ class DashboardView(APIView):
             "details": self.get_reporting_period_details(rp),
             "date": timezone.localtime(rp.end).date().isoformat(),
         } for rp in reporting_periods]
+
+    def get_project_timelines(self):
+        """
+        Start and end date of every project, for the "Project timelines" chart, earliest start first.
+        Only the projects with both dates can be drawn, the others are only counted (shown as a note under the chart).
+        """
+        # 1 query, only the 4 needed columns
+        projects = Project.objects.values("id", "short_name", "name", "start_date", "end_date").order_by("start_date", "id")
+
+        timelines = []
+        without_dates = 0
+        for project in projects:
+            if not project["start_date"] or not project["end_date"]:
+                without_dates += 1
+                continue
+            timelines.append({
+                "id": project["id"],
+                "name": project["short_name"] or project["name"] or f"Project {project['id']}",
+                "start": timezone.localtime(project["start_date"]).date().isoformat(),
+                "end": timezone.localtime(project["end_date"]).date().isoformat(),
+            })
+
+        return {"projects": timelines, "without_dates": without_dates}
 
     @staticmethod
     def get_last_months(number):
