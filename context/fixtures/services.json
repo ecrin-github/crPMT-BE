@@ -45,7 +45,14 @@
         "model": "context.service",
         "pk": 22,
         "fields": {
-            "value": "Materiovigilance"
+            "value": "Materiovigilance (local)"
+        }
+    },
+    {
+        "model": "context.service",
+        "pk": 23,
+        "fields": {
+            "value": "Materiovigilance (central)"
         }
     },
     {
